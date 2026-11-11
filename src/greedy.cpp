@@ -330,8 +330,8 @@ namespace {
 
             if (location.type == 1) {
 
-                locationLoads[option.locationId] +=
-                    instance.customers[customerId].demand;
+                // Cada cliente asignado representa una entrega.
+                locationLoads[option.locationId]++;
             }
         }
 
