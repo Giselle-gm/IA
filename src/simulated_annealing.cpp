@@ -11,6 +11,30 @@ using namespace std;
 
 namespace {
 
+    // Agrupa en una sola parada las visitas consecutivas a la misma ubicación.
+    // Así, LOCATION.SERVICETIME se contabiliza una sola vez por visita física.
+    void mergeConsecutiveStops(Solution& solution) {
+        for (Route& route : solution.routes) {
+            vector<Stop> mergedStops;
+
+            for (const Stop& stop : route.stops) {
+                if (!mergedStops.empty() &&
+                    mergedStops.back().locationId == stop.locationId) {
+                    vector<int>& options = mergedStops.back().optionIds;
+                    options.insert(
+                        options.end(),
+                        stop.optionIds.begin(),
+                        stop.optionIds.end()
+                    );
+                } else {
+                    mergedStops.push_back(stop);
+                }
+            }
+
+            route.stops = std::move(mergedStops);
+        }
+    }
+
     // Reasigna identificadores consecutivos después de modificar rutas.
     void normalizeVehicleIds(Solution& solution) {
         for (int i = 0; i < static_cast<int>(solution.routes.size()); ++i) {
@@ -150,7 +174,12 @@ SAResult simulatedAnnealing(
 ) {
     SAResult result;
 
-    result.initialEvaluation = evaluateSolution(instance, initialSolution);
+    // Normalizar también la solución inicial por si contiene visitas
+    // consecutivas a una misma ubicación.
+    Solution currentSolution = initialSolution;
+    mergeConsecutiveStops(currentSolution);
+
+    result.initialEvaluation = evaluateSolution(instance, currentSolution);
 
     if (!result.initialEvaluation.feasible ||
         config.iterations <= 0 ||
@@ -158,12 +187,12 @@ SAResult simulatedAnnealing(
         config.coolingRate <= 0.0 ||
         config.coolingRate >= 1.0 ||
         config.minimumTemperature <= 0.0) {
-        result.bestSolution = initialSolution;
+        result.bestSolution = currentSolution;
         result.bestEvaluation = result.initialEvaluation;
         return result;
     }
 
-    Solution currentSolution = initialSolution;
+
     currentSolution.objectiveValue = result.initialEvaluation.objectiveValue;
 
     result.bestSolution = currentSolution;
@@ -187,6 +216,9 @@ SAResult simulatedAnnealing(
             continue;
         }
 
+        // Evitar que un movimiento genere dos paradas consecutivas
+        // para la misma ubicación física.
+        mergeConsecutiveStops(candidate);
         normalizeVehicleIds(candidate);
 
         Evaluation candidateEvaluation = evaluateSolution(instance, candidate);
