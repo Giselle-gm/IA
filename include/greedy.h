@@ -34,4 +34,10 @@ GreedyResult buildGreedySolution(
     const GreedyConfig& config = GreedyConfig{}
 );
 
+GreedyResult buildGreedySolutionWithoutBacktracking(
+    const Instance& instance,
+    GreedyPriorityStrategy priorityStrategy =
+        GreedyPriorityStrategy::OPTIONS_THEN_DEMAND
+);
+
 #endif
