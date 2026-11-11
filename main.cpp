@@ -3,6 +3,7 @@
 #include "evaluator.h"
 #include "simulated_annealing.h"
 
+#include <chrono>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -149,6 +150,8 @@ int main(int argc, char* argv[]) {
     }
 
     const string filename = argv[1];
+    constexpr unsigned int RANDOM_SEED = 42;
+    const auto computationStart = chrono::steady_clock::now();
 
     Instance instance;
     if (!readInstance(filename, instance)) {
@@ -189,6 +192,16 @@ int main(int argc, char* argv[]) {
         cerr << "Simulated Annealing no pudo devolver una solucion factible.\n";
         return 1;
     }
+
+    const auto computationEnd = chrono::steady_clock::now();
+    const chrono::duration<double> computationTime =
+        computationEnd - computationStart;
+
+    cout << "\n========== DATOS DE LA EJECUCION ==========\n";
+    cout << "Instancia: " << filename << '\n';
+    cout << "Semilla: " << RANDOM_SEED << " (fija en Simulated Annealing)\n";
+    cout << "Tiempo de computo: " << fixed << setprecision(3)
+         << computationTime.count() << " s\n";
 
     cout << "Iteraciones ejecutadas: " << saResult.iterationsExecuted << '\n';
     cout << "Movimientos aceptados: " << saResult.acceptedMoves << '\n';
