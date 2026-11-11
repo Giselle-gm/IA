@@ -384,8 +384,8 @@ Evaluation evaluateSolution(
 
         // TYP = 1 corresponde a una ubicación compartida (SDL).
         if (location.type == 1) {
-            locationLoads[option.locationId] +=
-                instance.customers[customerId].demand;
+            // Cada cliente asignado representa una entrega.
+            locationLoads[option.locationId]++;
         }
     }
 
