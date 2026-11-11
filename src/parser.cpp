@@ -11,7 +11,6 @@ using namespace std;
 
 namespace {
 
-// Obtiene la siguiente linea no vacia.
 bool nextLine(ifstream& file, string& line) {
     while (getline(file, line)) {
         if (line.find_first_not_of(" \t\r\n") != string::npos) {
@@ -22,7 +21,6 @@ bool nextLine(ifstream& file, string& line) {
     return false;
 }
 
-// Consume una cabecera de seccion.
 void skipSectionHeader(ifstream& file) {
     string line;
 
@@ -31,7 +29,6 @@ void skipSectionHeader(ifstream& file) {
     }
 }
 
-// Prepara el stream para leer una fila.
 void prepareLine(istringstream& stream, const string& line) {
     stream.clear();
     stream.str(line);
@@ -54,9 +51,6 @@ bool readInstance(const string& filename, Instance& instance) {
         string line;
         istringstream stream;
 
-        // --------------------------------
-        // 1. Parametros generales
-        // --------------------------------
 
         if (!nextLine(file, line)) {
             throw runtime_error("Archivo vacio.");
@@ -100,7 +94,6 @@ bool readInstance(const string& filename, Instance& instance) {
             );
         }
 
-        // Preparar vectores y tablas auxiliares.
         instance.customers.resize(customerCount);
         instance.locations.resize(locationCount);
         instance.options.resize(optionCount);
@@ -113,9 +106,6 @@ bool readInstance(const string& filename, Instance& instance) {
             locationCount, vector<int>()
         );
 
-        // --------------------------------
-        // 2. Clientes
-        // --------------------------------
 
         skipSectionHeader(file);
 
@@ -143,9 +133,6 @@ bool readInstance(const string& filename, Instance& instance) {
             instance.customers[customer.id] = customer;
         }
 
-        // --------------------------------
-        // 3. Ubicaciones
-        // --------------------------------
 
         skipSectionHeader(file);
 
@@ -215,7 +202,6 @@ bool readInstance(const string& filename, Instance& instance) {
             instance.locations[location.id] = location;
         }
 
-        // El evaluador utiliza la ubicacion 0 como deposito.
         if (instance.locations[0].id != 0 ||
             instance.locations[0].type != 0) {
             throw runtime_error(
@@ -223,9 +209,6 @@ bool readInstance(const string& filename, Instance& instance) {
             );
         }
 
-        // --------------------------------
-        // 4. Opciones
-        // --------------------------------
 
         skipSectionHeader(file);
 
@@ -283,9 +266,6 @@ bool readInstance(const string& filename, Instance& instance) {
                 .push_back(option.id);
         }
 
-        // --------------------------------
-        // 5. Validaciones finales
-        // --------------------------------
 
         for (int customerId = 0;
              customerId < customerCount;
