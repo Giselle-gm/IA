@@ -25,10 +25,10 @@ TARGET = $(BIN_DIR)/vrpdo
 # =====================================
 
 SRCS = main.cpp \
-       $(SRC_DIR)/parser.cpp \
-       $(SRC_DIR)/evaluator.cpp \
-       $(SRC_DIR)/greedy.cpp \
-       $(SRC_DIR)/simulated_annealing.cpp
+		$(SRC_DIR)/parser.cpp \
+		$(SRC_DIR)/evaluator.cpp \
+		$(SRC_DIR)/greedy.cpp \
+		$(SRC_DIR)/simulated_annealing.cpp
 
 # Archivos objeto
 OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(SRCS))
@@ -69,9 +69,9 @@ run-instance: $(TARGET)
 TEST_TARGET = $(BIN_DIR)/test_instances
 TEST_SRCS = test_instances.cpp
 TEST_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_SRCS)) \
-            $(BIN_DIR)/$(SRC_DIR)/parser.o \
-            $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
-            $(BIN_DIR)/$(SRC_DIR)/greedy.o
+			$(BIN_DIR)/$(SRC_DIR)/parser.o \
+			$(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+			$(BIN_DIR)/$(SRC_DIR)/greedy.o
 
 $(TEST_TARGET): $(TEST_OBJS)
 	mkdir -p $(dir $@)
@@ -87,10 +87,10 @@ test-instances: $(TEST_TARGET)
 TEST_SA_TARGET = $(BIN_DIR)/test_sa
 TEST_SA_SRCS = test_sa.cpp
 TEST_SA_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_SA_SRCS)) \
-               $(BIN_DIR)/$(SRC_DIR)/parser.o \
-               $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
-               $(BIN_DIR)/$(SRC_DIR)/greedy.o \
-               $(BIN_DIR)/$(SRC_DIR)/simulated_annealing.o
+				$(BIN_DIR)/$(SRC_DIR)/parser.o \
+				$(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+				$(BIN_DIR)/$(SRC_DIR)/greedy.o \
+				$(BIN_DIR)/$(SRC_DIR)/simulated_annealing.o
 
 $(TEST_SA_TARGET): $(TEST_SA_OBJS)
 	mkdir -p $(dir $@)
@@ -106,10 +106,10 @@ test-sa: $(TEST_SA_TARGET)
 
 TEST_GREEDY_FAILURES_TARGET = $(BIN_DIR)/test_greedy_failures
 TEST_GREEDY_FAILURES_SRCS = test_greedy_failures.cpp
-TEST_GREEDY_FAILURES_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_FAILURES_SRCS)) \\
-                            $(BIN_DIR)/$(SRC_DIR)/parser.o \\
-                            $(BIN_DIR)/$(SRC_DIR)/evaluator.o \\
-                            $(BIN_DIR)/$(SRC_DIR)/greedy.o
+TEST_GREEDY_FAILURES_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_FAILURES_SRCS)) \
+							$(BIN_DIR)/$(SRC_DIR)/parser.o \
+							$(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+							$(BIN_DIR)/$(SRC_DIR)/greedy.o
 
 $(TEST_GREEDY_FAILURES_TARGET): $(TEST_GREEDY_FAILURES_OBJS)
 	mkdir -p $(dir $@)
@@ -125,9 +125,9 @@ test-greedy-failures: $(TEST_GREEDY_FAILURES_TARGET)
 TEST_GREEDY_LIMITS_TARGET = $(BIN_DIR)/test_greedy_limits
 TEST_GREEDY_LIMITS_SRCS = test_greedy_limits.cpp
 TEST_GREEDY_LIMITS_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_LIMITS_SRCS)) \
-                          $(BIN_DIR)/$(SRC_DIR)/parser.o \
-                          $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
-                          $(BIN_DIR)/$(SRC_DIR)/greedy.o
+						  $(BIN_DIR)/$(SRC_DIR)/parser.o \
+						  $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+						  $(BIN_DIR)/$(SRC_DIR)/greedy.o
 
 $(TEST_GREEDY_LIMITS_TARGET): $(TEST_GREEDY_LIMITS_OBJS)
 	mkdir -p $(dir $@)
@@ -144,9 +144,9 @@ test-greedy-limits: $(TEST_GREEDY_LIMITS_TARGET)
 TEST_GREEDY_REMAINING_TARGET = $(BIN_DIR)/test_greedy_remaining
 TEST_GREEDY_REMAINING_SRCS = test_greedy_remaining.cpp
 TEST_GREEDY_REMAINING_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_REMAINING_SRCS)) \
-                             $(BIN_DIR)/$(SRC_DIR)/parser.o \
-                             $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
-                             $(BIN_DIR)/$(SRC_DIR)/greedy.o
+							 $(BIN_DIR)/$(SRC_DIR)/parser.o \
+							 $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+							 $(BIN_DIR)/$(SRC_DIR)/greedy.o
 
 $(TEST_GREEDY_REMAINING_TARGET): $(TEST_GREEDY_REMAINING_OBJS)
 	mkdir -p $(dir $@)
