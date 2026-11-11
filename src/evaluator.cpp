@@ -21,9 +21,6 @@ namespace {
     }
 }
 
-// --------------------------------------------------
-// CALCULO DE VIAJES
-// --------------------------------------------------
 
 int travelTime(const Location& from, const Location& to) {
     double dx = from.x - to.x;
@@ -38,9 +35,6 @@ int travelCost(const Location& from, const Location& to) {
     return travelTime(from, to);
 }
 
-// --------------------------------------------------
-// EVALUACION DE UNA SOLUCION
-// --------------------------------------------------
 
 Evaluation evaluateSolution(
     const Instance& instance,
@@ -57,16 +51,12 @@ Evaluation evaluateSolution(
     const int optionCount =
         static_cast<int>(instance.options.size());
 
-    // Comprobar que exista el depósito.
     if (locationCount == 0) {
         addViolation(evaluation, "La instancia no contiene ubicaciones.");
         evaluation.feasible = false;
         return evaluation;
     }
 
-    // --------------------------------------------------
-    // 1. COMPROBAR OPCIONES SELECCIONADAS
-    // --------------------------------------------------
 
     if (static_cast<int>(solution.selectedOptions.size()) != customerCount) {
         addViolation(
@@ -130,9 +120,6 @@ Evaluation evaluateSolution(
         }
     }
 
-    // --------------------------------------------------
-    // 2. EVALUAR RUTAS Y CAPACIDAD VEHICULAR
-    // --------------------------------------------------
 
     set<int> vehicleIds;
 
@@ -140,7 +127,6 @@ Evaluation evaluateSolution(
 
     for (const Route& route : solution.routes) {
 
-        // No contar rutas vacías como vehículos utilizados.
         if (route.stops.empty()) {
             addViolation(
                 evaluation,
@@ -163,16 +149,12 @@ Evaluation evaluateSolution(
 
         vector<bool> customerInRoute(customerCount, false);
 
-        // El vehículo comienza en el depósito.
         int previousLocationId = 0;
 
-        // Tiempo acumulado desde la salida del depósito.
         int currentTime = 0;
 
-        // Recorrer las paradas de la ruta.
         for (const Stop& stop : route.stops) {
 
-            // Una parada debe representar al menos una entrega.
             if (stop.optionIds.empty()) {
                 addViolation(
                     evaluation,
@@ -197,7 +179,6 @@ Evaluation evaluateSolution(
             const Location& location =
                 instance.locations[locationId];
 
-            // Viaje hasta la siguiente ubicación.
             const Location& previousLocation =
                 instance.locations[previousLocationId];
 
@@ -206,10 +187,8 @@ Evaluation evaluateSolution(
             evaluation.travelCost += travel;
             currentTime += travel;
 
-            // Tiempo de llegada.
             int arrivalTime = currentTime;
 
-            // Si llega antes de READY, debe esperar.
             int serviceStart = max(
                 arrivalTime,
                 location.ready
@@ -218,7 +197,6 @@ Evaluation evaluateSolution(
             // Tiempo de preparación/acceso de la ubicación.
             int serviceDuration = location.serviceTime;
 
-            // Registrar clientes atendidos en esta parada.
             for (int optionId : stop.optionIds) {
 
                 if (optionId < 0 || optionId >= optionCount) {
@@ -325,7 +303,6 @@ Evaluation evaluateSolution(
             );
         }
 
-        // Regreso al depósito.
         const Location& lastLocation =
             instance.locations[previousLocationId];
 
@@ -335,7 +312,6 @@ Evaluation evaluateSolution(
         evaluation.travelCost += travelCost(lastLocation, depot);
     }
 
-    // Comprobar cantidad máxima de vehículos.
     if (evaluation.vehiclesUsed > instance.vehicleCount) {
         addViolation(
             evaluation,
@@ -343,9 +319,6 @@ Evaluation evaluateSolution(
         );
     }
 
-    // --------------------------------------------------
-    // 3. CADA OPCION SELECCIONADA DEBE APARECER EN UNA RUTA
-    // --------------------------------------------------
 
     for (int customerId = 0;
          customerId < customerCount &&
@@ -368,9 +341,6 @@ Evaluation evaluateSolution(
         }
     }
 
-    // --------------------------------------------------
-    // 4. CAPACIDAD GLOBAL DE UBICACIONES COMPARTIDAS
-    // --------------------------------------------------
 
     vector<int> locationLoads(locationCount, 0);
 
@@ -422,9 +392,7 @@ Evaluation evaluateSolution(
         }
     }
 
-    // --------------------------------------------------
     // 5. NIVELES MINIMOS ACUMULATIVOS DE SERVICIO
-    // --------------------------------------------------
 
     for (int priority = 0;
          priority < static_cast<int>(instance.minimumServiceLevel.size());
@@ -469,9 +437,6 @@ Evaluation evaluateSolution(
         }
     }
 
-    // --------------------------------------------------
-    // 6. FUNCION OBJETIVO
-    // --------------------------------------------------
 
     evaluation.fixedCost =
         FIXED_VEHICLE_COST * evaluation.vehiclesUsed;
@@ -479,9 +444,6 @@ Evaluation evaluateSolution(
     evaluation.objectiveValue =
         evaluation.fixedCost + evaluation.travelCost;
 
-    // --------------------------------------------------
-    // 7. RESULTADO FINAL
-    // --------------------------------------------------
 
     evaluation.feasible = evaluation.violations.empty();
 
