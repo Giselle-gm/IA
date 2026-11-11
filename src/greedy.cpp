@@ -829,7 +829,7 @@ GreedyResult buildGreedySolutionWithoutBacktracking(
             "Greedy sin backtracking construyo una solucion, pero el evaluador detecto incumplimientos.";
 
         for (const string& violation : evaluation.violations) {
-            result.message += "\\n- " + violation;
+            result.message += "\n- " + violation;
         }
 
         return result;
