@@ -365,9 +365,6 @@ namespace {
         int priority;
     };
 
-    constexpr int MAX_SEARCH_NODES = 20000;
-    constexpr int MAX_BACKTRACKS = 5000;
-
     // Genera todas las inserciones factibles del cliente actual
     // y las ordena siguiendo el criterio Greedy.
     vector<InsertionCandidate> generateInsertionCandidates(
@@ -486,6 +483,7 @@ namespace {
     // Búsqueda Greedy con retroceso limitado.
     bool buildGreedyWithBacktracking(
         const Instance& instance,
+        const GreedyConfig& config,
         const vector<int>& customerOrder,
         int position,
         Solution& solution,
@@ -513,8 +511,8 @@ namespace {
 
         for (const InsertionCandidate& candidate : candidates) {
 
-            if (exploredNodes >= MAX_SEARCH_NODES ||
-                backtracks >= MAX_BACKTRACKS) {
+            if (exploredNodes >= config.maxSearchNodes ||
+                backtracks >= config.maxBacktracks) {
                 lastFailedCustomer = customerId;
                 return false;
             }
@@ -525,6 +523,7 @@ namespace {
 
             if (buildGreedyWithBacktracking(
                 instance,
+                config,
                 customerOrder,
                 position + 1,
                 nextSolution,
@@ -540,8 +539,8 @@ namespace {
             // se vuelve atrás y se prueba el siguiente candidato.
             backtracks++;
 
-            if (exploredNodes >= MAX_SEARCH_NODES ||
-                backtracks >= MAX_BACKTRACKS) {
+            if (exploredNodes >= config.maxSearchNodes ||
+                backtracks >= config.maxBacktracks) {
                 lastFailedCustomer = customerId;
                 return false;
             }
@@ -558,14 +557,22 @@ namespace {
 // CONSTRUCCIÓN DE LA SOLUCIÓN GREEDY
 // --------------------------------------------------
 
-GreedyResult buildGreedySolution(const Instance& instance) {
+GreedyResult buildGreedySolution(
+    const Instance& instance,
+    const GreedyConfig& config
+) {
 
     GreedyResult result;
 
     const int customerCount =
         static_cast<int>(instance.customers.size());
 
-    // Comprobaciones básicas de la instancia.
+    // Comprobaciones básicas de la configuración y la instancia.
+    if (config.maxSearchNodes <= 0 || config.maxBacktracks <= 0) {
+        result.message = "Los limites de busqueda de Greedy deben ser positivos.";
+        return result;
+    }
+
     if (customerCount == 0 ||
         instance.locations.empty() ||
         instance.vehicleCount <= 0 ||
@@ -625,6 +632,7 @@ GreedyResult buildGreedySolution(const Instance& instance) {
     // Construir la solución usando Greedy y retroceso limitado.
     bool foundSolution = buildGreedyWithBacktracking(
         instance,
+        config,
         customerOrder,
         0,
         currentSolution,
@@ -646,9 +654,9 @@ GreedyResult buildGreedySolution(const Instance& instance) {
 
         result.message +=
             " Nodos explorados: " + to_string(exploredNodes) +
-            "/" + to_string(MAX_SEARCH_NODES) +
+            "/" + to_string(config.maxSearchNodes) +
             ". Retrocesos: " + to_string(backtracks) +
-            "/" + to_string(MAX_BACKTRACKS) + ".";
+            "/" + to_string(config.maxBacktracks) + ".";
 
         return result;
     }
