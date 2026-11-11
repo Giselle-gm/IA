@@ -155,6 +155,25 @@ $(TEST_GREEDY_REMAINING_TARGET): $(TEST_GREEDY_REMAINING_OBJS)
 test-greedy-remaining: $(TEST_GREEDY_REMAINING_TARGET)
 	./$(TEST_GREEDY_REMAINING_TARGET)
 
+
+# =====================================
+# Comparacion de prioridades de seleccion Greedy
+# =====================================
+
+TEST_GREEDY_PRIORITIES_TARGET = $(BIN_DIR)/test_greedy_priorities
+TEST_GREEDY_PRIORITIES_SRCS = test_greedy_priorities.cpp
+TEST_GREEDY_PRIORITIES_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_PRIORITIES_SRCS)) \
+							  $(BIN_DIR)/$(SRC_DIR)/parser.o \
+							  $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+							  $(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_GREEDY_PRIORITIES_TARGET): $(TEST_GREEDY_PRIORITIES_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-priorities: $(TEST_GREEDY_PRIORITIES_TARGET)
+	./$(TEST_GREEDY_PRIORITIES_TARGET)
+
 # =====================================
 # Limpieza
 # =====================================
@@ -164,4 +183,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits test-greedy-remaining clean
+.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits test-greedy-remaining test-greedy-priorities clean
