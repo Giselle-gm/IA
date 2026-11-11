@@ -15,12 +15,13 @@ int main() {
 
     if (!fs::exists(instancesDirectory) ||
         !fs::is_directory(instancesDirectory)) {
-        return 0;
+        cout << "No se encontro el directorio instances/.\n";
+        return 1;
     }
 
     vector<fs::path> instanceFiles;
 
-    // Recorrer recursivamente todos los subdirectorios de instances.
+    // Contar todos los archivos regulares, incluyendo los de subdirectorios.
     for (const fs::directory_entry& entry :
          fs::recursive_directory_iterator(instancesDirectory)) {
 
@@ -31,15 +32,19 @@ int main() {
 
     sort(instanceFiles.begin(), instanceFiles.end());
 
+    int filesReadSuccessfully = 0;
     int feasibleSolutions = 0;
 
     for (const fs::path& file : instanceFiles) {
         Instance instance;
 
-        // Los archivos que no se puedan leer se omiten.
+        // Si el parser no puede leer el archivo, se contabiliza
+        // solamente en el total de archivos encontrados.
         if (!readInstance(file.string(), instance)) {
             continue;
         }
+
+        ++filesReadSuccessfully;
 
         GreedyResult result = buildGreedySolution(instance);
 
@@ -48,12 +53,13 @@ int main() {
         }
     }
 
-    // No se muestran nombres ni detalles de las instancias.
-    // Si ninguna tuvo solución factible, no se imprime nada.
-    if (feasibleSolutions > 0) {
-        cout << "Se encontraron soluciones iniciales factibles en "
-             << feasibleSolutions << " instancia(s).\n";
-    }
+    cout << "\n========== RESUMEN DE INSTANCIAS ==========\n";
+    cout << "Archivos encontrados: "
+         << instanceFiles.size() << '\n';
+    cout << "Archivos leidos exitosamente: "
+         << filesReadSuccessfully << '\n';
+    cout << "Archivos con solucion inicial factible (Greedy): "
+         << feasibleSolutions << '\n';
 
     return 0;
 }
