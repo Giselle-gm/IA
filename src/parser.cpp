@@ -1,16 +1,18 @@
+#include "parser.h"
 
-#include "../include/parser.h"
-
+#include <cmath>
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 
 using namespace std;
 
+namespace {
+
 // Obtiene la siguiente linea no vacia.
-static bool nextLine(ifstream& file, string& line) {
+bool nextLine(ifstream& file, string& line) {
     while (getline(file, line)) {
         if (line.find_first_not_of(" \t\r\n") != string::npos) {
             return true;
@@ -20,14 +22,22 @@ static bool nextLine(ifstream& file, string& line) {
     return false;
 }
 
-// Lee una seccion compuesta por una cabecera y sus datos.
-static void skipSectionHeader(ifstream& file) {
+// Consume una cabecera de seccion.
+void skipSectionHeader(ifstream& file) {
     string line;
 
     if (!nextLine(file, line)) {
         throw runtime_error("Falta una cabecera de seccion.");
     }
 }
+
+// Prepara el stream para leer una fila.
+void prepareLine(istringstream& stream, const string& line) {
+    stream.clear();
+    stream.str(line);
+}
+
+} // namespace
 
 bool readInstance(const string& filename, Instance& instance) {
     ifstream file(filename);
@@ -37,6 +47,9 @@ bool readInstance(const string& filename, Instance& instance) {
         return false;
     }
 
+    // Evita conservar datos de una lectura anterior si se reutiliza Instance.
+    instance = Instance{};
+
     try {
         string line;
         istringstream stream;
@@ -45,27 +58,25 @@ bool readInstance(const string& filename, Instance& instance) {
         // 1. Parametros generales
         // --------------------------------
 
-        // Saltar encabezado descriptivo
         if (!nextLine(file, line)) {
             throw runtime_error("Archivo vacio.");
         }
 
-        // Saltar encabezado de parametros generales
         if (!nextLine(file, line)) {
-            throw runtime_error("Falta el encabezado de parametros generales.");
+            throw runtime_error(
+                "Falta el encabezado de parametros generales."
+            );
         }
 
-        // Leer valores generales
         if (!nextLine(file, line)) {
             throw runtime_error("Faltan los parametros generales.");
         }
 
-        stream.clear();
-        stream.str(line);
+        prepareLine(stream, line);
 
-        int locationCount;
-        int customerCount;
-        int optionCount;
+        int locationCount = 0;
+        int customerCount = 0;
+        int optionCount = 0;
 
         if (!(stream >> instance.vehicleCount
                      >> instance.vehicleCapacity
@@ -81,11 +92,15 @@ bool readInstance(const string& filename, Instance& instance) {
             instance.vehicleCapacity <= 0 ||
             locationCount <= 0 ||
             customerCount <= 0 ||
-            optionCount <= 0) {
-            throw runtime_error("Las dimensiones deben ser positivas.");
+            optionCount <= 0 ||
+            instance.priorityCount <= 0 ||
+            instance.typeCount <= 0) {
+            throw runtime_error(
+                "Los parametros y las dimensiones deben ser positivos."
+            );
         }
 
-        // Preparar vectores
+        // Preparar vectores y tablas auxiliares.
         instance.customers.resize(customerCount);
         instance.locations.resize(locationCount);
         instance.options.resize(optionCount);
@@ -104,15 +119,14 @@ bool readInstance(const string& filename, Instance& instance) {
 
         skipSectionHeader(file);
 
-        for (int i = 0; i < customerCount; i++) {
+        for (int i = 0; i < customerCount; ++i) {
             if (!nextLine(file, line)) {
                 throw runtime_error("Faltan datos de clientes.");
             }
 
-            stream.clear();
-            stream.str(line);
+            prepareLine(stream, line);
 
-            Customer customer;
+            Customer customer{};
 
             if (!(stream >> customer.id >> customer.demand)) {
                 throw runtime_error("Fila de cliente invalida.");
@@ -135,15 +149,14 @@ bool readInstance(const string& filename, Instance& instance) {
 
         skipSectionHeader(file);
 
-        for (int i = 0; i < locationCount; i++) {
+        for (int i = 0; i < locationCount; ++i) {
             if (!nextLine(file, line)) {
                 throw runtime_error("Faltan datos de ubicaciones.");
             }
 
-            stream.clear();
-            stream.str(line);
+            prepareLine(stream, line);
 
-            Location location;
+            Location location{};
 
             if (!(stream >> location.id
                          >> location.x
@@ -160,11 +173,42 @@ bool readInstance(const string& filename, Instance& instance) {
                 throw runtime_error("ID de ubicacion fuera de rango.");
             }
 
+            if (!isfinite(location.x) || !isfinite(location.y)) {
+                throw runtime_error(
+                    "Las coordenadas de una ubicacion no son finitas."
+                );
+            }
+
             if (location.ready > location.due) {
                 throw runtime_error("Ventana temporal invalida.");
             }
 
+            if (location.serviceTime < 0) {
+                throw runtime_error(
+                    "Tiempo de servicio de ubicacion negativo."
+                );
+            }
+
+            if (location.type < 0 ||
+                location.type >= instance.typeCount) {
+                throw runtime_error("Tipo de ubicacion fuera de rango.");
+            }
+
+            if (location.type == 1 && location.capacity < 0) {
+                throw runtime_error(
+                    "Una ubicacion compartida debe tener capacidad no negativa."
+                );
+            }
+
             instance.locations[location.id] = location;
+        }
+
+        // El evaluador utiliza la ubicacion 0 como deposito.
+        if (instance.locations[0].id != 0 ||
+            instance.locations[0].type != 0) {
+            throw runtime_error(
+                "La ubicacion 0 debe corresponder al deposito (tipo 0)."
+            );
         }
 
         // --------------------------------
@@ -173,15 +217,14 @@ bool readInstance(const string& filename, Instance& instance) {
 
         skipSectionHeader(file);
 
-        for (int i = 0; i < optionCount; i++) {
+        for (int i = 0; i < optionCount; ++i) {
             if (!nextLine(file, line)) {
                 throw runtime_error("Faltan datos de opciones.");
             }
 
-            stream.clear();
-            stream.str(line);
+            prepareLine(stream, line);
 
-            Option option;
+            Option option{};
 
             if (!(stream >> option.id
                          >> option.locationId
@@ -217,7 +260,7 @@ bool readInstance(const string& filename, Instance& instance) {
 
             instance.options[option.id] = option;
 
-            // Construir relaciones auxiliares
+            // Construir relaciones auxiliares.
             instance.optionsByCustomer[option.customerId]
                 .push_back(option.id);
 
@@ -229,10 +272,13 @@ bool readInstance(const string& filename, Instance& instance) {
         // 5. Validaciones finales
         // --------------------------------
 
-        for (int i = 0; i < customerCount; i++) {
-            if (instance.optionsByCustomer[i].empty()) {
+        for (int customerId = 0;
+             customerId < customerCount;
+             ++customerId) {
+
+            if (instance.optionsByCustomer[customerId].empty()) {
                 throw runtime_error(
-                    "El cliente " + to_string(i) +
+                    "El cliente " + to_string(customerId) +
                     " no tiene opciones."
                 );
             }
@@ -244,6 +290,9 @@ bool readInstance(const string& filename, Instance& instance) {
         return true;
     }
     catch (const exception& error) {
+        // No dejar una instancia parcialmente cargada ante un error.
+        instance = Instance{};
+
         cerr << "Error al leer instancia: "
              << error.what() << endl;
 
