@@ -17,7 +17,7 @@ int main() {
     const fs::path root = "instances";
 
     if (!fs::exists(root) || !fs::is_directory(root)) {
-        cerr << "No se encontro el directorio instances/.\\n";
+        cerr << "No se encontro el directorio instances/.\n";
         return 1;
     }
 
@@ -69,21 +69,21 @@ int main() {
     }
 
     cout << fixed << setprecision(3);
-    cout << "\\n========== COMPARACION DE GREEDY ==========\\n";
-    cout << "Archivos encontrados: " << files.size() << '\\n';
-    cout << "Archivos leidos: " << readCount << '\\n';
-    cout << "Errores de lectura: " << readErrors << '\\n';
-    cout << "\\n";
+    cout << "\n========== COMPARACION DE GREEDY ==========\n";
+    cout << "Archivos encontrados: " << files.size() << '\n';
+    cout << "Archivos leidos: " << readCount << '\n';
+    cout << "Errores de lectura: " << readErrors << '\n';
+    cout << "\n";
     cout << left << setw(32) << "Algoritmo"
          << right << setw(18) << "Soluciones"
-         << setw(18) << "Tiempo (s)" << '\\n';
+         << setw(18) << "Tiempo (s)" << '\n';
     cout << left << setw(32) << "Greedy con Backtracking"
          << right << setw(18) << backtrackingSuccesses
-         << setw(18) << backtrackingSeconds << '\\n';
+         << setw(18) << backtrackingSeconds << '\n';
     cout << left << setw(32) << "Greedy sin Backtracking"
          << right << setw(18) << simpleGreedySuccesses
-         << setw(18) << simpleGreedySeconds << '\\n';
-    cout << "\\nInstancias resueltas por ambos: " << bothSuccesses << '\\n';
+         << setw(18) << simpleGreedySeconds << '\n';
+    cout << "\nInstancias resueltas por ambos: " << bothSuccesses << '\n';
 
     return readErrors == 0 ? 0 : 2;
 }
