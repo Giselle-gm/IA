@@ -119,6 +119,24 @@ test-greedy-failures: $(TEST_GREEDY_FAILURES_TARGET)
 	./$(TEST_GREEDY_FAILURES_TARGET)
 
 # =====================================
+# Experimento con limites crecientes de retroceso Greedy
+# =====================================
+
+TEST_GREEDY_LIMITS_TARGET = $(BIN_DIR)/test_greedy_limits
+TEST_GREEDY_LIMITS_SRCS = test_greedy_limits.cpp
+TEST_GREEDY_LIMITS_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_LIMITS_SRCS)) \
+                          $(BIN_DIR)/$(SRC_DIR)/parser.o \
+                          $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+                          $(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_GREEDY_LIMITS_TARGET): $(TEST_GREEDY_LIMITS_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-limits: $(TEST_GREEDY_LIMITS_TARGET)
+	./$(TEST_GREEDY_LIMITS_TARGET)
+
+# =====================================
 # Limpieza
 # =====================================
 
@@ -127,4 +145,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy-failures clean
+.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits clean
