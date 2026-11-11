@@ -358,6 +358,199 @@ namespace {
         return true;
     }
 
+
+    struct InsertionCandidate {
+        Solution solution;
+        double objective;
+        int priority;
+    };
+
+    constexpr int MAX_SEARCH_NODES = 20000;
+    constexpr int MAX_BACKTRACKS = 5000;
+
+    // Genera todas las inserciones factibles del cliente actual
+    // y las ordena siguiendo el criterio Greedy.
+    vector<InsertionCandidate> generateInsertionCandidates(
+        const Instance& instance,
+        const Solution& currentSolution,
+        int customerId
+    ) {
+        vector<InsertionCandidate> candidates;
+
+        const int optionCount =
+            static_cast<int>(instance.options.size());
+
+        const vector<int>& availableOptions =
+            instance.optionsByCustomer[customerId];
+
+        for (int optionId : availableOptions) {
+
+            if (optionId < 0 || optionId >= optionCount) {
+                continue;
+            }
+
+            const Option& option = instance.options[optionId];
+
+            if (option.customerId != customerId) {
+                continue;
+            }
+
+            // Probar inserciones en todas las rutas existentes.
+            for (int routeIndex = 0;
+                 routeIndex < static_cast<int>(currentSolution.routes.size());
+                 routeIndex++) {
+
+                const Route& originalRoute =
+                    currentSolution.routes[routeIndex];
+
+                for (int position = 0;
+                     position <= static_cast<int>(originalRoute.stops.size());
+                     position++) {
+
+                    Solution candidate = currentSolution;
+                    candidate.selectedOptions[customerId] = optionId;
+
+                    Route& candidateRoute =
+                        candidate.routes[routeIndex];
+
+                    Stop newStop;
+                    newStop.locationId = option.locationId;
+                    newStop.optionIds.push_back(optionId);
+
+                    candidateRoute.stops.insert(
+                        candidateRoute.stops.begin() + position,
+                        newStop
+                    );
+
+                    mergeConsecutiveStops(candidateRoute);
+
+                    if (!isPartialSolutionFeasible(instance, candidate)) {
+                        continue;
+                    }
+
+                    candidates.push_back({
+                        candidate,
+                        calculatePartialObjective(instance, candidate),
+                        option.priority
+                    });
+                }
+            }
+
+            // Probar crear una ruta nueva.
+            if (static_cast<int>(currentSolution.routes.size()) <
+                instance.vehicleCount) {
+
+                Solution candidate = currentSolution;
+                candidate.selectedOptions[customerId] = optionId;
+
+                Route newRoute;
+                newRoute.vehicleId =
+                    static_cast<int>(candidate.routes.size());
+
+                Stop newStop;
+                newStop.locationId = option.locationId;
+                newStop.optionIds.push_back(optionId);
+                newRoute.stops.push_back(newStop);
+
+                candidate.routes.push_back(newRoute);
+
+                if (isPartialSolutionFeasible(instance, candidate)) {
+                    candidates.push_back({
+                        candidate,
+                        calculatePartialObjective(instance, candidate),
+                        option.priority
+                    });
+                }
+            }
+        }
+
+        // Orden estable: menor FO primero y, en empate, menor prioridad.
+        stable_sort(
+            candidates.begin(),
+            candidates.end(),
+            [](const InsertionCandidate& a,
+               const InsertionCandidate& b) {
+
+                if (a.objective != b.objective) {
+                    return a.objective < b.objective;
+                }
+
+                return a.priority < b.priority;
+            }
+        );
+
+        return candidates;
+    }
+
+
+    // Búsqueda Greedy con retroceso limitado.
+    bool buildGreedyWithBacktracking(
+        const Instance& instance,
+        const vector<int>& customerOrder,
+        int position,
+        Solution& solution,
+        int& exploredNodes,
+        int& backtracks,
+        int& lastFailedCustomer
+    ) {
+        if (position >= static_cast<int>(customerOrder.size())) {
+            return true;
+        }
+
+        const int customerId = customerOrder[position];
+
+        vector<InsertionCandidate> candidates =
+            generateInsertionCandidates(
+                instance,
+                solution,
+                customerId
+            );
+
+        if (candidates.empty()) {
+            lastFailedCustomer = customerId;
+            return false;
+        }
+
+        for (const InsertionCandidate& candidate : candidates) {
+
+            if (exploredNodes >= MAX_SEARCH_NODES ||
+                backtracks >= MAX_BACKTRACKS) {
+                lastFailedCustomer = customerId;
+                return false;
+            }
+
+            exploredNodes++;
+
+            Solution nextSolution = candidate.solution;
+
+            if (buildGreedyWithBacktracking(
+                instance,
+                customerOrder,
+                position + 1,
+                nextSolution,
+                exploredNodes,
+                backtracks,
+                lastFailedCustomer
+            )) {
+                solution = std::move(nextSolution);
+                return true;
+            }
+
+            // La elección actual no permitió completar la solución:
+            // se vuelve atrás y se prueba el siguiente candidato.
+            backtracks++;
+
+            if (exploredNodes >= MAX_SEARCH_NODES ||
+                backtracks >= MAX_BACKTRACKS) {
+                lastFailedCustomer = customerId;
+                return false;
+            }
+        }
+
+        lastFailedCustomer = customerId;
+        return false;
+    }
+
 }
 
 
@@ -371,9 +564,6 @@ GreedyResult buildGreedySolution(const Instance& instance) {
 
     const int customerCount =
         static_cast<int>(instance.customers.size());
-
-    const int optionCount =
-        static_cast<int>(instance.options.size());
 
     // Comprobaciones básicas de la instancia.
     if (customerCount == 0 ||
@@ -396,22 +586,8 @@ GreedyResult buildGreedySolution(const Instance& instance) {
         return result;
     }
 
-    // --------------------------------------------------
-    // 1. INICIALIZAR SOLUCIÓN
-    // --------------------------------------------------
-
-    Solution currentSolution;
-
-    // -1 indica que el cliente todavía no tiene opción asignada.
-    currentSolution.selectedOptions.assign(
-        customerCount,
-        -1
-    );
-
-    // --------------------------------------------------
-    // 2. ORDENAR CLIENTES POR DIFICULTAD
-    // --------------------------------------------------
-
+    // Ordenar clientes por dificultad:
+    // menos opciones primero y, en empate, mayor demanda.
     vector<int> customerOrder(customerCount);
 
     for (int i = 0; i < customerCount; i++) {
@@ -429,201 +605,62 @@ GreedyResult buildGreedySolution(const Instance& instance) {
             int optionsB =
                 static_cast<int>(instance.optionsByCustomer[b].size());
 
-            // Primero, clientes con menos alternativas.
             if (optionsA != optionsB) {
                 return optionsA < optionsB;
             }
 
-            // En caso de empate, mayor demanda primero.
             return instance.customers[a].demand >
                    instance.customers[b].demand;
         }
     );
 
-    // --------------------------------------------------
-    // 3. INSERTAR CADA CLIENTE
-    // --------------------------------------------------
+    // Inicializar solución parcial.
+    Solution currentSolution;
+    currentSolution.selectedOptions.assign(customerCount, -1);
 
-    for (int customerId : customerOrder) {
+    int exploredNodes = 0;
+    int backtracks = 0;
+    int lastFailedCustomer = -1;
 
-        const vector<int>& availableOptions =
-            instance.optionsByCustomer[customerId];
+    // Construir la solución usando Greedy y retroceso limitado.
+    bool foundSolution = buildGreedyWithBacktracking(
+        instance,
+        customerOrder,
+        0,
+        currentSolution,
+        exploredNodes,
+        backtracks,
+        lastFailedCustomer
+    );
 
-        if (availableOptions.empty()) {
+    if (!foundSolution) {
 
-            result.message =
-                "El cliente " + to_string(customerId) +
-                " no tiene opciones disponibles.";
+        result.message =
+            "No fue posible construir una solucion factible con Greedy y retroceso limitado.";
 
-            return result;
+        if (lastFailedCustomer >= 0) {
+            result.message +=
+                " Ultimo cliente sin insercion: " +
+                to_string(lastFailedCustomer) + ".";
         }
 
-        bool foundCandidate = false;
+        result.message +=
+            " Nodos explorados: " + to_string(exploredNodes) +
+            "/" + to_string(MAX_SEARCH_NODES) +
+            ". Retrocesos: " + to_string(backtracks) +
+            "/" + to_string(MAX_BACKTRACKS) + ".";
 
-        Solution bestCandidate;
-
-        double bestObjective =
-            numeric_limits<double>::infinity();
-
-        int bestPriority =
-            numeric_limits<int>::max();
-
-        // Probar todas las opciones del cliente.
-        for (int optionId : availableOptions) {
-
-            if (optionId < 0 || optionId >= optionCount) {
-                continue;
-            }
-
-            const Option& option =
-                instance.options[optionId];
-
-            if (option.customerId != customerId) {
-                continue;
-            }
-
-            // --------------------------------------------------
-            // A. INSERTAR EN UNA RUTA EXISTENTE
-            // --------------------------------------------------
-
-            for (int routeIndex = 0;
-                 routeIndex < static_cast<int>(currentSolution.routes.size());
-                 routeIndex++) {
-
-                const Route& originalRoute =
-                    currentSolution.routes[routeIndex];
-
-                // Probar todas las posiciones posibles.
-                for (int position = 0;
-                     position <= static_cast<int>(originalRoute.stops.size());
-                     position++) {
-
-                    Solution candidate = currentSolution;
-
-                    candidate.selectedOptions[customerId] =
-                        optionId;
-
-                    Route& candidateRoute =
-                        candidate.routes[routeIndex];
-
-                    Stop newStop;
-                    newStop.locationId = option.locationId;
-                    newStop.optionIds.push_back(optionId);
-
-                    candidateRoute.stops.insert(
-                        candidateRoute.stops.begin() + position,
-                        newStop
-                    );
-
-                    // Agrupar visitas consecutivas a la misma ubicación.
-                    mergeConsecutiveStops(candidateRoute);
-
-                    if (!isPartialSolutionFeasible(
-                        instance,
-                        candidate
-                    )) {
-                        continue;
-                    }
-
-                    double candidateObjective =
-                        calculatePartialObjective(
-                            instance,
-                            candidate
-                        );
-
-                    // Elegir menor objetivo.
-                    // En empate, favorecer menor prioridad numérica.
-                    if (!foundCandidate ||
-                        candidateObjective < bestObjective ||
-                        (candidateObjective == bestObjective &&
-                         option.priority < bestPriority)) {
-
-                        foundCandidate = true;
-                        bestObjective = candidateObjective;
-                        bestPriority = option.priority;
-                        bestCandidate = candidate;
-                    }
-                }
-            }
-
-            // --------------------------------------------------
-            // B. CREAR UNA RUTA NUEVA
-            // --------------------------------------------------
-
-            if (static_cast<int>(currentSolution.routes.size()) <
-                instance.vehicleCount) {
-
-                Solution candidate = currentSolution;
-
-                candidate.selectedOptions[customerId] =
-                    optionId;
-
-                Route newRoute;
-
-                newRoute.vehicleId =
-                    static_cast<int>(candidate.routes.size());
-
-                Stop newStop;
-                newStop.locationId = option.locationId;
-                newStop.optionIds.push_back(optionId);
-
-                newRoute.stops.push_back(newStop);
-
-                candidate.routes.push_back(newRoute);
-
-                if (isPartialSolutionFeasible(
-                    instance,
-                    candidate
-                )) {
-
-                    double candidateObjective =
-                        calculatePartialObjective(
-                            instance,
-                            candidate
-                        );
-
-                    if (!foundCandidate ||
-                        candidateObjective < bestObjective ||
-                        (candidateObjective == bestObjective &&
-                         option.priority < bestPriority)) {
-
-                        foundCandidate = true;
-                        bestObjective = candidateObjective;
-                        bestPriority = option.priority;
-                        bestCandidate = candidate;
-                    }
-                }
-            }
-        }
-
-        // --------------------------------------------------
-        // C. CONFIRMAR LA MEJOR INSERCIÓN
-        // --------------------------------------------------
-
-        if (!foundCandidate) {
-
-            result.message =
-                "No fue posible insertar al cliente " +
-                to_string(customerId) +
-                " sin incumplir las restricciones.";
-
-            return result;
-        }
-
-        currentSolution = bestCandidate;
+        return result;
     }
 
-    // --------------------------------------------------
-    // 4. EVALUAR SOLUCIÓN COMPLETA
-    // --------------------------------------------------
-
+    // Evaluar la solución completa antes de devolverla.
     Evaluation evaluation =
         evaluateSolution(instance, currentSolution);
 
     if (!evaluation.feasible) {
 
         result.message =
-            "Greedy construyo una solucion, pero no cumple todas las restricciones.";
+            "Greedy con retroceso construyo una solucion, pero el evaluador detecto incumplimientos.";
 
         for (const string& violation : evaluation.violations) {
             result.message += "\n- " + violation;
@@ -632,14 +669,15 @@ GreedyResult buildGreedySolution(const Instance& instance) {
         return result;
     }
 
-    // Guardar el valor objetivo calculado por el evaluador.
     currentSolution.objectiveValue =
         evaluation.objectiveValue;
 
     result.success = true;
     result.solution = currentSolution;
     result.message =
-        "Solucion inicial factible construida correctamente.";
+        "Solucion inicial factible construida correctamente con Greedy y retroceso limitado. "
+        "Nodos explorados: " + to_string(exploredNodes) +
+        ". Retrocesos: " + to_string(backtracks) + ".";
 
     return result;
 }
