@@ -172,6 +172,16 @@ Evaluation evaluateSolution(
         // Recorrer las paradas de la ruta.
         for (const Stop& stop : route.stops) {
 
+            // Una parada debe representar al menos una entrega.
+            if (stop.optionIds.empty()) {
+                addViolation(
+                    evaluation,
+                    "La ruta del vehiculo " + to_string(route.vehicleId) +
+                    " contiene una parada sin opciones de entrega."
+                );
+                continue;
+            }
+
             int locationId = stop.locationId;
 
             if (locationId < 0 || locationId >= locationCount) {
