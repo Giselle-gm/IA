@@ -6,13 +6,11 @@
 
 using namespace std;
 
-// Solicitud o cliente
 struct Customer {
     int id;
     int demand;
 };
 
-// Ubicacion de entrega o deposito
 struct Location {
     int id;
     double x, y;
@@ -24,7 +22,6 @@ struct Location {
     int serviceTime;
 };
 
-// Alternativa de entrega de una solicitud
 struct Option {
     int id;
     int locationId;
@@ -35,7 +32,6 @@ struct Option {
 };
 
 
-// Datos completos de una instancia
 struct Instance {
     int vehicleCount;
     int vehicleCapacity;
