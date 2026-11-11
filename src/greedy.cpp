@@ -15,7 +15,6 @@ namespace {
     constexpr double FIXED_VEHICLE_COST = 100000.0;
 
     // Une paradas consecutivas que corresponden a la misma ubicación.
-    // Así, varias entregas en una misma ubicación se atienden juntas.
     void mergeConsecutiveStops(Route& route) {
 
         vector<Stop> mergedStops;
@@ -42,8 +41,6 @@ namespace {
     }
 
 
-    // Calcula el costo de viaje de una ruta completa,
-    // considerando el viaje desde y hacia el depósito 0.
     double calculateRouteCost(
         const Instance& instance,
         const Route& route
@@ -78,7 +75,6 @@ namespace {
     }
 
 
-    // Calcula la función objetivo de una solución parcial.
     double calculatePartialObjective(
         const Instance& instance,
         const Solution& solution
@@ -120,8 +116,6 @@ namespace {
                 int optionId =
                     solution.selectedOptions[customerId];
 
-                // Cliente ya asignado: contar si cumple
-                // el nivel acumulativo de prioridad.
                 if (optionId >= 0) {
                     if (instance.options[optionId].priority <= priority) {
                         satisfiedCustomers++;
@@ -129,8 +123,6 @@ namespace {
                     continue;
                 }
 
-                // Cliente pendiente: comprobar si dispone
-                // de alguna opción con prioridad suficiente.
                 bool hasSuitableOption = false;
 
                 for (int availableOptionId :
@@ -187,15 +179,11 @@ namespace {
         const int optionCount =
             static_cast<int>(instance.options.size());
 
-        // Comprobar cantidad de vehículos.
         if (static_cast<int>(solution.routes.size()) >
             instance.vehicleCount) {
             return false;
         }
 
-        // --------------------------------------------------
-        // 1. CAPACIDAD DE LAS RUTAS Y VENTANAS TEMPORALES
-        // --------------------------------------------------
 
         for (const Route& route : solution.routes) {
 
@@ -254,18 +242,14 @@ namespace {
                         return false;
                     }
 
-                    // La opción debe pertenecer al cliente
-                    // que la tiene seleccionada.
                     if (solution.selectedOptions[customerId] != optionId) {
                         return false;
                     }
 
-                    // La opción debe corresponder a esta ubicación.
                     if (option.locationId != locationId) {
                         return false;
                     }
 
-                    // Un cliente no puede aparecer dos veces en la ruta.
                     if (customerVisited[customerId]) {
                         return false;
                     }
@@ -296,9 +280,6 @@ namespace {
             }
         }
 
-        // --------------------------------------------------
-        // 2. CAPACIDAD GLOBAL DE UBICACIONES COMPARTIDAS
-        // --------------------------------------------------
 
         vector<int> locationLoads(locationCount, 0);
 
@@ -349,8 +330,6 @@ namespace {
             }
         }
 
-        // Comprobar que las decisiones actuales todavía permitan
-        // cumplir los niveles mínimos acumulativos de servicio.
         if (!serviceLevelsCanStillBeMet(instance, solution)) {
             return false;
         }
@@ -392,7 +371,6 @@ namespace {
                 continue;
             }
 
-            // Probar inserciones en todas las rutas existentes.
             for (int routeIndex = 0;
                  routeIndex < static_cast<int>(currentSolution.routes.size());
                  routeIndex++) {
@@ -433,7 +411,6 @@ namespace {
                 }
             }
 
-            // Probar crear una ruta nueva.
             if (static_cast<int>(currentSolution.routes.size()) <
                 instance.vehicleCount) {
 
@@ -553,9 +530,6 @@ namespace {
 }
 
 
-// --------------------------------------------------
-// CONSTRUCCIÓN DE LA SOLUCIÓN GREEDY
-// --------------------------------------------------
 
 GreedyResult buildGreedySolution(
     const Instance& instance,
@@ -567,7 +541,6 @@ GreedyResult buildGreedySolution(
     const int customerCount =
         static_cast<int>(instance.customers.size());
 
-    // Comprobaciones básicas de la configuración y la instancia.
     if (config.maxSearchNodes <= 0 || config.maxBacktracks <= 0) {
         result.message = "Los limites de busqueda de Greedy deben ser positivos.";
         return result;
@@ -664,7 +637,6 @@ GreedyResult buildGreedySolution(
         }
     );
 
-    // Inicializar solución parcial.
     Solution currentSolution;
     currentSolution.selectedOptions.assign(customerCount, -1);
 
@@ -672,7 +644,6 @@ GreedyResult buildGreedySolution(
     int backtracks = 0;
     int lastFailedCustomer = -1;
 
-    // Construir la solución usando Greedy y retroceso limitado.
     bool foundSolution = buildGreedyWithBacktracking(
         instance,
         config,
@@ -704,7 +675,6 @@ GreedyResult buildGreedySolution(
         return result;
     }
 
-    // Evaluar la solución completa antes de devolverla.
     Evaluation evaluation =
         evaluateSolution(instance, currentSolution);
 
@@ -732,3 +702,146 @@ GreedyResult buildGreedySolution(
 
     return result;
 }
+
+GreedyResult buildGreedySolutionWithoutBacktracking(
+    const Instance& instance,
+    GreedyPriorityStrategy priorityStrategy
+) {
+    GreedyResult result;
+
+    const int customerCount =
+        static_cast<int>(instance.customers.size());
+
+    if (customerCount == 0 ||
+        instance.locations.empty() ||
+        instance.vehicleCount <= 0 ||
+        instance.vehicleCapacity <= 0) {
+        result.message =
+            "La instancia no contiene datos suficientes para construir una solucion.";
+        return result;
+    }
+
+    if (static_cast<int>(instance.optionsByCustomer.size()) != customerCount) {
+        result.message =
+            "La tabla optionsByCustomer no tiene un elemento por cliente.";
+        return result;
+    }
+
+    vector<int> minimumWindowByCustomer(
+        customerCount,
+        numeric_limits<int>::max()
+    );
+
+    for (int customerId = 0; customerId < customerCount; customerId++) {
+        for (int optionId : instance.optionsByCustomer[customerId]) {
+            if (optionId < 0 ||
+                optionId >= static_cast<int>(instance.options.size())) {
+                continue;
+            }
+
+            const int locationId = instance.options[optionId].locationId;
+            if (locationId < 0 ||
+                locationId >= static_cast<int>(instance.locations.size())) {
+                continue;
+            }
+
+            const Location& location = instance.locations[locationId];
+            minimumWindowByCustomer[customerId] = min(
+                minimumWindowByCustomer[customerId],
+                location.due - location.ready
+            );
+        }
+    }
+
+    vector<int> customerOrder(customerCount);
+    for (int customerId = 0; customerId < customerCount; customerId++) {
+        customerOrder[customerId] = customerId;
+    }
+
+    sort(
+        customerOrder.begin(),
+        customerOrder.end(),
+        [&](int a, int b) {
+            const int optionsA =
+                static_cast<int>(instance.optionsByCustomer[a].size());
+            const int optionsB =
+                static_cast<int>(instance.optionsByCustomer[b].size());
+            const int windowA = minimumWindowByCustomer[a];
+            const int windowB = minimumWindowByCustomer[b];
+            const int demandA = instance.customers[a].demand;
+            const int demandB = instance.customers[b].demand;
+
+            switch (priorityStrategy) {
+                case GreedyPriorityStrategy::WINDOW_THEN_OPTIONS_THEN_DEMAND:
+                    if (windowA != windowB) return windowA < windowB;
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    return demandA > demandB;
+
+                case GreedyPriorityStrategy::OPTIONS_THEN_WINDOW_THEN_DEMAND:
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    if (windowA != windowB) return windowA < windowB;
+                    return demandA > demandB;
+
+                case GreedyPriorityStrategy::WINDOW_THEN_DEMAND_THEN_OPTIONS:
+                    if (windowA != windowB) return windowA < windowB;
+                    if (demandA != demandB) return demandA > demandB;
+                    return optionsA < optionsB;
+
+                case GreedyPriorityStrategy::OPTIONS_THEN_DEMAND:
+                default:
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    return demandA > demandB;
+            }
+        }
+    );
+
+    Solution currentSolution;
+    currentSolution.selectedOptions.assign(customerCount, -1);
+
+    int assignedCustomers = 0;
+
+    for (int customerId : customerOrder) {
+        vector<InsertionCandidate> candidates =
+            generateInsertionCandidates(
+                instance,
+                currentSolution,
+                customerId
+            );
+
+        if (candidates.empty()) {
+            result.message =
+                "Greedy sin backtracking no encontro una insercion factible para el cliente " +
+                to_string(customerId) + ". Clientes asignados: " +
+                to_string(assignedCustomers) + "/" +
+                to_string(customerCount) + ".";
+            return result;
+        }
+
+        currentSolution = candidates.front().solution;
+        assignedCustomers++;
+    }
+
+    Evaluation evaluation =
+        evaluateSolution(instance, currentSolution);
+
+    if (!evaluation.feasible) {
+        result.message =
+            "Greedy sin backtracking construyo una solucion, pero el evaluador detecto incumplimientos.";
+
+        for (const string& violation : evaluation.violations) {
+            result.message += "\\n- " + violation;
+        }
+
+        return result;
+    }
+
+    currentSolution.objectiveValue = evaluation.objectiveValue;
+    result.success = true;
+    result.solution = currentSolution;
+    result.message =
+        "Solucion inicial factible construida con Greedy sin backtracking. Clientes asignados: " +
+        to_string(assignedCustomers) + ".";
+
+    return result;
+}
+
