@@ -174,8 +174,6 @@ SAResult simulatedAnnealing(
 ) {
     SAResult result;
 
-    // Normalizar también la solución inicial por si contiene visitas
-    // consecutivas a una misma ubicación.
     Solution currentSolution = initialSolution;
     mergeConsecutiveStops(currentSolution);
 
@@ -216,14 +214,11 @@ SAResult simulatedAnnealing(
             continue;
         }
 
-        // Evitar que un movimiento genere dos paradas consecutivas
-        // para la misma ubicación física.
         mergeConsecutiveStops(candidate);
         normalizeVehicleIds(candidate);
 
         Evaluation candidateEvaluation = evaluateSolution(instance, candidate);
 
-        // Solo se consideran vecinos que cumplen todas las restricciones.
         if (candidateEvaluation.feasible) {
             const double delta =
                 candidateEvaluation.objectiveValue -
