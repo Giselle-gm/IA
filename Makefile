@@ -66,6 +66,25 @@ INSTANCE ?= instances/25/U_25large_1.txt
 run-instance: $(TARGET)
 	./$(TARGET) $(INSTANCE)
 
+
+# =====================================
+# Prueba de factibilidad de todas las instancias
+# =====================================
+
+TEST_TARGET = $(BIN_DIR)/test_instances
+TEST_SRCS = test_instances.cpp
+TEST_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_SRCS)) \
+            $(BIN_DIR)/$(SRC_DIR)/parser.o \
+            $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+            $(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_TARGET): $(TEST_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-instances: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
 # =====================================
 # Limpieza
 # =====================================
@@ -75,4 +94,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance clean
+.PHONY: all run run-instance test-instances clean
