@@ -184,6 +184,7 @@ int main() {
     vector<InstanceStats> remaining;
     int readErrors = 0;
     int readCount = 0;
+    int baselineFeasible = 0;
     const auto totalStart = Clock::now();
 
     for (const fs::path& path : files) {
@@ -196,6 +197,7 @@ int main() {
 
         GreedyResult first = buildGreedySolution(instance, originalConfig);
         if (first.success) {
+            ++baselineFeasible;
             solved.push_back(collectStats(path.string(), instance));
             continue;
         }
@@ -216,7 +218,7 @@ int main() {
     cout << "Archivos encontrados: " << files.size() << '\n';
     cout << "Archivos leidos: " << readCount << '\n';
     cout << "Errores de lectura: " << readErrors << '\n';
-    cout << "Resueltas con 5.000 retrocesos o menos: " << solved.size() - (86 - 81) << '\n';
+    cout << "Resueltas con configuracion original: " << baselineFeasible << '\n';
     cout << "Resueltas considerando hasta 50.000 retrocesos: " << solved.size() << '\n';
     cout << "No resueltas con 20.000 nodos y 50.000 retrocesos: "
          << remaining.size() << '\n';
