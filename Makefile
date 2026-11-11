@@ -174,6 +174,21 @@ $(TEST_GREEDY_PRIORITIES_TARGET): $(TEST_GREEDY_PRIORITIES_OBJS)
 test-greedy-priorities: $(TEST_GREEDY_PRIORITIES_TARGET)
 	./$(TEST_GREEDY_PRIORITIES_TARGET)
 
+
+TEST_GREEDY_COMPARISON_TARGET = $(BIN_DIR)/test_greedy_comparison
+TEST_GREEDY_COMPARISON_SRCS = test_greedy_comparison.cpp
+TEST_GREEDY_COMPARISON_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_COMPARISON_SRCS)) \\
+							$(BIN_DIR)/$(SRC_DIR)/parser.o \\
+							$(BIN_DIR)/$(SRC_DIR)/evaluator.o \\
+							$(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_GREEDY_COMPARISON_TARGET): $(TEST_GREEDY_COMPARISON_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-comparison: $(TEST_GREEDY_COMPARISON_TARGET)
+	./$(TEST_GREEDY_COMPARISON_TARGET)
+
 # =====================================
 # Limpieza
 # =====================================
@@ -183,4 +198,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits test-greedy-remaining test-greedy-priorities clean
+.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits test-greedy-remaining test-greedy-priorities test-greedy-comparison clean
