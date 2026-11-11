@@ -20,11 +20,9 @@ struct Evaluation {
     std::vector<std::string> violations;
 };
 
-// Tiempo y costo de viajar entre dos ubicaciones.
 int travelTime(const Location& from, const Location& to);
 int travelCost(const Location& from, const Location& to);
 
-// Evalúa una solución completa.
 Evaluation evaluateSolution(
     const Instance& instance,
     const Solution& solution
