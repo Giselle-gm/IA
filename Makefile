@@ -99,6 +99,25 @@ $(TEST_SA_TARGET): $(TEST_SA_OBJS)
 test-sa: $(TEST_SA_TARGET)
 	./$(TEST_SA_TARGET)
 
+
+# =====================================
+# Diagnostico de instancias no resueltas por Greedy
+# =====================================
+
+TEST_GREEDY_FAILURES_TARGET = $(BIN_DIR)/test_greedy_failures
+TEST_GREEDY_FAILURES_SRCS = test_greedy_failures.cpp
+TEST_GREEDY_FAILURES_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_FAILURES_SRCS)) \\
+                            $(BIN_DIR)/$(SRC_DIR)/parser.o \\
+                            $(BIN_DIR)/$(SRC_DIR)/evaluator.o \\
+                            $(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_GREEDY_FAILURES_TARGET): $(TEST_GREEDY_FAILURES_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-failures: $(TEST_GREEDY_FAILURES_TARGET)
+	./$(TEST_GREEDY_FAILURES_TARGET)
+
 # =====================================
 # Limpieza
 # =====================================
@@ -108,4 +127,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa clean
+.PHONY: all run run-instance test-instances test-sa test-greedy-failures clean
