@@ -1,4 +1,3 @@
-
 # =====================================
 # Configuracion del compilador
 # =====================================
@@ -58,14 +57,10 @@ $(BIN_DIR)/%.o: %.cpp
 run: $(TARGET)
 	./$(TARGET) instances/25/U_25large_1.txt
 
-# Permite seleccionar una instancia:
-# make run INSTANCE=instances/50/V_50large_1.txt
-
 INSTANCE ?= instances/25/U_25large_1.txt
 
 run-instance: $(TARGET)
 	./$(TARGET) $(INSTANCE)
-
 
 # =====================================
 # Prueba de factibilidad de todas las instancias
@@ -86,6 +81,25 @@ test-instances: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
 # =====================================
+# Evaluacion de Simulated Annealing en todas las instancias
+# =====================================
+
+TEST_SA_TARGET = $(BIN_DIR)/test_sa
+TEST_SA_SRCS = test_sa.cpp
+TEST_SA_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_SA_SRCS)) \
+               $(BIN_DIR)/$(SRC_DIR)/parser.o \
+               $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+               $(BIN_DIR)/$(SRC_DIR)/greedy.o \
+               $(BIN_DIR)/$(SRC_DIR)/simulated_annealing.o
+
+$(TEST_SA_TARGET): $(TEST_SA_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-sa: $(TEST_SA_TARGET)
+	./$(TEST_SA_TARGET)
+
+# =====================================
 # Limpieza
 # =====================================
 
@@ -94,4 +108,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances clean
+.PHONY: all run run-instance test-instances test-sa clean
