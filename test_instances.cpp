@@ -21,7 +21,6 @@ int main() {
 
     vector<fs::path> instanceFiles;
 
-    // Contar todos los archivos regulares, incluyendo los de subdirectorios.
     for (const fs::directory_entry& entry :
          fs::recursive_directory_iterator(instancesDirectory)) {
 
@@ -38,8 +37,6 @@ int main() {
     for (const fs::path& file : instanceFiles) {
         Instance instance;
 
-        // Si el parser no puede leer el archivo, se contabiliza
-        // solamente en el total de archivos encontrados.
         if (!readInstance(file.string(), instance)) {
             continue;
         }
