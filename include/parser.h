@@ -5,6 +5,6 @@
 #include <string>
 #include "instance.h"
 
-bool readInstance(const string& filename, Instance& instance);
+bool readInstance(const std::string& filename, Instance& instance);
 
 #endif

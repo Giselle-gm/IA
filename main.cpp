@@ -1,64 +1,60 @@
+#include "parser.h"
+#include "greedy.h"
+#include "evaluator.h"
 
 #include <iostream>
-#include "include/instance.h"
-#include "include/parser.h"
 
 using namespace std;
 
-void printInstanceSummary(const Instance& instance) {
-    cout << "\n========== RESUMEN DE INSTANCIA ==========\n";
-
-    cout << "Vehiculos: " << instance.vehicleCount << endl;
-    cout << "Capacidad vehicular: "
-         << instance.vehicleCapacity << endl;
-
-    cout << "Clientes: " << instance.customers.size() << endl;
-    cout << "Ubicaciones: " << instance.locations.size() << endl;
-    cout << "Opciones: " << instance.options.size() << endl;
-
-    cout << "\n--- Opciones por cliente ---\n";
-
-    for (const Customer& customer : instance.customers) {
-        cout << "Cliente " << customer.id
-             << " | Demanda: " << customer.demand
-             << " | Opciones: ";
-
-        for (int optionId : instance.optionsByCustomer[customer.id]) {
-            cout << "O" << optionId << " ";
-        }
-
-        cout << endl;
-    }
-
-    cout << "\n--- Opciones por ubicacion ---\n";
-
-    for (const Location& location : instance.locations) {
-        cout << "Ubicacion " << location.id << ": ";
-
-        for (int optionId : instance.optionsByLocation[location.id]) {
-            cout << "O" << optionId << " ";
-        }
-
-        cout << endl;
-    }
-
-    cout << "\n==========================================\n";
-}
-
 int main(int argc, char* argv[]) {
+
     if (argc < 2) {
-        cerr << "Uso: " << argv[0]
-             << " <archivo_instancia>" << endl;
+        cerr << "Uso: ./bin/vrpdo <archivo_instancia>" << endl;
         return 1;
     }
 
-    Instance instance;
+    Instance instance = parseInstance(argv[1]);
 
-    if (!readInstance(argv[1], instance)) {
+    GreedyResult greedyResult =
+        buildGreedySolution(instance);
+
+    if (!greedyResult.success) {
+        cout << "No se pudo construir una solucion." << endl;
+        cout << greedyResult.message << endl;
         return 1;
     }
 
-    printInstanceSummary(instance);
+    Solution solution = greedyResult.solution;
+
+    // Validar la solución completa con el evaluador general.
+    Evaluation evaluation =
+        evaluateSolution(instance, solution);
+
+    cout << "\n========== RESULTADO GREEDY ==========\n";
+
+    cout << "Mensaje: " << greedyResult.message << endl;
+    cout << "Factible: "
+         << (evaluation.feasible ? "SI" : "NO") << endl;
+
+    cout << "Vehiculos utilizados: "
+         << evaluation.vehiclesUsed << endl;
+
+    cout << "Costo de viaje: "
+         << evaluation.travelCost << endl;
+
+    cout << "Costo fijo: "
+         << evaluation.fixedCost << endl;
+
+    cout << "Funcion objetivo: "
+         << evaluation.objectiveValue << endl;
+
+    if (!evaluation.feasible) {
+        cout << "\nViolaciones:\n";
+
+        for (const string& violation : evaluation.violations) {
+            cout << "- " << violation << endl;
+        }
+    }
 
     return 0;
 }
