@@ -200,6 +200,18 @@ bool readInstance(const string& filename, Instance& instance) {
                 );
             }
 
+            // Ajustar DUE según el tipo de ubicación y escalar
+            // ventanas temporales y tiempo de servicio por factor 10.
+            if (location.type == 2) {
+                location.due += 5;  // Ubicación individual.
+            } else if (location.type == 1) {
+                location.due += 2;  // Ubicación compartida (SDL).
+            }
+
+            location.ready *= 10;
+            location.due *= 10;
+            location.serviceTime *= 10;
+
             instance.locations[location.id] = location;
         }
 
@@ -257,6 +269,9 @@ bool readInstance(const string& filename, Instance& instance) {
             if (option.serviceTime < 0) {
                 throw runtime_error("Tiempo de servicio negativo.");
             }
+
+            // Escalar también el tiempo de servicio de cada opción.
+            option.serviceTime *= 10;
 
             instance.options[option.id] = option;
 
