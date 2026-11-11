@@ -95,11 +95,84 @@ namespace {
     }
 
 
+    // Comprueba si los niveles mínimos de servicio todavía
+    // pueden alcanzarse con los clientes que faltan por asignar.
+    bool serviceLevelsCanStillBeMet(
+        const Instance& instance,
+        const Solution& solution
+    ) {
+        const int customerCount =
+            static_cast<int>(instance.customers.size());
+
+        for (int priority = 0;
+             priority < static_cast<int>(
+                 instance.minimumServiceLevel.size()
+             );
+             priority++) {
+
+            int satisfiedCustomers = 0;
+            int potentialCustomers = 0;
+
+            for (int customerId = 0;
+                 customerId < customerCount;
+                 customerId++) {
+
+                int optionId =
+                    solution.selectedOptions[customerId];
+
+                // Cliente ya asignado: contar si cumple
+                // el nivel acumulativo de prioridad.
+                if (optionId >= 0) {
+                    if (instance.options[optionId].priority <= priority) {
+                        satisfiedCustomers++;
+                    }
+                    continue;
+                }
+
+                // Cliente pendiente: comprobar si dispone
+                // de alguna opción con prioridad suficiente.
+                bool hasSuitableOption = false;
+
+                for (int availableOptionId :
+                     instance.optionsByCustomer[customerId]) {
+
+                    if (availableOptionId < 0 ||
+                        availableOptionId >=
+                            static_cast<int>(instance.options.size())) {
+                        continue;
+                    }
+
+                    if (instance.options[availableOptionId].priority
+                        <= priority) {
+                        hasSuitableOption = true;
+                        break;
+                    }
+                }
+
+                if (hasSuitableOption) {
+                    potentialCustomers++;
+                }
+            }
+
+            int requiredCustomers = static_cast<int>(
+                ceil(
+                    instance.minimumServiceLevel[priority]
+                    * customerCount
+                )
+            );
+
+            if (satisfiedCustomers + potentialCustomers
+                < requiredCustomers) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     // Comprueba las restricciones que deben cumplirse
     // durante la construcción de la solución.
-    //
-    // Los niveles mínimos de servicio se comprueban
-    // al finalizar, cuando todos los clientes están asignados.
     bool isPartialSolutionFeasible(
         const Instance& instance,
         const Solution& solution
@@ -257,9 +330,7 @@ namespace {
 
             if (location.type == 1) {
 
-                locationLoads[option.id >= 0
-                    ? option.locationId
-                    : option.locationId] +=
+                locationLoads[option.locationId] +=
                     instance.customers[customerId].demand;
             }
         }
@@ -276,6 +347,12 @@ namespace {
                 locationLoads[locationId] > location.capacity) {
                 return false;
             }
+        }
+
+        // Comprobar que las decisiones actuales todavía permitan
+        // cumplir los niveles mínimos acumulativos de servicio.
+        if (!serviceLevelsCanStillBeMet(instance, solution)) {
+            return false;
         }
 
         return true;
