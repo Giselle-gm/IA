@@ -24,8 +24,7 @@ int main() {
     for (const fs::directory_entry& entry :
          fs::recursive_directory_iterator(instancesDirectory)) {
 
-        if (entry.is_regular_file() &&
-            entry.path().extension() == ".txt") {
+        if (entry.is_regular_file()) {
             instanceFiles.push_back(entry.path());
         }
     }
