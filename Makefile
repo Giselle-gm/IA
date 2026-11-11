@@ -136,6 +136,25 @@ $(TEST_GREEDY_LIMITS_TARGET): $(TEST_GREEDY_LIMITS_OBJS)
 test-greedy-limits: $(TEST_GREEDY_LIMITS_TARGET)
 	./$(TEST_GREEDY_LIMITS_TARGET)
 
+
+# =====================================
+# Caracterizacion de instancias restantes de Greedy
+# =====================================
+
+TEST_GREEDY_REMAINING_TARGET = $(BIN_DIR)/test_greedy_remaining
+TEST_GREEDY_REMAINING_SRCS = test_greedy_remaining.cpp
+TEST_GREEDY_REMAINING_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_REMAINING_SRCS)) \
+                             $(BIN_DIR)/$(SRC_DIR)/parser.o \
+                             $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+                             $(BIN_DIR)/$(SRC_DIR)/greedy.o
+
+$(TEST_GREEDY_REMAINING_TARGET): $(TEST_GREEDY_REMAINING_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-remaining: $(TEST_GREEDY_REMAINING_TARGET)
+	./$(TEST_GREEDY_REMAINING_TARGET)
+
 # =====================================
 # Limpieza
 # =====================================
@@ -145,4 +164,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits clean
+.PHONY: all run run-instance test-instances test-sa test-greedy-failures test-greedy-limits test-greedy-remaining clean
