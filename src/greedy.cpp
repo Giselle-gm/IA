@@ -593,7 +593,33 @@ GreedyResult buildGreedySolution(
         return result;
     }
 
-    // Ordenar clientes por dificultad:
+    // Calcular la ventana temporal mas estrecha disponible para cada cliente.
+    // Se utiliza el minimo (DUE - READY) entre las ubicaciones de sus opciones.
+    vector<int> minimumWindowByCustomer(customerCount,
+                                        numeric_limits<int>::max());
+
+    for (int customerId = 0; customerId < customerCount; customerId++) {
+        for (int optionId : instance.optionsByCustomer[customerId]) {
+            if (optionId < 0 ||
+                optionId >= static_cast<int>(instance.options.size())) {
+                continue;
+            }
+
+            const int locationId = instance.options[optionId].locationId;
+            if (locationId < 0 ||
+                locationId >= static_cast<int>(instance.locations.size())) {
+                continue;
+            }
+
+            const Location& location = instance.locations[locationId];
+            const int windowWidth = location.due - location.ready;
+            minimumWindowByCustomer[customerId] =
+                min(minimumWindowByCustomer[customerId], windowWidth);
+        }
+    }
+
+    // Preparar el orden de clientes según la estrategia seleccionada.
+    // La estrategia por defecto conserva el criterio original:
     // menos opciones primero y, en empate, mayor demanda.
     vector<int> customerOrder(customerCount);
 
@@ -605,19 +631,36 @@ GreedyResult buildGreedySolution(
         customerOrder.begin(),
         customerOrder.end(),
         [&](int a, int b) {
-
-            int optionsA =
+            const int optionsA =
                 static_cast<int>(instance.optionsByCustomer[a].size());
-
-            int optionsB =
+            const int optionsB =
                 static_cast<int>(instance.optionsByCustomer[b].size());
+            const int windowA = minimumWindowByCustomer[a];
+            const int windowB = minimumWindowByCustomer[b];
+            const int demandA = instance.customers[a].demand;
+            const int demandB = instance.customers[b].demand;
 
-            if (optionsA != optionsB) {
-                return optionsA < optionsB;
+            switch (config.priorityStrategy) {
+                case GreedyPriorityStrategy::WINDOW_THEN_OPTIONS_THEN_DEMAND:
+                    if (windowA != windowB) return windowA < windowB;
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    return demandA > demandB;
+
+                case GreedyPriorityStrategy::OPTIONS_THEN_WINDOW_THEN_DEMAND:
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    if (windowA != windowB) return windowA < windowB;
+                    return demandA > demandB;
+
+                case GreedyPriorityStrategy::WINDOW_THEN_DEMAND_THEN_OPTIONS:
+                    if (windowA != windowB) return windowA < windowB;
+                    if (demandA != demandB) return demandA > demandB;
+                    return optionsA < optionsB;
+
+                case GreedyPriorityStrategy::OPTIONS_THEN_DEMAND:
+                default:
+                    if (optionsA != optionsB) return optionsA < optionsB;
+                    return demandA > demandB;
             }
-
-            return instance.customers[a].demand >
-                   instance.customers[b].demand;
         }
     );
 
