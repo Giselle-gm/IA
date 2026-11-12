@@ -279,8 +279,7 @@ bool readInstance(const string& filename, Instance& instance) {
             }
         }
 
-        cout << "Instancia leida correctamente: "
-             << filename << endl;
+        //cout << "Instancia leida correctamente: "<< filename << endl;
 
         return true;
     }
