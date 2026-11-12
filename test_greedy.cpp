@@ -105,22 +105,22 @@ int main() {
                     summary.assignedOnFailures += result.assignedCustomers;
                 }
 
-                runs << '"' << file.generic_string() << "",""
-                     << greedyStrategyName(strategy) << ""," << seed << ","
+                runs << '"' << file.generic_string() << ","
+                     << greedyStrategyName(strategy) << "," << seed << ","
                      << (result.success ? 1 : 0) << ","
                      << result.restartsAttempted << ","
                      << result.assignedCustomers << ","
                      << fixed << setprecision(6) << totalSeconds << "\n";
 
                 for (const RestartStats& stats : result.restartStats) {
-                    details << '"' << file.generic_string() << "",""
-                            << greedyStrategyName(strategy) << "","
-                            << seed << "," << stats.attempt << ",""
-                            << joinIds(stats.customerOrder) << "",""
-                            << joinIds(stats.selectedOptionOrder) << "","
+                    details << '"' << file.generic_string() << ","
+                            << greedyStrategyName(strategy) << ","
+                            << seed << "," << stats.attempt << ","
+                            << joinIds(stats.customerOrder) << ","
+                            << joinIds(stats.selectedOptionOrder) << ","
                             << stats.assignedCustomers << ","
-                            << (stats.feasible ? 1 : 0) << ",""
-                            << stats.failureReason << "","
+                            << (stats.feasible ? 1 : 0) << ","
+                            << stats.failureReason << ","
                             << fixed << setprecision(6)
                             << stats.elapsedSeconds << "\n";
                 }
