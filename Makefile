@@ -155,10 +155,10 @@ test-greedy-comparison: $(TEST_GREEDY_COMPARISON_TARGET)
 
 TEST_GREEDY_ALL_TARGET = $(BIN_DIR)/test_greedy_all
 TEST_GREEDY_ALL_SRCS = test_greedy_all.cpp
-TEST_GREEDY_ALL_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_ALL_SRCS)) \\
-				$(BIN_DIR)/$(SRC_DIR)/parser.o \\
-				$(BIN_DIR)/$(SRC_DIR)/evaluator.o \\
-				$(BIN_DIR)/$(SRC_DIR)/greedy.o \\
+TEST_GREEDY_ALL_OBJS = $(patsubst %.cpp,$(BIN_DIR)/%.o,$(TEST_GREEDY_ALL_SRCS)) \
+				$(BIN_DIR)/$(SRC_DIR)/parser.o \
+				$(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+				$(BIN_DIR)/$(SRC_DIR)/greedy.o \
 				$(BIN_DIR)/$(SRC_DIR)/greedy_sequential.o
 
 $(TEST_GREEDY_ALL_TARGET): $(TEST_GREEDY_ALL_OBJS)
