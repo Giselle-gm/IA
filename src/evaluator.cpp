@@ -268,16 +268,15 @@ Evaluation evaluateSolution(
             // Tiempo de término del servicio.
             int serviceEnd = serviceStart + serviceDuration;
 
-            // Criterio provisional: el servicio completo debe terminar
-            // antes o en DUE.
+            // El inicio del servicio debe estar dentro de la ventana.
             if (serviceStart < location.ready ||
-                serviceEnd > location.due) {
+                serviceStart > location.due) {
 
                 addViolation(
                     evaluation,
                     locationMessage(
                         locationId,
-                        "no cumple su ventana temporal. Inicio: " +
+                        "no inicia el servicio dentro de su ventana temporal. Inicio: " +
                         to_string(serviceStart) +
                         ", termino: " + to_string(serviceEnd) +
                         ", READY: " + to_string(location.ready) +
