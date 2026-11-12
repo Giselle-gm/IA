@@ -2,6 +2,7 @@
 
 #include "evaluator.h"
 
+#include <cmath>
 #include <limits>
 #include <string>
 #include <vector>
@@ -41,9 +42,11 @@ GreedyResult buildGreedySequentialSolution(const Instance& instance) {
                 continue;
             }
 
-            const double depotDistance =
-                travelCost(instance.locations[0],
-                           instance.locations[option.locationId]);
+            const Location& depot = instance.locations[0];
+            const Location& optionLocation = instance.locations[option.locationId];
+            const double dx = depot.x - optionLocation.x;
+            const double dy = depot.y - optionLocation.y;
+            const double depotDistance = sqrt(dx * dx + dy * dy);
             const double score = option.priority * 500.0 + depotDistance;
 
             if (score < bestScore) {
