@@ -61,8 +61,8 @@ $(TEST_SA_TARGET): $(TEST_SA_OBJS)
 test-sa: $(TEST_SA_TARGET)
 	./$(TEST_SA_TARGET)
 
-TEST_GREEDY_TARGET = $(BIN_DIR)/test_greedy_all
-TEST_GREEDY_OBJS = $(BIN_DIR)/test_greedy_all.o \
+TEST_GREEDY_TARGET = $(BIN_DIR)/test_greedy
+TEST_GREEDY_OBJS = $(BIN_DIR)/test_greedy.o \
                    $(BIN_DIR)/$(SRC_DIR)/parser.o \
                    $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
                    $(BIN_DIR)/$(SRC_DIR)/greedy.o
@@ -71,7 +71,7 @@ $(TEST_GREEDY_TARGET): $(TEST_GREEDY_OBJS)
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-test-greedy-all: $(TEST_GREEDY_TARGET)
+test-greedy: $(TEST_GREEDY_TARGET)
 	./$(TEST_GREEDY_TARGET)
 
 clean:
@@ -79,4 +79,4 @@ clean:
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy-all clean
+.PHONY: all run run-instance test-instances test-sa test-greedy clean
