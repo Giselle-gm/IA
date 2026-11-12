@@ -74,9 +74,23 @@ $(TEST_GREEDY_TARGET): $(TEST_GREEDY_OBJS)
 test-greedy: $(TEST_GREEDY_TARGET)
 	./$(TEST_GREEDY_TARGET)
 
+TEST_GREEDY_SA_TARGET = $(BIN_DIR)/test_greedy_sa
+TEST_GREEDY_SA_OBJS = $(BIN_DIR)/test_greedy_sa.o \
+                     $(BIN_DIR)/$(SRC_DIR)/parser.o \
+                     $(BIN_DIR)/$(SRC_DIR)/evaluator.o \
+                     $(BIN_DIR)/$(SRC_DIR)/greedy.o \
+                     $(BIN_DIR)/$(SRC_DIR)/simulated_annealing.o
+
+$(TEST_GREEDY_SA_TARGET): $(TEST_GREEDY_SA_OBJS)
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+test-greedy-sa: $(TEST_GREEDY_SA_TARGET)
+	./$(TEST_GREEDY_SA_TARGET)
+
 clean:
 	rm -rf $(BIN_DIR)
 
 -include $(DEPS)
 
-.PHONY: all run run-instance test-instances test-sa test-greedy clean
+.PHONY: all run run-instance test-instances test-sa test-greedy test-greedy-sa clean
