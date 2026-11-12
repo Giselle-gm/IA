@@ -120,7 +120,7 @@ int main() {
                        << fixed << setprecision(6) << greedySeconds << ",";
 
                 if (!greedy.success) {
-                    output << ",,,,,,,,,,,\n";
+                    output << string(13, ',') << "\n";
                     continue;
                 }
 
