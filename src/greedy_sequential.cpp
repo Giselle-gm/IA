@@ -75,15 +75,15 @@ namespace {
             const Option& option = instance.options[candidateRoute[i]];
             const Location& location = instance.locations[option.locationId];
 
-            currentTime += travelTime(
-                instance.locations[previousLocationId],
-                location
-            );
-
             if (location.id != previousStopLocationId) {
                 if (previousStopLocationId != -1) {
                     currentTime += serviceDurationAtStop;
                 }
+
+                currentTime += travelTime(
+                    instance.locations[previousLocationId],
+                    location
+                );
 
                 const int serviceStart = max(currentTime, location.ready);
                 if (serviceStart > location.due) {
