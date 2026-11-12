@@ -265,9 +265,8 @@ namespace {
                 int serviceEnd =
                     serviceStart + serviceDuration;
 
-                // Criterio provisional:
-                // el servicio completo debe terminar antes de DUE.
-                if (serviceEnd > location.due) {
+                // El inicio del servicio debe estar dentro de la ventana.
+                if (serviceStart > location.due) {
                     return false;
                 }
 
