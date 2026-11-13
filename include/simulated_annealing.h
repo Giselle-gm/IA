@@ -10,6 +10,7 @@ struct SAConfig {
     double initialTemperature = 100.0;
     double coolingRate = 0.995;
     double minimumTemperature = 0.01;
+    unsigned int randomSeed = 42;
 };
 
 struct SAResult {
