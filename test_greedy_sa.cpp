@@ -50,7 +50,7 @@ static string csv(const string& value) {
 int main() {
     const fs::path root = "instances";
     if (!fs::exists(root) || !fs::is_directory(root)) {
-        cerr << "No se encontro el directorio instances/.\\n";
+        cerr << "No se encontro el directorio instances/.\n";
         return 1;
     }
 
@@ -77,7 +77,7 @@ int main() {
 
     ofstream runs(runFile), byInstance(instanceFile), restarts(restartFile);
     if (!runs || !byInstance || !restarts) {
-        cerr << "No se pudieron crear los CSV de resultados.\\n";
+        cerr << "No se pudieron crear los CSV de resultados.\n";
         return 2;
     }
 
@@ -87,7 +87,7 @@ int main() {
             "iteraciones_configuradas,movimientos_aceptados,sa_segundos,"
             "objetivo_inicial,costo_viaje_inicial,costo_fijo_inicial,"
             "vehiculos_inicial,objetivo_final,costo_viaje_final,costo_fijo_final,"
-            "vehiculos_final,mejora_absoluta,mejora_porcentual\\n";
+            "vehiculos_final,mejora_absoluta,mejora_porcentual\n";
 
     byInstance << "instancia,estrategia,repeticiones,greedy_factibles,sa_exitosos,"
                   "soluciones_mejoradas,intentos_greedy_totales,"
@@ -95,10 +95,10 @@ int main() {
                   "iteraciones_sa_promedio,movimientos_aceptados_totales,"
                   "greedy_segundos_totales,sa_segundos_totales,"
                   "objetivo_inicial_promedio,objetivo_final_promedio,"
-                  "mejora_absoluta_promedio,mejora_porcentual_promedio\\n";
+                  "mejora_absoluta_promedio,mejora_porcentual_promedio\n";
 
     restarts << "instancia,estrategia,repeticion,semilla_greedy,intento,"
-                "clientes_asignados,factible,tiempo_segundos,motivo_fallo\\n";
+                "clientes_asignados,factible,tiempo_segundos,motivo_fallo\n";
 
     map<pair<string, GreedyStrategy>, InstanceStrategyStats> perInstance;
     map<GreedyStrategy, StrategyTotals> totals;
@@ -145,7 +145,7 @@ int main() {
                              << item.attempt << ',' << item.assignedCustomers << ','
                              << (item.factible ? 1 : 0) << ','
                              << fixed << setprecision(6) << item.elapsedSeconds << ','
-                             << csv(item.failureReason) << '\\n';
+                             << csv(item.failureReason) << '\n';
                 }
 
                 stats.greedyAttempts += greedy.restartsAttempted;
@@ -168,7 +168,7 @@ int main() {
 
                 if (!greedy.success) {
                     runs << "0,0," << saConfig.iterations
-                         << ",0,0,,,,,,,,\\n";
+                         << ",0,0,,,,,,,,\n";
                     continue;
                 }
 
@@ -205,7 +205,7 @@ int main() {
                      << initial.fixedCost << ',' << initial.vehiculosUsados << ','
                      << final.objectiveValue << ',' << final.travelCost << ','
                      << final.fixedCost << ',' << final.vehiculosUsados << ','
-                     << improvement << ',' << percentage << '\\n';
+                     << improvement << ',' << percentage << '\n';
 
                 if (sa.success) {
                     ++stats.saSuccess;
@@ -243,47 +243,47 @@ int main() {
                    << s.greedySeconds << ',' << s.saSeconds << ','
                    << fixed << setprecision(2) << s.initialObjective / n << ','
                    << s.finalObjective / n << ',' << s.absoluteImprovement / n << ','
-                   << s.percentageImprovement / n << '\\n';
+                   << s.percentageImprovement / n << '\n';
     }
 
     cout << fixed << setprecision(3);
-    cout << "\\n========== EXPERIMENTO GREEDY + SA POR INSTANCIA ==========\\n";
-    cout << "Archivos encontrados: " << files.size() << '\\n';
-    cout << "Archivos leidos: " << filesRead << '\\n';
-    cout << "Errores de lectura: " << readErrors << '\\n';
-    cout << "Estrategias: 2 (sin Greedy aleatorio)\\n";
-    cout << "Repeticiones por instancia y estrategia: " << seeds.size() << '\\n';
-    cout << "Ejecuciones previstas: " << filesRead * strategies.size() * seeds.size() << '\\n';
-    cout << "Ejecuciones realizadas: " << totalRuns << '\\n';
-    cout << "Greedy factibles: " << totalGreedySuccess << '\\n';
-    cout << "Reinicios Greedy totales: " << totalGreedyAttempts << '\\n';
-    cout << "Reinicios fallidos totales: " << totalFailedRestarts << '\\n';
-    cout << "Iteraciones SA ejecutadas en total: " << totalSaIterations << '\\n';
-    cout << "Iteraciones SA configuradas por ejecucion: " << saConfig.iterations << '\\n';
-    cout << "Movimientos aceptados por SA en total: " << totalSaAccepted << '\\n';
-    cout << "SA exitosos: " << totalSaSuccess << '\\n';
-    cout << "Soluciones mejoradas: " << totalImproved << '\\n';
-    cout << "Tiempo Greedy total: " << totalGreedySeconds << " s\\n";
-    cout << "Tiempo SA total: " << totalSaSeconds << " s\\n\\n";
+    cout << "\n========== EXPERIMENTO GREEDY + SA POR INSTANCIA ==========\n";
+    cout << "Archivos encontrados: " << files.size() << '\n';
+    cout << "Archivos leidos: " << filesRead << '\n';
+    cout << "Errores de lectura: " << readErrors << '\n';
+    cout << "Estrategias: 2 (sin Greedy aleatorio)\n";
+    cout << "Repeticiones por instancia y estrategia: " << seeds.size() << '\n';
+    cout << "Ejecuciones previstas: " << filesRead * strategies.size() * seeds.size() << '\n';
+    cout << "Ejecuciones realizadas: " << totalRuns << '\n';
+    cout << "Greedy factibles: " << totalGreedySuccess << '\n';
+    cout << "Reinicios Greedy totales: " << totalGreedyAttempts << '\n';
+    cout << "Reinicios fallidos totales: " << totalFailedRestarts << '\n';
+    cout << "Iteraciones SA ejecutadas en total: " << totalSaIterations << '\n';
+    cout << "Iteraciones SA configuradas por ejecucion: " << saConfig.iterations << '\n';
+    cout << "Movimientos aceptados por SA en total: " << totalSaAccepted << '\n';
+    cout << "SA exitosos: " << totalSaSuccess << '\n';
+    cout << "Soluciones mejoradas: " << totalImproved << '\n';
+    cout << "Tiempo Greedy total: " << totalGreedySeconds << " s\n";
+    cout << "Tiempo SA total: " << totalSaSeconds << " s\n\n";
 
     for (GreedyStrategy strategy : strategies) {
         const auto& s = totals[strategy];
-        cout << "--- " << greedyStrategyName(strategy) << " ---\\n";
-        cout << "Ejecuciones: " << s.repetitions << '\\n';
-        cout << "Greedy factibles: " << s.greedySuccess << '\\n';
-        cout << "Reinicios totales: " << s.greedyAttempts << '\\n';
-        cout << "Reinicios fallidos: " << s.greedyFailedRestarts << '\\n';
-        cout << "Iteraciones SA ejecutadas: " << s.saIterations << '\\n';
+        cout << "--- " << greedyStrategyName(strategy) << " ---\n";
+        cout << "Ejecuciones: " << s.repetitions << '\n';
+        cout << "Greedy factibles: " << s.greedySuccess << '\n';
+        cout << "Reinicios totales: " << s.greedyAttempts << '\n';
+        cout << "Reinicios fallidos: " << s.greedyFailedRestarts << '\n';
+        cout << "Iteraciones SA ejecutadas: " << s.saIterations << '\n';
         cout << "Iteraciones SA promedio por ejecucion exitosa: "
-             << (s.saSuccess ? static_cast<double>(s.saIterations) / s.saSuccess : 0.0) << '\\n';
-        cout << "Movimientos aceptados: " << s.saAcceptedMoves << '\\n';
-        cout << "Soluciones mejoradas: " << s.improved << '\\n';
-        cout << "Tiempo total Greedy: " << s.greedySeconds << " s\\n";
-        cout << "Tiempo total SA: " << s.saSeconds << " s\\n\\n";
+             << (s.saSuccess ? static_cast<double>(s.saIterations) / s.saSuccess : 0.0) << '\n';
+        cout << "Movimientos aceptados: " << s.saAcceptedMoves << '\n';
+        cout << "Soluciones mejoradas: " << s.improved << '\n';
+        cout << "Tiempo total Greedy: " << s.greedySeconds << " s\n";
+        cout << "Tiempo total SA: " << s.saSeconds << " s\n\n";
     }
 
-    cout << "CSV ejecuciones individuales: " << runFile << '\\n';
-    cout << "CSV resumen por instancia: " << instanceFile << '\\n';
-    cout << "CSV detalle de reinicios: " << restartFile << '\\n';
+    cout << "CSV ejecuciones individuales: " << runFile << '\n';
+    cout << "CSV resumen por instancia: " << instanceFile << '\n';
+    cout << "CSV detalle de reinicios: " << restartFile << '\n';
     return readErrors == 0 ? 0 : 3;
 }
