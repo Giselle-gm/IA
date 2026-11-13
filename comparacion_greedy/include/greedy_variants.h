@@ -13,5 +13,4 @@ struct GreedyVariantResult {
 };
 GreedyVariantResult buildGreedyBacktracking(const Instance& instance);
 GreedyVariantResult buildGreedyNoBacktracking(const Instance& instance);
-GreedyVariantResult buildGreedySequential(const Instance& instance);
 #endif

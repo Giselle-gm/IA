@@ -1,24 +1,21 @@
-# Comparacion aislada de variantes Greedy
+# Comparacion Greedy con y sin backtracking
 
-Esta carpeta es una copia independiente del proyecto IA. Los archivos de la raiz del repositorio no se modifican ni se usan como destino de los resultados de esta prueba.
+Esta carpeta contiene una copia independiente del proyecto IA. La carpeta original y sus archivos no se modifican.
 
-## Variantes incluidas
+## Variantes
 
-1. Greedy con backtracking limitado: ordena clientes por menor numero de opciones y mayor demanda; genera inserciones factibles, las ordena por costo y prueba alternativas recursivamente. Limites: 20.000 nodos y 5.000 retrocesos.
-2. Greedy sin backtracking: usa el mismo orden de clientes y la misma lista ordenada de inserciones factibles, pero fija la primera alternativa y nunca deshace decisiones anteriores.
-3. Greedy secuencial por insercion: en cada paso considera todos los clientes pendientes y todas sus inserciones factibles, y fija la de menor costo incremental. No retrocede.
+- **Greedy con backtracking limitado:** ordena clientes por menor numero de opciones y mayor demanda; genera inserciones factibles, las ordena por costo y prueba alternativas recursivamente. Limites: 20.000 nodos y 5.000 retrocesos.
+- **Greedy sin backtracking:** utiliza el mismo orden de clientes y las mismas inserciones factibles ordenadas; elige la primera alternativa y no deshace decisiones anteriores.
 
-Las tres variantes usan las estructuras actuales de Instance, Solution, Route y Stop, y la validacion final de evaluateSolution. Las ventanas temporales se validan sobre el inicio del servicio (READY <= serviceStart <= DUE); el tiempo de servicio afecta la llegada a las paradas siguientes.
+Ambas variantes usan las estructuras actuales de Instance, Solution, Route y Stop y la validacion final de evaluateSolution. Las ventanas temporales se validan sobre el inicio del servicio (READY <= serviceStart <= DUE); el tiempo de servicio afecta las llegadas posteriores.
 
 ## Ejecutar
 
 Desde esta carpeta:
 
-    make -f Makefile.variantes clean
-    make -f Makefile.variantes test-greedy-variants
+    make clean
+    make test-greedy-variants
 
-Se recorren recursivamente las instancias .txt bajo instances/ y se crea greedy_variants_comparison.csv.
+El programa recorre todas las instancias .txt dentro de instances/ y crea greedy_backtracking_comparison.csv. El resumen muestra soluciones factibles, tiempos, objetivo promedio y cuantas instancias resuelve cada variante.
 
-El CSV incluye factibilidad, clientes asignados, nodos, retrocesos, tiempo, funcion objetivo, vehiculos y costo de viaje. La consola informa tambien las intersecciones entre conjuntos de instancias resueltas.
-
-La copia conserva los archivos y Makefile originales del proyecto. La prueba nueva usa test_greedy_variants.cpp y Makefile.variantes; no reutiliza test_greedy.cpp ni test_greedy_sa.cpp.
+El test es nuevo e independiente de test_greedy.cpp y test_greedy_sa.cpp. Los archivos originales de pruebas se conservan en esta copia.
