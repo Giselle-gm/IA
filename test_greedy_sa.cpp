@@ -168,7 +168,7 @@ int main() {
 
                 if (!greedy.success) {
                     runs << "0,0," << saConfig.iterations
-                         << ",0,0,,,,,,,,\n";
+                         << ",0,0,,,,,,,,,,\n";
                     continue;
                 }
 
