@@ -196,7 +196,7 @@ SAResult simulatedAnnealing(
     result.bestSolucion = currentSolucion;
     result.bestEvaluacion = result.initialEvaluacion;
 
-    mt19937 generator(42);
+    mt19937 generator(config.randomSeed);
     uniform_real_distribution<double> probability(0.0, 1.0);
 
     double temperature = config.initialTemperature;
