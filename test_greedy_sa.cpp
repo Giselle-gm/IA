@@ -104,6 +104,7 @@ int main() {
             for (unsigned int seed : seeds) {
                 ++summary.runs;
                 greedyConfig.randomSeed = seed;
+                greedyConfig.strategy = strategy;
 
                 const auto greedyStart = Clock::now();
                 const GreedyResult greedy =
