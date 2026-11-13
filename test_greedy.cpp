@@ -46,7 +46,6 @@ int main() {
     sort(files.begin(), files.end());
 
     const vector<GreedyStrategy> strategies = {
-        GreedyStrategy::RANDOM_ORDER,
         GreedyStrategy::FEWEST_OPTIONS_FIRST,
         GreedyStrategy::MOST_CONSTRAINED_FIRST
     };
