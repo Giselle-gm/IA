@@ -8,7 +8,6 @@
 using namespace std;
 namespace {
 constexpr double FIXED_VEHICLE_COST=100000.0;
-constexpr double PRIORITY_PENALTY=100.0;
 constexpr int MAX_SEARCH_NODES=20000;
 constexpr int MAX_BACKTRACKS=5000;
 struct Candidate {
@@ -138,7 +137,7 @@ vector<Candidate> generateCandidates(const Instance& instance,const Solution& pa
                 stops.insert(stops.begin()+position,stop);
                 mergeConsecutiveStops(candidate.solution.routes[routeIndex]);
                 if(!partialSolutionFeasible(instance,candidate.solution)) continue;
-                candidate.objective=partialObjective(instance,candidate.solution)+option.priority*PRIORITY_PENALTY;
+                candidate.objective=partialObjective(instance,candidate.solution);
                 candidates.push_back(std::move(candidate));
             }
         }
@@ -153,7 +152,7 @@ vector<Candidate> generateCandidates(const Instance& instance,const Solution& pa
             Stop stop; stop.locationId=option.locationId; stop.optionIds.push_back(optionId);
             route.stops.push_back(stop); candidate.solution.routes.push_back(route);
             if(partialSolutionFeasible(instance,candidate.solution)) {
-                candidate.objective=partialObjective(instance,candidate.solution)+option.priority*PRIORITY_PENALTY;
+                candidate.objective=partialObjective(instance,candidate.solution);
                 candidates.push_back(std::move(candidate));
             }
         }
