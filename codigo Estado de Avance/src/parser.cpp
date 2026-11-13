@@ -36,6 +36,8 @@ void prepareLine(istringstream& stream, const string& line) {
 
 } // namespace
 
+
+//Lector de instancias
 bool readInstance(const string& filename, Instance& instance) {
     ifstream file(filename);
 

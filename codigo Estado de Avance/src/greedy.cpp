@@ -1,5 +1,5 @@
 #include "greedy.h"
-#include "evaluator.h"
+#include "evaluador.h"
 
 #include <algorithm>
 #include <chrono>
@@ -53,7 +53,7 @@ double routeTravelCost(const Instance& instance, const vector<int>& route) {
     return cost;
 }
 
-bool routeIsFeasible(const Instance& instance, const vector<int>& route) {
+bool routeIsFactible(const Instance& instance, const vector<int>& route) {
     int load = 0;
     int currentTime = 0;
     int previousLocationId = 0;
@@ -142,7 +142,7 @@ bool serviceLevelsCanStillBeMet(
     return true;
 }
 
-bool insertionIsFeasible(
+bool insertionIsFactible(
     const Instance& instance,
     const vector<int>& route,
     int optionId,
@@ -167,7 +167,7 @@ bool insertionIsFeasible(
 
     vector<int> candidateRoute = route;
     candidateRoute.insert(candidateRoute.begin() + position, optionId);
-    return routeIsFeasible(instance, candidateRoute);
+    return routeIsFactible(instance, candidateRoute);
 }
 
 double insertionScore(
@@ -221,7 +221,7 @@ vector<Candidate> generateCandidates(
                 for (int position = 0;
                      position <= static_cast<int>(route.size());
                      ++position) {
-                    if (!insertionIsFeasible(
+                    if (!insertionIsFactible(
                             instance, route, optionId, position, sdlUsage))
                         continue;
 
@@ -234,7 +234,7 @@ vector<Candidate> generateCandidates(
 
             if (static_cast<int>(routes.size()) < instance.vehicleCount) {
                 const vector<int> emptyRoute;
-                if (insertionIsFeasible(
+                if (insertionIsFactible(
                         instance, emptyRoute, optionId, 0, sdlUsage)) {
                     candidates.push_back({
                         customerId, optionId, static_cast<int>(routes.size()), 0,
@@ -256,7 +256,7 @@ vector<Candidate> generateCandidates(
     return candidates;
 }
 
-int countFeasibleOptions(const vector<Candidate>& candidates, int customerId) {
+int countFactibleOptions(const vector<Candidate>& candidates, int customerId) {
     set<int> options;
     for (const Candidate& candidate : candidates)
         if (candidate.customerId == customerId)
@@ -331,8 +331,8 @@ int chooseCustomer(
         return *min_element(
             availableCustomers.begin(), availableCustomers.end(),
             [&](int a, int b) {
-                const int countA = countFeasibleOptions(candidates, a);
-                const int countB = countFeasibleOptions(candidates, b);
+                const int countA = countFactibleOptions(candidates, a);
+                const int countB = countFactibleOptions(candidates, b);
                 if (countA != countB) return countA < countB;
                 return a < b;
             }
@@ -343,7 +343,7 @@ int chooseCustomer(
         availableCustomers.begin(), availableCustomers.end(),
         [&](int a, int b) {
             const auto keyA = make_tuple(
-                countFeasibleOptions(candidates, a),
+                countFactibleOptions(candidates, a),
                 minimumWindowWidth(instance, candidates, a),
                 -instance.customers[a].demand,
                 minimumRemainingSdlCapacity(instance, candidates, sdlUsage, a),
@@ -351,7 +351,7 @@ int chooseCustomer(
                 a
             );
             const auto keyB = make_tuple(
-                countFeasibleOptions(candidates, b),
+                countFactibleOptions(candidates, b),
                 minimumWindowWidth(instance, candidates, b),
                 -instance.customers[b].demand,
                 minimumRemainingSdlCapacity(instance, candidates, sdlUsage, b),
@@ -363,19 +363,19 @@ int chooseCustomer(
     );
 }
 
-Solution convertToSolution(
+Solucion convertToSolucion(
     const Instance& instance,
     const vector<vector<int>>& routes,
     const vector<int>& selectedOptions
 ) {
-    Solution solution;
-    solution.selectedOptions = selectedOptions;
+    Solucion solucion;
+    solucion.selectedOptions = selectedOptions;
 
     for (const vector<int>& routeOptions : routes) {
         if (routeOptions.empty()) continue;
 
         Route route;
-        route.vehicleId = static_cast<int>(solution.routes.size());
+        route.vehicleId = static_cast<int>(solucion.routes.size());
 
         for (int optionId : routeOptions) {
             const Option& option = instance.options[optionId];
@@ -389,9 +389,9 @@ Solution convertToSolution(
                 route.stops.push_back(stop);
             }
         }
-        solution.routes.push_back(route);
+        solucion.routes.push_back(route);
     }
-    return solution;
+    return solucion;
 }
 
 } // namespace
@@ -405,7 +405,7 @@ string greedyStrategyName(GreedyStrategy strategy) {
     return "Desconocida";
 }
 
-GreedyResult buildGreedySolution(
+GreedyResult buildGreedySolucion(
     const Instance& instance,
     const GreedyConfig& config
 ) {
@@ -492,26 +492,26 @@ GreedyResult buildGreedySolution(
         bestPartialAssignment = max(bestPartialAssignment, assignedCustomers);
 
         if (!stuck) {
-            Solution solution = convertToSolution(
+            Solucion solucion = convertToSolucion(
                 instance, routes, selectedOptions
             );
-            const Evaluation evaluation = evaluateSolution(instance, solution);
+            const Evaluacion evaluacion = evaluarSolucion(instance, solucion);
 
-            if (!evaluation.feasible) {
+            if (!evaluacion.factible) {
                 stats.failureReason = "La evaluacion final rechazo la solucion: ";
-                if (!evaluation.violations.empty())
-                    stats.failureReason += evaluation.violations.front();
+                if (!evaluacion.violations.empty())
+                    stats.failureReason += evaluacion.violations.front();
                 else
                     stats.failureReason += "violacion no especificada.";
             } else {
-                solution.objectiveValue = evaluation.objectiveValue;
-                stats.feasible = true;
+                solucion.objectiveValue = evaluacion.objectiveValue;
+                stats.factible = true;
                 stats.elapsedSeconds = chrono::duration<double>(
                     Clock::now() - restartStart
                 ).count();
                 result.restartStats.push_back(stats);
                 result.success = true;
-                result.solution = solution;
+                result.solucion = solucion;
                 result.assignedCustomers = customerCount;
                 result.restartsAttempted = restart;
                 result.message =

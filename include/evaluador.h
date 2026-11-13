@@ -1,21 +1,21 @@
 
-#ifndef EVALUATOR_H
-#define EVALUATOR_H
+#ifndef EVALUADOR_H
+#define EVALUADOR_H
 
 #include "instance.h"
-#include "solution.h"
+#include "solucion.h"
 
 #include <string>
 #include <vector>
 
-struct Evaluation {
-    bool feasible = false;
+struct Evaluacion {
+    bool factible = false;
 
     double objectiveValue = 0.0;
     double travelCost = 0.0;
     double fixedCost = 0.0;
 
-    int vehiclesUsed = 0;
+    int vehiculosUsados = 0;
 
     std::vector<std::string> violations;
 };
@@ -23,9 +23,9 @@ struct Evaluation {
 int travelTime(const Location& from, const Location& to);
 int travelCost(const Location& from, const Location& to);
 
-Evaluation evaluateSolution(
+Evaluacion evaluarSolucion(
     const Instance& instance,
-    const Solution& solution
+    const Solucion& solucion
 );
 
 #endif

@@ -6,11 +6,13 @@
 
 using namespace std;
 
+//Cliente
 struct Customer {
     int id;
     int demand;
 };
 
+//Ubicacion
 struct Location {
     int id;
     double x, y;
@@ -22,6 +24,7 @@ struct Location {
     int serviceTime;
 };
 
+//Opciones
 struct Option {
     int id;
     int locationId;
@@ -31,7 +34,7 @@ struct Option {
     int cost;
 };
 
-
+//Instancia
 struct Instance {
     int vehicleCount;
     int vehicleCapacity;

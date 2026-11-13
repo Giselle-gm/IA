@@ -17,7 +17,6 @@ bool nextLine(ifstream& file, string& line) {
             return true;
         }
     }
-
     return false;
 }
 
@@ -44,7 +43,6 @@ bool readInstance(const string& filename, Instance& instance) {
         return false;
     }
 
-    // Evita conservar datos de una lectura anterior si se reutiliza Instance.
     instance = Instance{};
 
     try {

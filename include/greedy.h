@@ -2,7 +2,7 @@
 #define GREEDY_H
 
 #include "instance.h"
-#include "solution.h"
+#include "solucion.h"
 
 #include <string>
 #include <vector>
@@ -25,21 +25,21 @@ struct RestartStats {
     std::vector<int> customerOrder;
     std::vector<int> selectedOptionOrder;
     int assignedCustomers = 0;
-    bool feasible = false;
+    bool factible = false;
     std::string failureReason;
     double elapsedSeconds = 0.0;
 };
 
 struct GreedyResult {
     bool success = false;
-    Solution solution;
+    Solucion solucion;
     std::string message;
     int restartsAttempted = 0;
     int assignedCustomers = 0;
     std::vector<RestartStats> restartStats;
 };
 
-GreedyResult buildGreedySolution(
+GreedyResult buildGreedySolucion(
     const Instance& instance,
     const GreedyConfig& config = GreedyConfig{}
 );

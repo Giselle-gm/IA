@@ -1,6 +1,6 @@
 
-#ifndef SOLUTION_H
-#define SOLUTION_H
+#ifndef SOLUCION_H
+#define SOLUCION_H
 
 #include <vector>
 
@@ -19,7 +19,7 @@ struct Route {
     std::vector<Stop> stops;
 };
 
-struct Solution {
+struct Solucion {
     // Índice: ID del cliente.
     // Valor: ID de la opción seleccionada.
     // -1 significa que todavía no se ha seleccionado.

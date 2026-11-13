@@ -1,9 +1,10 @@
 
-#ifndef SOLUTION_H
-#define SOLUTION_H
+#ifndef SOLUCION_H
+#define SOLUCION_H
 
 #include <vector>
 
+//Paradas
 struct Stop {
     int locationId = -1;
 
@@ -11,20 +12,20 @@ struct Stop {
     std::vector<int> optionIds;
 };
 
+//Rutas
 struct Route {
     int vehicleId = -1;
 
-    // Las ubicaciones 0 (depósito) de inicio y término
-    // se consideran implícitas.
+    // Las ubicaciones 0 (depósito) de inicio y término se consideran implícitas.
     std::vector<Stop> stops;
 };
 
-struct Solution {
+//Solucion
+struct Solucion {
     // Índice: ID del cliente.
     // Valor: ID de la opción seleccionada.
     // -1 significa que todavía no se ha seleccionado.
     std::vector<int> selectedOptions;
-
     std::vector<Route> routes;
 
     double objectiveValue = 0.0;

@@ -11,13 +11,15 @@
 #include <vector>
 
 using namespace std;
+
 namespace fs = std::filesystem;
+
 using Clock = chrono::steady_clock;
 
 struct StrategySummary {
     GreedyStrategy strategy;
     int runs = 0;
-    int feasibleRuns = 0;
+    int factibleRuns = 0;
     long long totalAttempts = 0;
     long long failedRuns = 0;
     long long assignedOnFailures = 0;
@@ -90,7 +92,7 @@ int main() {
                 config.strategy = strategy;
 
                 const auto start = Clock::now();
-                const GreedyResult result = buildGreedySolution(instance, config);
+                const GreedyResult result = buildGreedySolucion(instance, config);
                 const double totalSeconds = chrono::duration<double>(
                     Clock::now() - start
                 ).count();
@@ -99,7 +101,7 @@ int main() {
                 summary.totalAttempts += result.restartsAttempted;
                 summary.totalSeconds += totalSeconds;
                 if (result.success) {
-                    ++summary.feasibleRuns;
+                    ++summary.factibleRuns;
                 } else {
                     ++summary.failedRuns;
                     summary.assignedOnFailures += result.assignedCustomers;
@@ -119,7 +121,7 @@ int main() {
                             << joinIds(stats.customerOrder) << ","
                             << joinIds(stats.selectedOptionOrder) << ","
                             << stats.assignedCustomers << ","
-                            << (stats.feasible ? 1 : 0) << ","
+                            << (stats.factible ? 1 : 0) << ","
                             << stats.failureReason << ","
                             << fixed << setprecision(6)
                             << stats.elapsedSeconds << "\n";
@@ -139,7 +141,7 @@ int main() {
 
     for (const StrategySummary& summary : summaries) {
         const double successRate = summary.runs == 0 ? 0.0 :
-            100.0 * summary.feasibleRuns / summary.runs;
+            100.0 * summary.factibleRuns / summary.runs;
         const double averageAttempts = summary.runs == 0 ? 0.0 :
             static_cast<double>(summary.totalAttempts) / summary.runs;
         const double averageTime = summary.runs == 0 ? 0.0 :
@@ -147,7 +149,7 @@ int main() {
 
         cout << "--- " << greedyStrategyName(summary.strategy) << " ---\n";
         cout << "Ejecuciones: " << summary.runs << '\n';
-        cout << "Soluciones factibles: " << summary.feasibleRuns
+        cout << "Soluciones factibles: " << summary.factibleRuns
              << "/" << summary.runs << " (" << successRate << "%)\n";
         cout << "Ejecuciones fallidas: " << summary.failedRuns << '\n';
         cout << "Intentos promedio: " << averageAttempts << '\n';

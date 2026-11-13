@@ -1,6 +1,6 @@
 #include "parser.h"
 #include "greedy.h"
-#include "evaluator.h"
+#include "evaluador.h"
 #include "simulated_annealing.h"
 
 #include <chrono>
@@ -13,29 +13,29 @@
 using namespace std;
 
 // Muestra el resultado de la mejor solución encontrada por SA.
-static void printSolution(
+static void printSolucion(
     const Instance& instance,
-    const Solution& solution,
-    const Evaluation& evaluation
+    const Solucion& solucion,
+    const Evaluacion& evaluacion
 ) {
     cout << "\n========== RESULTADO SIMULATED ANNEALING ==========\n";
 
     cout << "Factible: "
-         << (evaluation.feasible ? "SI" : "NO") << '\n';
+         << (evaluacion.factible ? "SI" : "NO") << '\n';
 
     cout << "Vehiculos utilizados: "
-         << evaluation.vehiclesUsed << " / "
+         << evaluacion.vehiculosUsados << " / "
          << instance.vehicleCount << '\n';
 
     cout << fixed << setprecision(2);
-    cout << "Costo de viaje: " << evaluation.travelCost << '\n';
-    cout << "Costo fijo: " << evaluation.fixedCost << '\n';
+    cout << "Costo de viaje: " << evaluacion.travelCost << '\n';
+    cout << "Costo fijo: " << evaluacion.fixedCost << '\n';
     cout << "Funcion objetivo: "
-         << evaluation.objectiveValue << '\n';
+         << evaluacion.objectiveValue << '\n';
 
     cout << "\n---------- RUTAS ----------\n";
 
-    for (const Route& route : solution.routes) {
+    for (const Route& route : solucion.routes) {
         int routeLoad = 0;
         double routeTravelCost = 0.0;
         int previousLocationId = 0;
@@ -81,10 +81,10 @@ static void printSolution(
     cout << "\n---------- OPCIONES SELECCIONADAS ----------\n";
 
     for (size_t customerId = 0;
-         customerId < solution.selectedOptions.size();
+         customerId < solucion.selectedOptions.size();
          ++customerId) {
 
-        const int optionId = solution.selectedOptions[customerId];
+        const int optionId = solucion.selectedOptions[customerId];
 
         if (optionId < 0 ||
             optionId >= static_cast<int>(instance.options.size())) {
@@ -110,7 +110,7 @@ static void printSolution(
 
         int satisfiedCustomers = 0;
 
-        for (int optionId : solution.selectedOptions) {
+        for (int optionId : solucion.selectedOptions) {
             if (optionId >= 0 &&
                 optionId < static_cast<int>(instance.options.size()) &&
                 instance.options[optionId].priority <= static_cast<int>(priority)) {
@@ -135,9 +135,9 @@ static void printSolution(
              << "%)\n";
     }
 
-    if (!evaluation.feasible) {
+    if (!evaluacion.factible) {
         cout << "\n---------- VIOLACIONES ----------\n";
-        for (const string& violation : evaluation.violations) {
+        for (const string& violation : evaluacion.violations) {
             cout << "- " << violation << '\n';
         }
     }
@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    GreedyResult greedyResult = buildGreedySolution(instance);
+    GreedyResult greedyResult = buildGreedySolucion(instance);
 
     if (!greedyResult.success) {
         cout << "\nNo se pudo construir una solucion inicial Greedy.\n";
@@ -169,22 +169,22 @@ int main(int argc, char* argv[]) {
 
     cout << "\n" << greedyResult.message << '\n';
 
-    const Evaluation initialEvaluation =
-        evaluateSolution(instance, greedyResult.solution);
+    const Evaluacion initialEvaluacion =
+        evaluarSolucion(instance, greedyResult.solucion);
 
-    if (!initialEvaluation.feasible) {
+    if (!initialEvaluacion.factible) {
         cerr << "La solucion inicial no supera la evaluacion de factibilidad.\n";
         return 1;
     }
 
     cout << fixed << setprecision(2);
     cout << "Funcion objetivo inicial: "
-         << initialEvaluation.objectiveValue << '\n';
+         << initialEvaluacion.objectiveValue << '\n';
 
     SAConfig config;
     SAResult saResult = simulatedAnnealing(
         instance,
-        greedyResult.solution,
+        greedyResult.solucion,
         config
     );
 
@@ -206,21 +206,21 @@ int main(int argc, char* argv[]) {
     cout << "Iteraciones ejecutadas: " << saResult.iterationsExecuted << '\n';
     cout << "Movimientos aceptados: " << saResult.acceptedMoves << '\n';
     cout << "Funcion objetivo final: "
-         << saResult.bestEvaluation.objectiveValue << '\n';
+         << saResult.bestEvaluacion.objectiveValue << '\n';
 
     const double improvement =
-        initialEvaluation.objectiveValue -
-        saResult.bestEvaluation.objectiveValue;
+        initialEvaluacion.objectiveValue -
+        saResult.bestEvaluacion.objectiveValue;
 
     cout << "Mejora absoluta: " << improvement << '\n';
 
-    if (initialEvaluation.objectiveValue > 0.0) {
+    if (initialEvaluacion.objectiveValue > 0.0) {
         cout << "Mejora porcentual: "
-             << 100.0 * improvement / initialEvaluation.objectiveValue
+             << 100.0 * improvement / initialEvaluacion.objectiveValue
              << "%\n";
     }
 
-    printSolution(instance, saResult.bestSolution, saResult.bestEvaluation);
+    printSolucion(instance, saResult.bestSolucion, saResult.bestEvaluacion);
 
     return 0;
 }

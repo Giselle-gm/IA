@@ -18,7 +18,7 @@ using Clock = chrono::steady_clock;
 struct StrategySummary {
     GreedyStrategy strategy;
     int runs = 0;
-    int greedyFeasible = 0;
+    int greedyFactible = 0;
     int saSuccessful = 0;
     int saImproved = 0;
     double totalInitialObjective = 0.0;
@@ -108,7 +108,7 @@ int main() {
 
                 const auto greedyStart = Clock::now();
                 const GreedyResult greedy =
-                    buildGreedySolution(instance, greedyConfig);
+                    buildGreedySolucion(instance, greedyConfig);
                 const double greedySeconds = chrono::duration<double>(
                     Clock::now() - greedyStart
                 ).count();
@@ -125,25 +125,25 @@ int main() {
                     continue;
                 }
 
-                ++summary.greedyFeasible;
+                ++summary.greedyFactible;
 
                 const auto saStart = Clock::now();
                 const SAResult sa = simulatedAnnealing(
-                    instance, greedy.solution, saConfig
+                    instance, greedy.solucion, saConfig
                 );
                 const double saSeconds = chrono::duration<double>(
                     Clock::now() - saStart
                 ).count();
                 summary.totalSaSeconds += saSeconds;
 
-                const Evaluation& initial = sa.initialEvaluation;
-                const Evaluation& final = sa.bestEvaluation;
+                const Evaluacion& initial = sa.initialEvaluacion;
+                const Evaluacion& final = sa.bestEvaluacion;
 
                 output << fixed << setprecision(2)
                        << initial.objectiveValue << ","
                        << initial.travelCost << ","
                        << initial.fixedCost << ","
-                       << initial.vehiclesUsed << ","
+                       << initial.vehiculosUsados << ","
                        << (sa.success ? 1 : 0) << ","
                        << sa.iterationsExecuted << ","
                        << sa.acceptedMoves << ","
@@ -174,7 +174,7 @@ int main() {
                        << final.objectiveValue << ","
                        << final.travelCost << ","
                        << final.fixedCost << ","
-                       << final.vehiclesUsed << ","
+                       << final.vehiculosUsados << ","
                        << absoluteImprovement << ","
                        << percentageImprovement << "\n";
             }
@@ -194,7 +194,7 @@ int main() {
     for (const StrategySummary& summary : summaries) {
         cout << "--- " << greedyStrategyName(summary.strategy) << " ---\n";
         cout << "Ejecuciones: " << summary.runs << '\n';
-        cout << "Greedy factible: " << summary.greedyFeasible
+        cout << "Greedy factible: " << summary.greedyFactible
              << "/" << summary.runs << '\n';
         cout << "SA exitoso: " << summary.saSuccessful << '\n';
         cout << "Soluciones mejoradas por SA: " << summary.saImproved << '\n';

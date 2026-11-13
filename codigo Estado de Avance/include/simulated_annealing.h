@@ -2,9 +2,10 @@
 #define SIMULATED_ANNEALING_H
 
 #include "instance.h"
-#include "solution.h"
-#include "evaluator.h"
+#include "solucion.h"
+#include "evaluador.h"
 
+// Configuración de Simulated Annealing.
 struct SAConfig {
     int iterations = 5000;
     double initialTemperature = 100.0;
@@ -12,11 +13,12 @@ struct SAConfig {
     double minimumTemperature = 0.01;
 };
 
+// Resultado de la ejecución de Simulated Annealing.
 struct SAResult {
     bool success = false;
-    Solution bestSolution;
-    Evaluation initialEvaluation;
-    Evaluation bestEvaluation;
+    Solucion bestSolucion;
+    Evaluacion initialEvaluacion;
+    Evaluacion bestEvaluacion;
     int iterationsExecuted = 0;
     int acceptedMoves = 0;
 };
@@ -24,7 +26,7 @@ struct SAResult {
 // Mejora una solución inicial factible mediante Simulated Annealing.
 SAResult simulatedAnnealing(
     const Instance& instance,
-    const Solution& initialSolution,
+    const Solucion& initialSolucion,
     const SAConfig& config = SAConfig{}
 );
 

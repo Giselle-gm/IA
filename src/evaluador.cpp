@@ -1,5 +1,5 @@
 
-#include "evaluator.h"
+#include "evaluador.h"
 
 #include <algorithm>
 #include <cmath>
@@ -12,8 +12,8 @@ using namespace std;
 namespace {
     constexpr double FIXED_VEHICLE_COST = 100000.0;
 
-    void addViolation(Evaluation& evaluation, const string& message) {
-        evaluation.violations.push_back(message);
+    void addViolation(Evaluacion& evaluacion, const string& message) {
+        evaluacion.violations.push_back(message);
     }
 
     string locationMessage(int locationId, const string& message) {
@@ -36,11 +36,11 @@ int travelCost(const Location& from, const Location& to) {
 }
 
 
-Evaluation evaluateSolution(
+Evaluacion evaluarSolucion(
     const Instance& instance,
-    const Solution& solution
+    const Solucion& solucion
 ) {
-    Evaluation evaluation;
+    Evaluacion evaluacion;
 
     const int customerCount =
         static_cast<int>(instance.customers.size());
@@ -52,15 +52,15 @@ Evaluation evaluateSolution(
         static_cast<int>(instance.options.size());
 
     if (locationCount == 0) {
-        addViolation(evaluation, "La instancia no contiene ubicaciones.");
-        evaluation.feasible = false;
-        return evaluation;
+        addViolation(evaluacion, "La instancia no contiene ubicaciones.");
+        evaluacion.factible = false;
+        return evaluacion;
     }
 
 
-    if (static_cast<int>(solution.selectedOptions.size()) != customerCount) {
+    if (static_cast<int>(solucion.selectedOptions.size()) != customerCount) {
         addViolation(
-            evaluation,
+            evaluacion,
             "selectedOptions no tiene un elemento por cliente."
         );
     }
@@ -73,14 +73,14 @@ Evaluation evaluateSolution(
 
     for (int customerId = 0;
          customerId < customerCount &&
-         customerId < static_cast<int>(solution.selectedOptions.size());
+         customerId < static_cast<int>(solucion.selectedOptions.size());
          customerId++) {
 
-        int optionId = solution.selectedOptions[customerId];
+        int optionId = solucion.selectedOptions[customerId];
 
         if (optionId < 0 || optionId >= optionCount) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "El cliente " + to_string(customerId) +
                 " no tiene una opcion valida seleccionada."
             );
@@ -91,7 +91,7 @@ Evaluation evaluateSolution(
 
         if (option.customerId != customerId) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "La opcion seleccionada para el cliente " +
                 to_string(customerId) +
                 " pertenece a otro cliente."
@@ -103,7 +103,7 @@ Evaluation evaluateSolution(
 
         if (option.locationId < 0 || option.locationId >= locationCount) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "La opcion " + to_string(optionId) +
                 " referencia una ubicacion invalida."
             );
@@ -113,7 +113,7 @@ Evaluation evaluateSolution(
             option.priority >= instance.priorityCount) {
 
             addViolation(
-                evaluation,
+                evaluacion,
                 "La opcion " + to_string(optionId) +
                 " tiene una prioridad invalida."
             );
@@ -125,21 +125,21 @@ Evaluation evaluateSolution(
 
     vector<int> optionRouteOccurrences(optionCount, 0);
 
-    for (const Route& route : solution.routes) {
+    for (const Route& route : solucion.routes) {
 
         if (route.stops.empty()) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "Existe una ruta vacia."
             );
             continue;
         }
 
-        evaluation.vehiclesUsed++;
+        evaluacion.vehiculosUsados++;
 
         if (!vehicleIds.insert(route.vehicleId).second) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "El vehiculo " + to_string(route.vehicleId) +
                 " aparece en mas de una ruta."
             );
@@ -157,7 +157,7 @@ Evaluation evaluateSolution(
 
             if (stop.optionIds.empty()) {
                 addViolation(
-                    evaluation,
+                    evaluacion,
                     "La ruta del vehiculo " + to_string(route.vehicleId) +
                     " contiene una parada sin opciones de entrega."
                 );
@@ -168,7 +168,7 @@ Evaluation evaluateSolution(
 
             if (locationId < 0 || locationId >= locationCount) {
                 addViolation(
-                    evaluation,
+                    evaluacion,
                     "La ruta del vehiculo " +
                     to_string(route.vehicleId) +
                     " contiene una ubicacion invalida."
@@ -184,7 +184,7 @@ Evaluation evaluateSolution(
 
             int travel = travelTime(previousLocation, location);
 
-            evaluation.travelCost += travel;
+            evaluacion.travelCost += travel;
             currentTime += travel;
 
             int arrivalTime = currentTime;
@@ -201,7 +201,7 @@ Evaluation evaluateSolution(
 
                 if (optionId < 0 || optionId >= optionCount) {
                     addViolation(
-                        evaluation,
+                        evaluacion,
                         locationMessage(
                             locationId,
                             "contiene una opcion invalida."
@@ -218,7 +218,7 @@ Evaluation evaluateSolution(
                 // La opción debe pertenecer a la ubicación de la parada.
                 if (option.locationId != locationId) {
                     addViolation(
-                        evaluation,
+                        evaluacion,
                         "La opcion " + to_string(optionId) +
                         " no pertenece a la ubicacion " +
                         to_string(locationId) + "."
@@ -230,7 +230,7 @@ Evaluation evaluateSolution(
                     option.customerId >= customerCount) {
 
                     addViolation(
-                        evaluation,
+                        evaluacion,
                         "La opcion " + to_string(optionId) +
                         " tiene un cliente invalido."
                     );
@@ -239,7 +239,7 @@ Evaluation evaluateSolution(
 
                 if (selectedOptionsByCustomer[option.customerId] != optionId) {
                     addViolation(
-                        evaluation,
+                        evaluacion,
                         "La ruta contiene una opcion distinta a la seleccionada "
                         "para el cliente " +
                         to_string(option.customerId) + "."
@@ -255,7 +255,7 @@ Evaluation evaluateSolution(
                     customerInRoute[option.customerId] = true;
                 } else {
                     addViolation(
-                        evaluation,
+                        evaluacion,
                         "El cliente " + to_string(option.customerId) +
                         " aparece mas de una vez en la misma ruta."
                     );
@@ -273,7 +273,7 @@ Evaluation evaluateSolution(
                 serviceStart > location.due) {
 
                 addViolation(
-                    evaluation,
+                    evaluacion,
                     locationMessage(
                         locationId,
                         "no inicia el servicio dentro de su ventana temporal. Inicio: " +
@@ -293,7 +293,7 @@ Evaluation evaluateSolution(
         // Comprobar capacidad del vehículo.
         if (routeLoad > instance.vehicleCapacity) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "El vehiculo " + to_string(route.vehicleId) +
                 " supera su capacidad. Carga: " +
                 to_string(routeLoad) +
@@ -308,12 +308,12 @@ Evaluation evaluateSolution(
         const Location& depot =
             instance.locations[0];
 
-        evaluation.travelCost += travelCost(lastLocation, depot);
+        evaluacion.travelCost += travelCost(lastLocation, depot);
     }
 
-    if (evaluation.vehiclesUsed > instance.vehicleCount) {
+    if (evaluacion.vehiculosUsados > instance.vehicleCount) {
         addViolation(
-            evaluation,
+            evaluacion,
             "Se utilizan mas vehiculos que los disponibles."
         );
     }
@@ -332,7 +332,7 @@ Evaluation evaluateSolution(
 
         if (optionRouteOccurrences[optionId] != 1) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "La opcion " + to_string(optionId) +
                 " del cliente " + to_string(customerId) +
                 " debe aparecer exactamente una vez en las rutas."
@@ -380,7 +380,7 @@ Evaluation evaluateSolution(
             locationLoads[locationId] > location.capacity) {
 
             addViolation(
-                evaluation,
+                evaluacion,
                 "La ubicacion compartida " +
                 to_string(locationId) +
                 " supera su capacidad. Carga: " +
@@ -426,7 +426,7 @@ Evaluation evaluateSolution(
 
         if (satisfiedCustomers < requiredCustomers) {
             addViolation(
-                evaluation,
+                evaluacion,
                 "No se cumple el nivel minimo acumulativo para prioridad " +
                 to_string(priority) +
                 ". Atendidos: " + to_string(satisfiedCustomers) +
@@ -437,14 +437,14 @@ Evaluation evaluateSolution(
     }
 
 
-    evaluation.fixedCost =
-        FIXED_VEHICLE_COST * evaluation.vehiclesUsed;
+    evaluacion.fixedCost =
+        FIXED_VEHICLE_COST * evaluacion.vehiculosUsados;
 
-    evaluation.objectiveValue =
-        evaluation.fixedCost + evaluation.travelCost;
+    evaluacion.objectiveValue =
+        evaluacion.fixedCost + evaluacion.travelCost;
 
 
-    evaluation.feasible = evaluation.violations.empty();
+    evaluacion.factible = evaluacion.violations.empty();
 
-    return evaluation;
+    return evaluacion;
 }

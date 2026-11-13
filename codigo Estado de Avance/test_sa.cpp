@@ -32,7 +32,7 @@ int main() {
     sort(instanceFiles.begin(), instanceFiles.end());
 
     int filesReadSuccessfully = 0;
-    int greedyFeasible = 0;
+    int greedyFactible = 0;
     int saSuccessful = 0;
     int saImproved = 0;
     double totalAbsoluteImprovement = 0.0;
@@ -49,16 +49,16 @@ int main() {
 
         ++filesReadSuccessfully;
 
-        GreedyResult greedyResult = buildGreedySolution(instance);
+        GreedyResult greedyResult = buildGreedySolucion(instance);
         if (!greedyResult.success) {
             continue;
         }
 
-        ++greedyFeasible;
+        ++greedyFactible;
 
         SAResult saResult = simulatedAnnealing(
             instance,
-            greedyResult.solution,
+            greedyResult.solucion,
             config
         );
 
@@ -69,9 +69,9 @@ int main() {
         ++saSuccessful;
 
         const double initialObjective =
-            saResult.initialEvaluation.objectiveValue;
+            saResult.initialEvaluacion.objectiveValue;
         const double finalObjective =
-            saResult.bestEvaluation.objectiveValue;
+            saResult.bestEvaluacion.objectiveValue;
         const double absoluteImprovement =
             initialObjective - finalObjective;
 
@@ -93,7 +93,7 @@ int main() {
     cout << "Archivos leidos exitosamente: "
          << filesReadSuccessfully << '\n';
     cout << "Soluciones iniciales factibles con Greedy: "
-         << greedyFeasible << '\n';
+         << greedyFactible << '\n';
     cout << "Instancias procesadas exitosamente por SA: "
          << saSuccessful << '\n';
     cout << "Instancias mejoradas por SA: "

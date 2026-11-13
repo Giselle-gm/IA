@@ -32,7 +32,7 @@ int main() {
     sort(instanceFiles.begin(), instanceFiles.end());
 
     int filesReadSuccessfully = 0;
-    int feasibleSolutions = 0;
+    int factibleSolucions = 0;
 
     for (const fs::path& file : instanceFiles) {
         Instance instance;
@@ -43,10 +43,10 @@ int main() {
 
         ++filesReadSuccessfully;
 
-        GreedyResult result = buildGreedySolution(instance);
+        GreedyResult result = buildGreedySolucion(instance);
 
         if (result.success) {
-            ++feasibleSolutions;
+            ++factibleSolucions;
         }
     }
 
@@ -56,7 +56,7 @@ int main() {
     cout << "Archivos leidos exitosamente: "
          << filesReadSuccessfully << '\n';
     cout << "Archivos con solucion inicial factible (Greedy): "
-         << feasibleSolutions << '\n';
+         << factibleSolucions << '\n';
 
     return 0;
 }

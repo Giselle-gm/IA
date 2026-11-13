@@ -1,6 +1,6 @@
 #include "greedy_variants.h"
 #include "parser.h"
-#include "evaluator.h"
+#include "evaluador.h"
 #include <algorithm>
 #include <chrono>
 #include <filesystem>
@@ -12,7 +12,7 @@
 using namespace std;
 namespace fs=std::filesystem;
 using Clock=chrono::steady_clock;
-struct Summary { string name; int runs=0,feasible=0; double seconds=0.0,objective=0.0; };
+struct Summary { string name; int runs=0,factible=0; double seconds=0.0,objective=0.0; };
 string csv(const string& value) {
     string out="\"";
     for(char c:value) { if(c=='"') out+='"'; out+=c; }
@@ -40,14 +40,14 @@ int main() {
             results[index]=algorithm(instance);
             const double seconds=chrono::duration<double>(Clock::now()-start).count();
             Summary& summary=summaries[index]; ++summary.runs; summary.seconds+=seconds;
-            if(results[index].success) { ++summary.feasible; summary.objective+=results[index].solution.objectiveValue; }
+            if(results[index].success) { ++summary.factible; summary.objective+=results[index].solucion.objectiveValue; }
             output<<csv(file.generic_string())<<","<<csv(summary.name)<<","
                   <<(results[index].success?1:0)<<","<<results[index].assignedCustomers<<","
                   <<results[index].exploredNodes<<","<<results[index].backtracks<<","
                   <<fixed<<setprecision(6)<<seconds<<",";
             if(results[index].success) {
-                const Evaluation e=evaluateSolution(instance,results[index].solution);
-                output<<fixed<<setprecision(2)<<e.objectiveValue<<","<<e.vehiclesUsed<<","<<e.travelCost<<"\n";
+                const Evaluacion e=evaluarSolucion(instance,results[index].solucion);
+                output<<fixed<<setprecision(2)<<e.objectiveValue<<","<<e.vehiculosUsados<<","<<e.travelCost<<"\n";
             } else output<<",,,\n";
         };
         run(0,buildGreedyBacktracking); run(1,buildGreedyNoBacktracking);
@@ -58,10 +58,10 @@ int main() {
         <<"Instancias encontradas: "<<files.size()<<"\nInstancias leidas: "<<read
         <<"\nErrores de lectura: "<<errors<<"\n\n";
     for(const Summary& s:summaries) {
-        cout<<"--- "<<s.name<<" ---\nSoluciones factibles: "<<s.feasible<<"/"<<s.runs
+        cout<<"--- "<<s.name<<" ---\nSoluciones factibles: "<<s.factible<<"/"<<s.runs
             <<"\nTiempo total: "<<s.seconds<<" s\nTiempo promedio: "
             <<(s.runs?s.seconds/s.runs:0.0)<<" s\nObjetivo promedio (solo factibles): "
-            <<(s.feasible?s.objective/s.feasible:0.0)<<"\n\n";
+            <<(s.factible?s.objective/s.factible:0.0)<<"\n\n";
     }
     cout<<"--- Comparacion por instancia ---\nResueltas por ambas: "<<both
         <<"\nSolo backtracking: "<<onlyBt<<"\nSolo sin backtracking: "<<onlyNoBt
