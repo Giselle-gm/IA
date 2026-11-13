@@ -309,8 +309,7 @@ int chooseCustomer(
     const Instance& instance,
     const vector<Candidate>& candidates,
     const vector<int>& sdlUsage,
-    GreedyStrategy strategy,
-    mt19937& generator
+    GreedyStrategy strategy
 ) {
     vector<int> availableCustomers;
     for (const Candidate& candidate : candidates) {
@@ -318,13 +317,6 @@ int chooseCustomer(
             find(availableCustomers.begin(), availableCustomers.end(),
                  candidate.customerId) == availableCustomers.end())
             availableCustomers.push_back(candidate.customerId);
-    }
-
-    if (strategy == GreedyStrategy::RANDOM_ORDER) {
-        uniform_int_distribution<int> distribution(
-            0, static_cast<int>(availableCustomers.size()) - 1
-        );
-        return availableCustomers[distribution(generator)];
     }
 
     if (strategy == GreedyStrategy::FEWEST_OPTIONS_FIRST) {
@@ -398,7 +390,6 @@ Solucion convertToSolucion(
 
 string greedyStrategyName(GreedyStrategy strategy) {
     switch (strategy) {
-        case GreedyStrategy::RANDOM_ORDER: return "Aleatorio";
         case GreedyStrategy::FEWEST_OPTIONS_FIRST: return "Menos opciones primero";
         case GreedyStrategy::MOST_CONSTRAINED_FIRST: return "Mayor dificultad primero";
     }
@@ -453,7 +444,7 @@ GreedyResult buildGreedySolucion(
             }
 
             const int customerId = chooseCustomer(
-                instance, candidates, sdlUsage, config.strategy, generator
+                instance, candidates, sdlUsage, config.strategy
             );
 
             vector<Candidate> customerCandidates;
