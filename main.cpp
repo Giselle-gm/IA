@@ -159,7 +159,9 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    GreedyResult greedyResult = buildGreedySolucion(instance);
+    GreedyConfig greedyConfig;
+    greedyConfig.randomSeed = RANDOM_SEED;
+    GreedyResult greedyResult = buildGreedySolucion(instance, greedyConfig);
 
     if (!greedyResult.success) {
         cout << "\nNo se pudo construir una solucion inicial Greedy.\n";
@@ -182,6 +184,7 @@ int main(int argc, char* argv[]) {
          << initialEvaluacion.objectiveValue << '\n';
 
     SAConfig config;
+    config.randomSeed = RANDOM_SEED;
     SAResult saResult = simulatedAnnealing(
         instance,
         greedyResult.solucion,
@@ -199,7 +202,9 @@ int main(int argc, char* argv[]) {
 
     cout << "\n========== DATOS DE LA EJECUCION ==========\n";
     cout << "Instancia: " << filename << '\n';
-    cout << "Semilla: " << RANDOM_SEED << " (fija en Simulated Annealing)\n";
+    cout << "Semilla Greedy: " << greedyConfig.randomSeed << '\n';
+    cout << "Semilla SA: " << config.randomSeed << '\n';
+    cout << "Intentos Greedy: " << greedyResult.restartsAttempted << '\n';
     cout << "Tiempo de computo: " << fixed << setprecision(3)
          << computationTime.count() << " s\n";
 
