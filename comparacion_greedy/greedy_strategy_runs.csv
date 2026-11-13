@@ -1,0 +1,1081 @@
+instancia,estrategia,semilla,exito,intentos,clientes_asignados,tiempo_total_segundos
+"instances/25/U_25large_1.txt,Aleatorio,42,1,5,25,0.018855
+"instances/25/U_25large_1.txt,Aleatorio,43,1,7,25,0.024385
+"instances/25/U_25large_1.txt,Aleatorio,44,1,5,25,0.018157
+"instances/25/U_25large_1.txt,Menos opciones primero,42,1,1,25,0.005129
+"instances/25/U_25large_1.txt,Menos opciones primero,43,1,1,25,0.004482
+"instances/25/U_25large_1.txt,Menos opciones primero,44,1,2,25,0.009884
+"instances/25/U_25large_1.txt,Mayor dificultad primero,42,1,1,25,0.005805
+"instances/25/U_25large_1.txt,Mayor dificultad primero,43,1,1,25,0.006084
+"instances/25/U_25large_1.txt,Mayor dificultad primero,44,1,2,25,0.016792
+"instances/25/U_25large_10.txt,Aleatorio,42,1,1,25,0.002765
+"instances/25/U_25large_10.txt,Aleatorio,43,1,1,25,0.003890
+"instances/25/U_25large_10.txt,Aleatorio,44,1,1,25,0.002264
+"instances/25/U_25large_10.txt,Menos opciones primero,42,1,1,25,0.006954
+"instances/25/U_25large_10.txt,Menos opciones primero,43,1,1,25,0.003744
+"instances/25/U_25large_10.txt,Menos opciones primero,44,1,1,25,0.007935
+"instances/25/U_25large_10.txt,Mayor dificultad primero,42,1,1,25,0.008741
+"instances/25/U_25large_10.txt,Mayor dificultad primero,43,1,1,25,0.005828
+"instances/25/U_25large_10.txt,Mayor dificultad primero,44,1,1,25,0.004179
+"instances/25/U_25large_2.txt,Aleatorio,42,0,100,24,0.240130
+"instances/25/U_25large_2.txt,Aleatorio,43,1,22,25,0.051692
+"instances/25/U_25large_2.txt,Aleatorio,44,1,15,25,0.049407
+"instances/25/U_25large_2.txt,Menos opciones primero,42,1,1,25,0.006963
+"instances/25/U_25large_2.txt,Menos opciones primero,43,1,1,25,0.006624
+"instances/25/U_25large_2.txt,Menos opciones primero,44,1,1,25,0.003887
+"instances/25/U_25large_2.txt,Mayor dificultad primero,42,1,1,25,0.007601
+"instances/25/U_25large_2.txt,Mayor dificultad primero,43,1,1,25,0.008052
+"instances/25/U_25large_2.txt,Mayor dificultad primero,44,1,1,25,0.007509
+"instances/25/U_25large_3.txt,Aleatorio,42,1,1,25,0.003020
+"instances/25/U_25large_3.txt,Aleatorio,43,1,1,25,0.002752
+"instances/25/U_25large_3.txt,Aleatorio,44,1,2,25,0.007500
+"instances/25/U_25large_3.txt,Menos opciones primero,42,1,1,25,0.007269
+"instances/25/U_25large_3.txt,Menos opciones primero,43,1,1,25,0.003526
+"instances/25/U_25large_3.txt,Menos opciones primero,44,1,1,25,0.004071
+"instances/25/U_25large_3.txt,Mayor dificultad primero,42,1,1,25,0.006733
+"instances/25/U_25large_3.txt,Mayor dificultad primero,43,1,1,25,0.005500
+"instances/25/U_25large_3.txt,Mayor dificultad primero,44,1,1,25,0.006097
+"instances/25/U_25large_4.txt,Aleatorio,42,1,1,25,0.002887
+"instances/25/U_25large_4.txt,Aleatorio,43,1,5,25,0.013090
+"instances/25/U_25large_4.txt,Aleatorio,44,1,3,25,0.007508
+"instances/25/U_25large_4.txt,Menos opciones primero,42,1,2,25,0.009897
+"instances/25/U_25large_4.txt,Menos opciones primero,43,1,2,25,0.008274
+"instances/25/U_25large_4.txt,Menos opciones primero,44,1,2,25,0.013175
+"instances/25/U_25large_4.txt,Mayor dificultad primero,42,1,1,25,0.006880
+"instances/25/U_25large_4.txt,Mayor dificultad primero,43,1,1,25,0.004892
+"instances/25/U_25large_4.txt,Mayor dificultad primero,44,1,1,25,0.004480
+"instances/25/U_25large_5.txt,Aleatorio,42,1,3,25,0.006961
+"instances/25/U_25large_5.txt,Aleatorio,43,1,5,25,0.010055
+"instances/25/U_25large_5.txt,Aleatorio,44,1,1,25,0.002718
+"instances/25/U_25large_5.txt,Menos opciones primero,42,1,1,25,0.004154
+"instances/25/U_25large_5.txt,Menos opciones primero,43,1,1,25,0.003167
+"instances/25/U_25large_5.txt,Menos opciones primero,44,1,1,25,0.003186
+"instances/25/U_25large_5.txt,Mayor dificultad primero,42,1,1,25,0.005209
+"instances/25/U_25large_5.txt,Mayor dificultad primero,43,1,1,25,0.004273
+"instances/25/U_25large_5.txt,Mayor dificultad primero,44,1,1,25,0.003469
+"instances/25/U_25large_6.txt,Aleatorio,42,1,2,25,0.004991
+"instances/25/U_25large_6.txt,Aleatorio,43,1,1,25,0.002293
+"instances/25/U_25large_6.txt,Aleatorio,44,1,1,25,0.002816
+"instances/25/U_25large_6.txt,Menos opciones primero,42,1,1,25,0.004644
+"instances/25/U_25large_6.txt,Menos opciones primero,43,1,1,25,0.003150
+"instances/25/U_25large_6.txt,Menos opciones primero,44,1,1,25,0.003506
+"instances/25/U_25large_6.txt,Mayor dificultad primero,42,1,1,25,0.004809
+"instances/25/U_25large_6.txt,Mayor dificultad primero,43,1,1,25,0.006075
+"instances/25/U_25large_6.txt,Mayor dificultad primero,44,1,1,25,0.004360
+"instances/25/U_25large_7.txt,Aleatorio,42,1,30,25,0.070236
+"instances/25/U_25large_7.txt,Aleatorio,43,1,31,25,0.068846
+"instances/25/U_25large_7.txt,Aleatorio,44,1,3,25,0.006476
+"instances/25/U_25large_7.txt,Menos opciones primero,42,1,1,25,0.004007
+"instances/25/U_25large_7.txt,Menos opciones primero,43,1,3,25,0.009367
+"instances/25/U_25large_7.txt,Menos opciones primero,44,1,2,25,0.006376
+"instances/25/U_25large_7.txt,Mayor dificultad primero,42,1,2,25,0.009944
+"instances/25/U_25large_7.txt,Mayor dificultad primero,43,1,2,25,0.009676
+"instances/25/U_25large_7.txt,Mayor dificultad primero,44,1,2,25,0.007433
+"instances/25/U_25large_8.txt,Aleatorio,42,1,5,25,0.013329
+"instances/25/U_25large_8.txt,Aleatorio,43,1,59,25,0.141298
+"instances/25/U_25large_8.txt,Aleatorio,44,1,93,25,0.184835
+"instances/25/U_25large_8.txt,Menos opciones primero,42,1,1,25,0.003525
+"instances/25/U_25large_8.txt,Menos opciones primero,43,1,2,25,0.005525
+"instances/25/U_25large_8.txt,Menos opciones primero,44,1,3,25,0.008894
+"instances/25/U_25large_8.txt,Mayor dificultad primero,42,1,4,25,0.023321
+"instances/25/U_25large_8.txt,Mayor dificultad primero,43,1,7,25,0.031209
+"instances/25/U_25large_8.txt,Mayor dificultad primero,44,1,7,25,0.026770
+"instances/25/U_25large_9.txt,Aleatorio,42,1,45,25,0.091477
+"instances/25/U_25large_9.txt,Aleatorio,43,1,83,25,0.202384
+"instances/25/U_25large_9.txt,Aleatorio,44,0,100,24,0.439344
+"instances/25/U_25large_9.txt,Menos opciones primero,42,1,2,25,0.010854
+"instances/25/U_25large_9.txt,Menos opciones primero,43,1,1,25,0.004015
+"instances/25/U_25large_9.txt,Menos opciones primero,44,1,3,25,0.011994
+"instances/25/U_25large_9.txt,Mayor dificultad primero,42,1,1,25,0.005996
+"instances/25/U_25large_9.txt,Mayor dificultad primero,43,1,2,25,0.009319
+"instances/25/U_25large_9.txt,Mayor dificultad primero,44,1,1,25,0.004991
+"instances/25/U_25medium_1.txt,Aleatorio,42,1,3,25,0.007525
+"instances/25/U_25medium_1.txt,Aleatorio,43,1,1,25,0.002873
+"instances/25/U_25medium_1.txt,Aleatorio,44,1,6,25,0.015984
+"instances/25/U_25medium_1.txt,Menos opciones primero,42,1,1,25,0.005606
+"instances/25/U_25medium_1.txt,Menos opciones primero,43,1,1,25,0.003857
+"instances/25/U_25medium_1.txt,Menos opciones primero,44,1,1,25,0.003519
+"instances/25/U_25medium_1.txt,Mayor dificultad primero,42,1,1,25,0.007850
+"instances/25/U_25medium_1.txt,Mayor dificultad primero,43,1,2,25,0.008175
+"instances/25/U_25medium_1.txt,Mayor dificultad primero,44,1,1,25,0.004691
+"instances/25/U_25medium_10.txt,Aleatorio,42,1,4,25,0.009600
+"instances/25/U_25medium_10.txt,Aleatorio,43,1,1,25,0.002095
+"instances/25/U_25medium_10.txt,Aleatorio,44,1,2,25,0.005727
+"instances/25/U_25medium_10.txt,Menos opciones primero,42,1,2,25,0.016700
+"instances/25/U_25medium_10.txt,Menos opciones primero,43,1,5,25,0.027499
+"instances/25/U_25medium_10.txt,Menos opciones primero,44,1,2,25,0.009224
+"instances/25/U_25medium_10.txt,Mayor dificultad primero,42,1,1,25,0.004925
+"instances/25/U_25medium_10.txt,Mayor dificultad primero,43,1,2,25,0.009186
+"instances/25/U_25medium_10.txt,Mayor dificultad primero,44,1,1,25,0.004122
+"instances/25/U_25medium_2.txt,Aleatorio,42,1,1,25,0.003737
+"instances/25/U_25medium_2.txt,Aleatorio,43,1,12,25,0.053794
+"instances/25/U_25medium_2.txt,Aleatorio,44,1,16,25,0.051827
+"instances/25/U_25medium_2.txt,Menos opciones primero,42,1,2,25,0.008792
+"instances/25/U_25medium_2.txt,Menos opciones primero,43,1,2,25,0.010228
+"instances/25/U_25medium_2.txt,Menos opciones primero,44,1,1,25,0.004481
+"instances/25/U_25medium_2.txt,Mayor dificultad primero,42,1,1,25,0.006122
+"instances/25/U_25medium_2.txt,Mayor dificultad primero,43,1,1,25,0.005613
+"instances/25/U_25medium_2.txt,Mayor dificultad primero,44,1,5,25,0.027635
+"instances/25/U_25medium_3.txt,Aleatorio,42,1,1,25,0.002597
+"instances/25/U_25medium_3.txt,Aleatorio,43,1,1,25,0.002600
+"instances/25/U_25medium_3.txt,Aleatorio,44,1,1,25,0.002450
+"instances/25/U_25medium_3.txt,Menos opciones primero,42,1,1,25,0.005729
+"instances/25/U_25medium_3.txt,Menos opciones primero,43,1,1,25,0.005378
+"instances/25/U_25medium_3.txt,Menos opciones primero,44,1,1,25,0.003870
+"instances/25/U_25medium_3.txt,Mayor dificultad primero,42,1,1,25,0.006112
+"instances/25/U_25medium_3.txt,Mayor dificultad primero,43,1,1,25,0.006468
+"instances/25/U_25medium_3.txt,Mayor dificultad primero,44,1,1,25,0.006732
+"instances/25/U_25medium_4.txt,Aleatorio,42,1,2,25,0.006372
+"instances/25/U_25medium_4.txt,Aleatorio,43,1,1,25,0.002559
+"instances/25/U_25medium_4.txt,Aleatorio,44,1,3,25,0.007547
+"instances/25/U_25medium_4.txt,Menos opciones primero,42,1,1,25,0.006477
+"instances/25/U_25medium_4.txt,Menos opciones primero,43,1,2,25,0.007071
+"instances/25/U_25medium_4.txt,Menos opciones primero,44,1,1,25,0.006182
+"instances/25/U_25medium_4.txt,Mayor dificultad primero,42,1,1,25,0.005386
+"instances/25/U_25medium_4.txt,Mayor dificultad primero,43,1,2,25,0.008872
+"instances/25/U_25medium_4.txt,Mayor dificultad primero,44,1,1,25,0.003969
+"instances/25/U_25medium_5.txt,Aleatorio,42,1,5,25,0.015456
+"instances/25/U_25medium_5.txt,Aleatorio,43,1,2,25,0.005428
+"instances/25/U_25medium_5.txt,Aleatorio,44,1,20,25,0.073360
+"instances/25/U_25medium_5.txt,Menos opciones primero,42,1,4,25,0.016096
+"instances/25/U_25medium_5.txt,Menos opciones primero,43,1,1,25,0.003757
+"instances/25/U_25medium_5.txt,Menos opciones primero,44,1,1,25,0.003441
+"instances/25/U_25medium_5.txt,Mayor dificultad primero,42,1,1,25,0.005054
+"instances/25/U_25medium_5.txt,Mayor dificultad primero,43,1,1,25,0.004800
+"instances/25/U_25medium_5.txt,Mayor dificultad primero,44,1,1,25,0.005827
+"instances/25/U_25medium_6.txt,Aleatorio,42,1,4,25,0.011561
+"instances/25/U_25medium_6.txt,Aleatorio,43,1,16,25,0.038538
+"instances/25/U_25medium_6.txt,Aleatorio,44,1,15,25,0.036050
+"instances/25/U_25medium_6.txt,Menos opciones primero,42,1,1,25,0.007015
+"instances/25/U_25medium_6.txt,Menos opciones primero,43,1,1,25,0.003805
+"instances/25/U_25medium_6.txt,Menos opciones primero,44,1,1,25,0.003374
+"instances/25/U_25medium_6.txt,Mayor dificultad primero,42,1,1,25,0.005721
+"instances/25/U_25medium_6.txt,Mayor dificultad primero,43,1,1,25,0.004989
+"instances/25/U_25medium_6.txt,Mayor dificultad primero,44,1,1,25,0.003450
+"instances/25/U_25medium_7.txt,Aleatorio,42,1,1,25,0.003821
+"instances/25/U_25medium_7.txt,Aleatorio,43,1,1,25,0.003164
+"instances/25/U_25medium_7.txt,Aleatorio,44,1,1,25,0.003277
+"instances/25/U_25medium_7.txt,Menos opciones primero,42,1,1,25,0.005435
+"instances/25/U_25medium_7.txt,Menos opciones primero,43,1,1,25,0.005812
+"instances/25/U_25medium_7.txt,Menos opciones primero,44,1,1,25,0.005996
+"instances/25/U_25medium_7.txt,Mayor dificultad primero,42,1,1,25,0.006363
+"instances/25/U_25medium_7.txt,Mayor dificultad primero,43,1,1,25,0.003888
+"instances/25/U_25medium_7.txt,Mayor dificultad primero,44,1,1,25,0.003942
+"instances/25/U_25medium_8.txt,Aleatorio,42,1,89,25,0.223282
+"instances/25/U_25medium_8.txt,Aleatorio,43,1,6,25,0.018580
+"instances/25/U_25medium_8.txt,Aleatorio,44,1,15,25,0.031628
+"instances/25/U_25medium_8.txt,Menos opciones primero,42,1,3,25,0.010026
+"instances/25/U_25medium_8.txt,Menos opciones primero,43,1,27,25,0.090231
+"instances/25/U_25medium_8.txt,Menos opciones primero,44,1,30,25,0.095029
+"instances/25/U_25medium_8.txt,Mayor dificultad primero,42,1,1,25,0.008876
+"instances/25/U_25medium_8.txt,Mayor dificultad primero,43,1,4,25,0.023550
+"instances/25/U_25medium_8.txt,Mayor dificultad primero,44,1,6,25,0.031746
+"instances/25/U_25medium_9.txt,Aleatorio,42,1,1,25,0.002820
+"instances/25/U_25medium_9.txt,Aleatorio,43,1,1,25,0.005294
+"instances/25/U_25medium_9.txt,Aleatorio,44,1,1,25,0.002982
+"instances/25/U_25medium_9.txt,Menos opciones primero,42,1,1,25,0.004474
+"instances/25/U_25medium_9.txt,Menos opciones primero,43,1,1,25,0.003524
+"instances/25/U_25medium_9.txt,Menos opciones primero,44,1,1,25,0.003074
+"instances/25/U_25medium_9.txt,Mayor dificultad primero,42,1,1,25,0.005019
+"instances/25/U_25medium_9.txt,Mayor dificultad primero,43,1,1,25,0.003849
+"instances/25/U_25medium_9.txt,Mayor dificultad primero,44,1,1,25,0.003732
+"instances/25/U_25small_1.txt,Aleatorio,42,1,5,25,0.009453
+"instances/25/U_25small_1.txt,Aleatorio,43,1,1,25,0.001499
+"instances/25/U_25small_1.txt,Aleatorio,44,1,2,25,0.004454
+"instances/25/U_25small_1.txt,Menos opciones primero,42,1,1,25,0.003799
+"instances/25/U_25small_1.txt,Menos opciones primero,43,1,1,25,0.002742
+"instances/25/U_25small_1.txt,Menos opciones primero,44,1,1,25,0.002923
+"instances/25/U_25small_1.txt,Mayor dificultad primero,42,1,1,25,0.004512
+"instances/25/U_25small_1.txt,Mayor dificultad primero,43,1,1,25,0.003706
+"instances/25/U_25small_1.txt,Mayor dificultad primero,44,1,1,25,0.003410
+"instances/25/U_25small_10.txt,Aleatorio,42,1,8,25,0.014467
+"instances/25/U_25small_10.txt,Aleatorio,43,1,12,25,0.028082
+"instances/25/U_25small_10.txt,Aleatorio,44,1,6,25,0.011198
+"instances/25/U_25small_10.txt,Menos opciones primero,42,1,32,25,0.109304
+"instances/25/U_25small_10.txt,Menos opciones primero,43,1,1,25,0.003114
+"instances/25/U_25small_10.txt,Menos opciones primero,44,1,2,25,0.005634
+"instances/25/U_25small_10.txt,Mayor dificultad primero,42,1,96,25,0.395404
+"instances/25/U_25small_10.txt,Mayor dificultad primero,43,1,59,25,0.239592
+"instances/25/U_25small_10.txt,Mayor dificultad primero,44,1,27,25,0.104758
+"instances/25/U_25small_2.txt,Aleatorio,42,1,2,25,0.004470
+"instances/25/U_25small_2.txt,Aleatorio,43,1,1,25,0.001945
+"instances/25/U_25small_2.txt,Aleatorio,44,1,2,25,0.004080
+"instances/25/U_25small_2.txt,Menos opciones primero,42,1,1,25,0.003670
+"instances/25/U_25small_2.txt,Menos opciones primero,43,1,1,25,0.002836
+"instances/25/U_25small_2.txt,Menos opciones primero,44,1,1,25,0.003197
+"instances/25/U_25small_2.txt,Mayor dificultad primero,42,1,1,25,0.010134
+"instances/25/U_25small_2.txt,Mayor dificultad primero,43,1,1,25,0.006044
+"instances/25/U_25small_2.txt,Mayor dificultad primero,44,1,1,25,0.011000
+"instances/25/U_25small_3.txt,Aleatorio,42,1,6,25,0.011392
+"instances/25/U_25small_3.txt,Aleatorio,43,1,1,25,0.001798
+"instances/25/U_25small_3.txt,Aleatorio,44,1,2,25,0.003569
+"instances/25/U_25small_3.txt,Menos opciones primero,42,1,1,25,0.004140
+"instances/25/U_25small_3.txt,Menos opciones primero,43,1,2,25,0.006672
+"instances/25/U_25small_3.txt,Menos opciones primero,44,1,2,25,0.006337
+"instances/25/U_25small_3.txt,Mayor dificultad primero,42,1,1,25,0.004179
+"instances/25/U_25small_3.txt,Mayor dificultad primero,43,1,2,25,0.007418
+"instances/25/U_25small_3.txt,Mayor dificultad primero,44,1,1,25,0.003897
+"instances/25/U_25small_4.txt,Aleatorio,42,1,16,25,0.028855
+"instances/25/U_25small_4.txt,Aleatorio,43,0,100,24,0.216154
+"instances/25/U_25small_4.txt,Aleatorio,44,0,100,24,0.203314
+"instances/25/U_25small_4.txt,Menos opciones primero,42,1,12,25,0.033793
+"instances/25/U_25small_4.txt,Menos opciones primero,43,1,12,25,0.036706
+"instances/25/U_25small_4.txt,Menos opciones primero,44,1,5,25,0.013799
+"instances/25/U_25small_4.txt,Mayor dificultad primero,42,1,2,25,0.007343
+"instances/25/U_25small_4.txt,Mayor dificultad primero,43,1,5,25,0.016388
+"instances/25/U_25small_4.txt,Mayor dificultad primero,44,1,19,25,0.069009
+"instances/25/U_25small_5.txt,Aleatorio,42,1,1,25,0.001925
+"instances/25/U_25small_5.txt,Aleatorio,43,1,2,25,0.003402
+"instances/25/U_25small_5.txt,Aleatorio,44,1,1,25,0.002203
+"instances/25/U_25small_5.txt,Menos opciones primero,42,1,1,25,0.003453
+"instances/25/U_25small_5.txt,Menos opciones primero,43,1,1,25,0.002659
+"instances/25/U_25small_5.txt,Menos opciones primero,44,1,1,25,0.002482
+"instances/25/U_25small_5.txt,Mayor dificultad primero,42,1,1,25,0.005778
+"instances/25/U_25small_5.txt,Mayor dificultad primero,43,1,1,25,0.004081
+"instances/25/U_25small_5.txt,Mayor dificultad primero,44,1,1,25,0.003152
+"instances/25/U_25small_6.txt,Aleatorio,42,1,1,25,0.002205
+"instances/25/U_25small_6.txt,Aleatorio,43,1,2,25,0.004481
+"instances/25/U_25small_6.txt,Aleatorio,44,1,2,25,0.004245
+"instances/25/U_25small_6.txt,Menos opciones primero,42,1,2,25,0.007660
+"instances/25/U_25small_6.txt,Menos opciones primero,43,1,3,25,0.009151
+"instances/25/U_25small_6.txt,Menos opciones primero,44,1,1,25,0.003146
+"instances/25/U_25small_6.txt,Mayor dificultad primero,42,1,5,25,0.019937
+"instances/25/U_25small_6.txt,Mayor dificultad primero,43,1,1,25,0.004081
+"instances/25/U_25small_6.txt,Mayor dificultad primero,44,1,1,25,0.003755
+"instances/25/U_25small_7.txt,Aleatorio,42,1,4,25,0.007746
+"instances/25/U_25small_7.txt,Aleatorio,43,1,1,25,0.002422
+"instances/25/U_25small_7.txt,Aleatorio,44,1,6,25,0.011591
+"instances/25/U_25small_7.txt,Menos opciones primero,42,1,1,25,0.003495
+"instances/25/U_25small_7.txt,Menos opciones primero,43,1,1,25,0.003187
+"instances/25/U_25small_7.txt,Menos opciones primero,44,1,1,25,0.002683
+"instances/25/U_25small_7.txt,Mayor dificultad primero,42,1,1,25,0.004129
+"instances/25/U_25small_7.txt,Mayor dificultad primero,43,1,11,25,0.040411
+"instances/25/U_25small_7.txt,Mayor dificultad primero,44,1,2,25,0.007232
+"instances/25/U_25small_8.txt,Aleatorio,42,1,1,25,0.003957
+"instances/25/U_25small_8.txt,Aleatorio,43,1,2,25,0.005099
+"instances/25/U_25small_8.txt,Aleatorio,44,1,1,25,0.003599
+"instances/25/U_25small_8.txt,Menos opciones primero,42,1,1,25,0.004584
+"instances/25/U_25small_8.txt,Menos opciones primero,43,1,1,25,0.002807
+"instances/25/U_25small_8.txt,Menos opciones primero,44,1,1,25,0.003452
+"instances/25/U_25small_8.txt,Mayor dificultad primero,42,1,1,25,0.006260
+"instances/25/U_25small_8.txt,Mayor dificultad primero,43,1,1,25,0.004151
+"instances/25/U_25small_8.txt,Mayor dificultad primero,44,1,1,25,0.004067
+"instances/25/U_25small_9.txt,Aleatorio,42,1,14,25,0.031026
+"instances/25/U_25small_9.txt,Aleatorio,43,0,100,24,0.169223
+"instances/25/U_25small_9.txt,Aleatorio,44,0,100,24,0.322905
+"instances/25/U_25small_9.txt,Menos opciones primero,42,1,6,25,0.023081
+"instances/25/U_25small_9.txt,Menos opciones primero,43,1,1,25,0.005541
+"instances/25/U_25small_9.txt,Menos opciones primero,44,1,2,25,0.010947
+"instances/25/U_25small_9.txt,Mayor dificultad primero,42,1,2,25,0.010795
+"instances/25/U_25small_9.txt,Mayor dificultad primero,43,1,1,25,0.004094
+"instances/25/U_25small_9.txt,Mayor dificultad primero,44,1,2,25,0.010601
+"instances/25/V_25large_1.txt,Aleatorio,42,1,2,25,0.004125
+"instances/25/V_25large_1.txt,Aleatorio,43,1,1,25,0.003317
+"instances/25/V_25large_1.txt,Aleatorio,44,1,2,25,0.006999
+"instances/25/V_25large_1.txt,Menos opciones primero,42,1,1,25,0.005667
+"instances/25/V_25large_1.txt,Menos opciones primero,43,1,1,25,0.005922
+"instances/25/V_25large_1.txt,Menos opciones primero,44,1,1,25,0.005078
+"instances/25/V_25large_1.txt,Mayor dificultad primero,42,1,1,25,0.007667
+"instances/25/V_25large_1.txt,Mayor dificultad primero,43,1,1,25,0.006395
+"instances/25/V_25large_1.txt,Mayor dificultad primero,44,1,1,25,0.004318
+"instances/25/V_25large_10.txt,Aleatorio,42,1,1,25,0.001956
+"instances/25/V_25large_10.txt,Aleatorio,43,1,1,25,0.002523
+"instances/25/V_25large_10.txt,Aleatorio,44,1,1,25,0.004475
+"instances/25/V_25large_10.txt,Menos opciones primero,42,1,1,25,0.007183
+"instances/25/V_25large_10.txt,Menos opciones primero,43,1,1,25,0.003792
+"instances/25/V_25large_10.txt,Menos opciones primero,44,1,1,25,0.005433
+"instances/25/V_25large_10.txt,Mayor dificultad primero,42,1,1,25,0.006922
+"instances/25/V_25large_10.txt,Mayor dificultad primero,43,1,1,25,0.003571
+"instances/25/V_25large_10.txt,Mayor dificultad primero,44,1,1,25,0.003285
+"instances/25/V_25large_2.txt,Aleatorio,42,1,5,25,0.018498
+"instances/25/V_25large_2.txt,Aleatorio,43,1,1,25,0.004312
+"instances/25/V_25large_2.txt,Aleatorio,44,1,9,25,0.018099
+"instances/25/V_25large_2.txt,Menos opciones primero,42,1,1,25,0.003409
+"instances/25/V_25large_2.txt,Menos opciones primero,43,1,1,25,0.002599
+"instances/25/V_25large_2.txt,Menos opciones primero,44,1,1,25,0.003269
+"instances/25/V_25large_2.txt,Mayor dificultad primero,42,1,1,25,0.003960
+"instances/25/V_25large_2.txt,Mayor dificultad primero,43,1,1,25,0.003122
+"instances/25/V_25large_2.txt,Mayor dificultad primero,44,1,1,25,0.003665
+"instances/25/V_25large_3.txt,Aleatorio,42,1,1,25,0.001808
+"instances/25/V_25large_3.txt,Aleatorio,43,1,2,25,0.007560
+"instances/25/V_25large_3.txt,Aleatorio,44,1,1,25,0.003887
+"instances/25/V_25large_3.txt,Menos opciones primero,42,1,1,25,0.005249
+"instances/25/V_25large_3.txt,Menos opciones primero,43,1,1,25,0.007265
+"instances/25/V_25large_3.txt,Menos opciones primero,44,1,1,25,0.004624
+"instances/25/V_25large_3.txt,Mayor dificultad primero,42,1,1,25,0.008928
+"instances/25/V_25large_3.txt,Mayor dificultad primero,43,1,1,25,0.004297
+"instances/25/V_25large_3.txt,Mayor dificultad primero,44,1,1,25,0.002737
+"instances/25/V_25large_4.txt,Aleatorio,42,1,1,25,0.002023
+"instances/25/V_25large_4.txt,Aleatorio,43,1,1,25,0.002500
+"instances/25/V_25large_4.txt,Aleatorio,44,1,1,25,0.003053
+"instances/25/V_25large_4.txt,Menos opciones primero,42,1,1,25,0.004830
+"instances/25/V_25large_4.txt,Menos opciones primero,43,1,1,25,0.005171
+"instances/25/V_25large_4.txt,Menos opciones primero,44,1,1,25,0.003397
+"instances/25/V_25large_4.txt,Mayor dificultad primero,42,1,1,25,0.006875
+"instances/25/V_25large_4.txt,Mayor dificultad primero,43,1,1,25,0.006290
+"instances/25/V_25large_4.txt,Mayor dificultad primero,44,1,1,25,0.010138
+"instances/25/V_25large_5.txt,Aleatorio,42,1,1,25,0.003339
+"instances/25/V_25large_5.txt,Aleatorio,43,1,4,25,0.016485
+"instances/25/V_25large_5.txt,Aleatorio,44,1,4,25,0.017246
+"instances/25/V_25large_5.txt,Menos opciones primero,42,1,1,25,0.005512
+"instances/25/V_25large_5.txt,Menos opciones primero,43,1,1,25,0.004654
+"instances/25/V_25large_5.txt,Menos opciones primero,44,1,1,25,0.002964
+"instances/25/V_25large_5.txt,Mayor dificultad primero,42,1,1,25,0.004162
+"instances/25/V_25large_5.txt,Mayor dificultad primero,43,1,1,25,0.003205
+"instances/25/V_25large_5.txt,Mayor dificultad primero,44,1,1,25,0.006042
+"instances/25/V_25large_6.txt,Aleatorio,42,1,1,25,0.002854
+"instances/25/V_25large_6.txt,Aleatorio,43,1,1,25,0.002401
+"instances/25/V_25large_6.txt,Aleatorio,44,1,1,25,0.002786
+"instances/25/V_25large_6.txt,Menos opciones primero,42,1,1,25,0.005913
+"instances/25/V_25large_6.txt,Menos opciones primero,43,1,1,25,0.003594
+"instances/25/V_25large_6.txt,Menos opciones primero,44,1,1,25,0.003014
+"instances/25/V_25large_6.txt,Mayor dificultad primero,42,1,1,25,0.005152
+"instances/25/V_25large_6.txt,Mayor dificultad primero,43,1,1,25,0.005276
+"instances/25/V_25large_6.txt,Mayor dificultad primero,44,1,1,25,0.016050
+"instances/25/V_25large_7.txt,Aleatorio,42,1,1,25,0.004642
+"instances/25/V_25large_7.txt,Aleatorio,43,1,1,25,0.008065
+"instances/25/V_25large_7.txt,Aleatorio,44,1,1,25,0.005200
+"instances/25/V_25large_7.txt,Menos opciones primero,42,1,1,25,0.005530
+"instances/25/V_25large_7.txt,Menos opciones primero,43,1,1,25,0.004538
+"instances/25/V_25large_7.txt,Menos opciones primero,44,1,1,25,0.003099
+"instances/25/V_25large_7.txt,Mayor dificultad primero,42,1,1,25,0.005282
+"instances/25/V_25large_7.txt,Mayor dificultad primero,43,1,1,25,0.005132
+"instances/25/V_25large_7.txt,Mayor dificultad primero,44,1,1,25,0.003963
+"instances/25/V_25large_8.txt,Aleatorio,42,1,1,25,0.002917
+"instances/25/V_25large_8.txt,Aleatorio,43,1,1,25,0.002309
+"instances/25/V_25large_8.txt,Aleatorio,44,1,1,25,0.002020
+"instances/25/V_25large_8.txt,Menos opciones primero,42,1,1,25,0.004608
+"instances/25/V_25large_8.txt,Menos opciones primero,43,1,1,25,0.003908
+"instances/25/V_25large_8.txt,Menos opciones primero,44,1,1,25,0.003725
+"instances/25/V_25large_8.txt,Mayor dificultad primero,42,1,1,25,0.004807
+"instances/25/V_25large_8.txt,Mayor dificultad primero,43,1,2,25,0.009956
+"instances/25/V_25large_8.txt,Mayor dificultad primero,44,1,1,25,0.004917
+"instances/25/V_25large_9.txt,Aleatorio,42,1,2,25,0.006254
+"instances/25/V_25large_9.txt,Aleatorio,43,1,2,25,0.003561
+"instances/25/V_25large_9.txt,Aleatorio,44,1,1,25,0.001745
+"instances/25/V_25large_9.txt,Menos opciones primero,42,1,2,25,0.006198
+"instances/25/V_25large_9.txt,Menos opciones primero,43,1,1,25,0.003617
+"instances/25/V_25large_9.txt,Menos opciones primero,44,1,4,25,0.012843
+"instances/25/V_25large_9.txt,Mayor dificultad primero,42,1,2,25,0.007541
+"instances/25/V_25large_9.txt,Mayor dificultad primero,43,1,2,25,0.006139
+"instances/25/V_25large_9.txt,Mayor dificultad primero,44,1,3,25,0.011197
+"instances/25/V_25medium_1.txt,Aleatorio,42,1,1,25,0.004733
+"instances/25/V_25medium_1.txt,Aleatorio,43,1,1,25,0.002074
+"instances/25/V_25medium_1.txt,Aleatorio,44,1,1,25,0.002434
+"instances/25/V_25medium_1.txt,Menos opciones primero,42,1,1,25,0.003817
+"instances/25/V_25medium_1.txt,Menos opciones primero,43,1,1,25,0.002553
+"instances/25/V_25medium_1.txt,Menos opciones primero,44,1,1,25,0.003326
+"instances/25/V_25medium_1.txt,Mayor dificultad primero,42,1,1,25,0.004645
+"instances/25/V_25medium_1.txt,Mayor dificultad primero,43,1,1,25,0.004822
+"instances/25/V_25medium_1.txt,Mayor dificultad primero,44,1,1,25,0.003268
+"instances/25/V_25medium_10.txt,Aleatorio,42,1,3,25,0.008665
+"instances/25/V_25medium_10.txt,Aleatorio,43,1,3,25,0.007538
+"instances/25/V_25medium_10.txt,Aleatorio,44,1,3,25,0.006566
+"instances/25/V_25medium_10.txt,Menos opciones primero,42,1,1,25,0.003658
+"instances/25/V_25medium_10.txt,Menos opciones primero,43,1,1,25,0.003209
+"instances/25/V_25medium_10.txt,Menos opciones primero,44,1,1,25,0.002145
+"instances/25/V_25medium_10.txt,Mayor dificultad primero,42,1,2,25,0.008377
+"instances/25/V_25medium_10.txt,Mayor dificultad primero,43,1,1,25,0.003370
+"instances/25/V_25medium_10.txt,Mayor dificultad primero,44,1,2,25,0.007514
+"instances/25/V_25medium_2.txt,Aleatorio,42,1,13,25,0.024504
+"instances/25/V_25medium_2.txt,Aleatorio,43,1,1,25,0.002398
+"instances/25/V_25medium_2.txt,Aleatorio,44,1,1,25,0.002132
+"instances/25/V_25medium_2.txt,Menos opciones primero,42,1,1,25,0.003282
+"instances/25/V_25medium_2.txt,Menos opciones primero,43,1,1,25,0.003344
+"instances/25/V_25medium_2.txt,Menos opciones primero,44,1,1,25,0.002710
+"instances/25/V_25medium_2.txt,Mayor dificultad primero,42,1,1,25,0.003662
+"instances/25/V_25medium_2.txt,Mayor dificultad primero,43,1,2,25,0.007044
+"instances/25/V_25medium_2.txt,Mayor dificultad primero,44,1,1,25,0.003837
+"instances/25/V_25medium_3.txt,Aleatorio,42,1,4,25,0.013616
+"instances/25/V_25medium_3.txt,Aleatorio,43,1,16,25,0.043655
+"instances/25/V_25medium_3.txt,Aleatorio,44,1,1,25,0.002101
+"instances/25/V_25medium_3.txt,Menos opciones primero,42,1,1,25,0.004474
+"instances/25/V_25medium_3.txt,Menos opciones primero,43,1,2,25,0.007842
+"instances/25/V_25medium_3.txt,Menos opciones primero,44,1,1,25,0.003195
+"instances/25/V_25medium_3.txt,Mayor dificultad primero,42,1,1,25,0.004244
+"instances/25/V_25medium_3.txt,Mayor dificultad primero,43,1,1,25,0.002954
+"instances/25/V_25medium_3.txt,Mayor dificultad primero,44,1,1,25,0.003467
+"instances/25/V_25medium_4.txt,Aleatorio,42,1,5,25,0.009540
+"instances/25/V_25medium_4.txt,Aleatorio,43,0,100,24,0.186047
+"instances/25/V_25medium_4.txt,Aleatorio,44,1,4,25,0.008870
+"instances/25/V_25medium_4.txt,Menos opciones primero,42,1,1,25,0.003662
+"instances/25/V_25medium_4.txt,Menos opciones primero,43,1,1,25,0.003579
+"instances/25/V_25medium_4.txt,Menos opciones primero,44,1,1,25,0.003243
+"instances/25/V_25medium_4.txt,Mayor dificultad primero,42,1,1,25,0.005363
+"instances/25/V_25medium_4.txt,Mayor dificultad primero,43,1,1,25,0.003701
+"instances/25/V_25medium_4.txt,Mayor dificultad primero,44,1,1,25,0.002717
+"instances/25/V_25medium_5.txt,Aleatorio,42,1,1,25,0.001883
+"instances/25/V_25medium_5.txt,Aleatorio,43,1,6,25,0.011623
+"instances/25/V_25medium_5.txt,Aleatorio,44,1,18,25,0.036286
+"instances/25/V_25medium_5.txt,Menos opciones primero,42,1,1,25,0.004721
+"instances/25/V_25medium_5.txt,Menos opciones primero,43,1,1,25,0.002591
+"instances/25/V_25medium_5.txt,Menos opciones primero,44,1,1,25,0.002292
+"instances/25/V_25medium_5.txt,Mayor dificultad primero,42,1,1,25,0.003661
+"instances/25/V_25medium_5.txt,Mayor dificultad primero,43,1,1,25,0.002802
+"instances/25/V_25medium_5.txt,Mayor dificultad primero,44,1,1,25,0.002860
+"instances/25/V_25medium_6.txt,Aleatorio,42,1,1,25,0.002024
+"instances/25/V_25medium_6.txt,Aleatorio,43,1,3,25,0.005506
+"instances/25/V_25medium_6.txt,Aleatorio,44,1,3,25,0.005631
+"instances/25/V_25medium_6.txt,Menos opciones primero,42,1,1,25,0.003364
+"instances/25/V_25medium_6.txt,Menos opciones primero,43,1,1,25,0.002446
+"instances/25/V_25medium_6.txt,Menos opciones primero,44,1,1,25,0.002325
+"instances/25/V_25medium_6.txt,Mayor dificultad primero,42,1,1,25,0.003450
+"instances/25/V_25medium_6.txt,Mayor dificultad primero,43,1,1,25,0.002866
+"instances/25/V_25medium_6.txt,Mayor dificultad primero,44,1,1,25,0.003948
+"instances/25/V_25medium_7.txt,Aleatorio,42,1,1,25,0.001630
+"instances/25/V_25medium_7.txt,Aleatorio,43,1,1,25,0.002036
+"instances/25/V_25medium_7.txt,Aleatorio,44,1,1,25,0.001792
+"instances/25/V_25medium_7.txt,Menos opciones primero,42,1,1,25,0.002970
+"instances/25/V_25medium_7.txt,Menos opciones primero,43,1,1,25,0.003333
+"instances/25/V_25medium_7.txt,Menos opciones primero,44,1,1,25,0.003388
+"instances/25/V_25medium_7.txt,Mayor dificultad primero,42,1,1,25,0.005381
+"instances/25/V_25medium_7.txt,Mayor dificultad primero,43,1,1,25,0.004102
+"instances/25/V_25medium_7.txt,Mayor dificultad primero,44,1,1,25,0.003979
+"instances/25/V_25medium_8.txt,Aleatorio,42,1,1,25,0.003203
+"instances/25/V_25medium_8.txt,Aleatorio,43,1,1,25,0.004034
+"instances/25/V_25medium_8.txt,Aleatorio,44,1,1,25,0.002729
+"instances/25/V_25medium_8.txt,Menos opciones primero,42,1,1,25,0.004865
+"instances/25/V_25medium_8.txt,Menos opciones primero,43,1,1,25,0.004198
+"instances/25/V_25medium_8.txt,Menos opciones primero,44,1,1,25,0.002491
+"instances/25/V_25medium_8.txt,Mayor dificultad primero,42,1,1,25,0.004773
+"instances/25/V_25medium_8.txt,Mayor dificultad primero,43,1,1,25,0.002867
+"instances/25/V_25medium_8.txt,Mayor dificultad primero,44,1,1,25,0.003716
+"instances/25/V_25medium_9.txt,Aleatorio,42,1,1,25,0.002624
+"instances/25/V_25medium_9.txt,Aleatorio,43,1,1,25,0.002976
+"instances/25/V_25medium_9.txt,Aleatorio,44,1,1,25,0.003139
+"instances/25/V_25medium_9.txt,Menos opciones primero,42,1,1,25,0.007292
+"instances/25/V_25medium_9.txt,Menos opciones primero,43,1,1,25,0.003489
+"instances/25/V_25medium_9.txt,Menos opciones primero,44,1,1,25,0.003054
+"instances/25/V_25medium_9.txt,Mayor dificultad primero,42,1,1,25,0.003547
+"instances/25/V_25medium_9.txt,Mayor dificultad primero,43,1,1,25,0.003005
+"instances/25/V_25medium_9.txt,Mayor dificultad primero,44,1,1,25,0.002550
+"instances/25/V_25small_1.txt,Aleatorio,42,1,1,25,0.001540
+"instances/25/V_25small_1.txt,Aleatorio,43,1,6,25,0.011721
+"instances/25/V_25small_1.txt,Aleatorio,44,1,5,25,0.008377
+"instances/25/V_25small_1.txt,Menos opciones primero,42,1,1,25,0.003764
+"instances/25/V_25small_1.txt,Menos opciones primero,43,1,3,25,0.006338
+"instances/25/V_25small_1.txt,Menos opciones primero,44,1,1,25,0.002056
+"instances/25/V_25small_1.txt,Mayor dificultad primero,42,1,1,25,0.003041
+"instances/25/V_25small_1.txt,Mayor dificultad primero,43,1,1,25,0.002531
+"instances/25/V_25small_1.txt,Mayor dificultad primero,44,1,1,25,0.002689
+"instances/25/V_25small_10.txt,Aleatorio,42,1,1,25,0.001389
+"instances/25/V_25small_10.txt,Aleatorio,43,1,1,25,0.001573
+"instances/25/V_25small_10.txt,Aleatorio,44,1,2,25,0.003430
+"instances/25/V_25small_10.txt,Menos opciones primero,42,1,1,25,0.002380
+"instances/25/V_25small_10.txt,Menos opciones primero,43,1,1,25,0.002014
+"instances/25/V_25small_10.txt,Menos opciones primero,44,1,1,25,0.002467
+"instances/25/V_25small_10.txt,Mayor dificultad primero,42,1,11,25,0.032368
+"instances/25/V_25small_10.txt,Mayor dificultad primero,43,1,17,25,0.048751
+"instances/25/V_25small_10.txt,Mayor dificultad primero,44,1,11,25,0.030965
+"instances/25/V_25small_2.txt,Aleatorio,42,1,2,25,0.004220
+"instances/25/V_25small_2.txt,Aleatorio,43,1,4,25,0.009272
+"instances/25/V_25small_2.txt,Aleatorio,44,1,4,25,0.011724
+"instances/25/V_25small_2.txt,Menos opciones primero,42,1,1,25,0.004145
+"instances/25/V_25small_2.txt,Menos opciones primero,43,1,1,25,0.003405
+"instances/25/V_25small_2.txt,Menos opciones primero,44,1,2,25,0.007056
+"instances/25/V_25small_2.txt,Mayor dificultad primero,42,1,1,25,0.003732
+"instances/25/V_25small_2.txt,Mayor dificultad primero,43,1,1,25,0.003493
+"instances/25/V_25small_2.txt,Mayor dificultad primero,44,1,1,25,0.003601
+"instances/25/V_25small_3.txt,Aleatorio,42,1,1,25,0.002578
+"instances/25/V_25small_3.txt,Aleatorio,43,1,1,25,0.001691
+"instances/25/V_25small_3.txt,Aleatorio,44,1,1,25,0.002062
+"instances/25/V_25small_3.txt,Menos opciones primero,42,1,1,25,0.003066
+"instances/25/V_25small_3.txt,Menos opciones primero,43,1,1,25,0.003075
+"instances/25/V_25small_3.txt,Menos opciones primero,44,1,1,25,0.003011
+"instances/25/V_25small_3.txt,Mayor dificultad primero,42,1,1,25,0.004582
+"instances/25/V_25small_3.txt,Mayor dificultad primero,43,1,4,25,0.012547
+"instances/25/V_25small_3.txt,Mayor dificultad primero,44,1,1,25,0.002471
+"instances/25/V_25small_4.txt,Aleatorio,42,1,2,25,0.003556
+"instances/25/V_25small_4.txt,Aleatorio,43,1,4,25,0.006579
+"instances/25/V_25small_4.txt,Aleatorio,44,1,20,25,0.032364
+"instances/25/V_25small_4.txt,Menos opciones primero,42,1,2,25,0.005270
+"instances/25/V_25small_4.txt,Menos opciones primero,43,1,1,25,0.002196
+"instances/25/V_25small_4.txt,Menos opciones primero,44,1,1,25,0.002102
+"instances/25/V_25small_4.txt,Mayor dificultad primero,42,1,1,25,0.003093
+"instances/25/V_25small_4.txt,Mayor dificultad primero,43,1,1,25,0.002684
+"instances/25/V_25small_4.txt,Mayor dificultad primero,44,1,1,25,0.002570
+"instances/25/V_25small_5.txt,Aleatorio,42,1,15,25,0.027630
+"instances/25/V_25small_5.txt,Aleatorio,43,1,17,25,0.030108
+"instances/25/V_25small_5.txt,Aleatorio,44,1,8,25,0.015906
+"instances/25/V_25small_5.txt,Menos opciones primero,42,1,1,25,0.003368
+"instances/25/V_25small_5.txt,Menos opciones primero,43,1,1,25,0.002761
+"instances/25/V_25small_5.txt,Menos opciones primero,44,1,1,25,0.003746
+"instances/25/V_25small_5.txt,Mayor dificultad primero,42,1,1,25,0.003797
+"instances/25/V_25small_5.txt,Mayor dificultad primero,43,1,1,25,0.003691
+"instances/25/V_25small_5.txt,Mayor dificultad primero,44,1,1,25,0.003935
+"instances/25/V_25small_6.txt,Aleatorio,42,1,2,25,0.003540
+"instances/25/V_25small_6.txt,Aleatorio,43,1,1,25,0.001680
+"instances/25/V_25small_6.txt,Aleatorio,44,1,2,25,0.003170
+"instances/25/V_25small_6.txt,Menos opciones primero,42,1,1,25,0.002789
+"instances/25/V_25small_6.txt,Menos opciones primero,43,1,5,25,0.019013
+"instances/25/V_25small_6.txt,Menos opciones primero,44,1,1,25,0.003445
+"instances/25/V_25small_6.txt,Mayor dificultad primero,42,1,1,25,0.005447
+"instances/25/V_25small_6.txt,Mayor dificultad primero,43,1,1,25,0.004597
+"instances/25/V_25small_6.txt,Mayor dificultad primero,44,1,1,25,0.002824
+"instances/25/V_25small_7.txt,Aleatorio,42,1,1,25,0.002116
+"instances/25/V_25small_7.txt,Aleatorio,43,1,7,25,0.016004
+"instances/25/V_25small_7.txt,Aleatorio,44,1,1,25,0.003050
+"instances/25/V_25small_7.txt,Menos opciones primero,42,1,1,25,0.003189
+"instances/25/V_25small_7.txt,Menos opciones primero,43,1,1,25,0.003524
+"instances/25/V_25small_7.txt,Menos opciones primero,44,1,1,25,0.002983
+"instances/25/V_25small_7.txt,Mayor dificultad primero,42,1,1,25,0.003888
+"instances/25/V_25small_7.txt,Mayor dificultad primero,43,1,1,25,0.004653
+"instances/25/V_25small_7.txt,Mayor dificultad primero,44,1,1,25,0.004173
+"instances/25/V_25small_8.txt,Aleatorio,42,1,1,25,0.002138
+"instances/25/V_25small_8.txt,Aleatorio,43,1,1,25,0.001887
+"instances/25/V_25small_8.txt,Aleatorio,44,1,1,25,0.001514
+"instances/25/V_25small_8.txt,Menos opciones primero,42,1,1,25,0.003580
+"instances/25/V_25small_8.txt,Menos opciones primero,43,1,1,25,0.004231
+"instances/25/V_25small_8.txt,Menos opciones primero,44,1,1,25,0.003911
+"instances/25/V_25small_8.txt,Mayor dificultad primero,42,1,1,25,0.007348
+"instances/25/V_25small_8.txt,Mayor dificultad primero,43,1,2,25,0.009112
+"instances/25/V_25small_8.txt,Mayor dificultad primero,44,1,1,25,0.002983
+"instances/25/V_25small_9.txt,Aleatorio,42,1,23,25,0.049720
+"instances/25/V_25small_9.txt,Aleatorio,43,1,9,25,0.019066
+"instances/25/V_25small_9.txt,Aleatorio,44,0,100,24,0.170172
+"instances/25/V_25small_9.txt,Menos opciones primero,42,1,1,25,0.002662
+"instances/25/V_25small_9.txt,Menos opciones primero,43,1,1,25,0.002226
+"instances/25/V_25small_9.txt,Menos opciones primero,44,1,1,25,0.001866
+"instances/25/V_25small_9.txt,Mayor dificultad primero,42,1,1,25,0.003149
+"instances/25/V_25small_9.txt,Mayor dificultad primero,43,1,1,25,0.002832
+"instances/25/V_25small_9.txt,Mayor dificultad primero,44,1,1,25,0.002526
+"instances/50/U_50large_1.txt,Aleatorio,42,1,7,50,0.135268
+"instances/50/U_50large_1.txt,Aleatorio,43,1,1,50,0.015460
+"instances/50/U_50large_1.txt,Aleatorio,44,1,2,50,0.036080
+"instances/50/U_50large_1.txt,Menos opciones primero,42,1,1,50,0.031238
+"instances/50/U_50large_1.txt,Menos opciones primero,43,1,1,50,0.025653
+"instances/50/U_50large_1.txt,Menos opciones primero,44,1,1,50,0.029472
+"instances/50/U_50large_1.txt,Mayor dificultad primero,42,1,1,50,0.047146
+"instances/50/U_50large_1.txt,Mayor dificultad primero,43,1,1,50,0.027110
+"instances/50/U_50large_1.txt,Mayor dificultad primero,44,1,1,50,0.025746
+"instances/50/U_50large_10.txt,Aleatorio,42,0,100,49,2.236912
+"instances/50/U_50large_10.txt,Aleatorio,43,0,100,49,2.065438
+"instances/50/U_50large_10.txt,Aleatorio,44,0,100,48,1.462217
+"instances/50/U_50large_10.txt,Menos opciones primero,42,1,1,50,0.024530
+"instances/50/U_50large_10.txt,Menos opciones primero,43,1,1,50,0.023083
+"instances/50/U_50large_10.txt,Menos opciones primero,44,1,1,50,0.028080
+"instances/50/U_50large_10.txt,Mayor dificultad primero,42,1,1,50,0.035132
+"instances/50/U_50large_10.txt,Mayor dificultad primero,43,1,1,50,0.027071
+"instances/50/U_50large_10.txt,Mayor dificultad primero,44,1,1,50,0.028985
+"instances/50/U_50large_2.txt,Aleatorio,42,1,1,50,0.018003
+"instances/50/U_50large_2.txt,Aleatorio,43,1,1,50,0.017571
+"instances/50/U_50large_2.txt,Aleatorio,44,1,2,50,0.040107
+"instances/50/U_50large_2.txt,Menos opciones primero,42,1,1,50,0.034906
+"instances/50/U_50large_2.txt,Menos opciones primero,43,1,1,50,0.030128
+"instances/50/U_50large_2.txt,Menos opciones primero,44,1,1,50,0.028076
+"instances/50/U_50large_2.txt,Mayor dificultad primero,42,1,1,50,0.037786
+"instances/50/U_50large_2.txt,Mayor dificultad primero,43,1,1,50,0.030686
+"instances/50/U_50large_2.txt,Mayor dificultad primero,44,1,1,50,0.035042
+"instances/50/U_50large_3.txt,Aleatorio,42,1,1,50,0.017894
+"instances/50/U_50large_3.txt,Aleatorio,43,1,1,50,0.015982
+"instances/50/U_50large_3.txt,Aleatorio,44,1,13,50,0.283552
+"instances/50/U_50large_3.txt,Menos opciones primero,42,1,1,50,0.035327
+"instances/50/U_50large_3.txt,Menos opciones primero,43,1,1,50,0.026043
+"instances/50/U_50large_3.txt,Menos opciones primero,44,1,1,50,0.028520
+"instances/50/U_50large_3.txt,Mayor dificultad primero,42,1,1,50,0.040637
+"instances/50/U_50large_3.txt,Mayor dificultad primero,43,1,2,50,0.069376
+"instances/50/U_50large_3.txt,Mayor dificultad primero,44,1,2,50,0.063548
+"instances/50/U_50large_4.txt,Aleatorio,42,1,2,50,0.030945
+"instances/50/U_50large_4.txt,Aleatorio,43,1,2,50,0.033150
+"instances/50/U_50large_4.txt,Aleatorio,44,1,11,50,0.190037
+"instances/50/U_50large_4.txt,Menos opciones primero,42,1,1,50,0.039698
+"instances/50/U_50large_4.txt,Menos opciones primero,43,1,1,50,0.029963
+"instances/50/U_50large_4.txt,Menos opciones primero,44,1,1,50,0.043526
+"instances/50/U_50large_4.txt,Mayor dificultad primero,42,1,1,50,0.040616
+"instances/50/U_50large_4.txt,Mayor dificultad primero,43,1,1,50,0.026031
+"instances/50/U_50large_4.txt,Mayor dificultad primero,44,1,1,50,0.026148
+"instances/50/U_50large_5.txt,Aleatorio,42,1,1,50,0.014482
+"instances/50/U_50large_5.txt,Aleatorio,43,1,1,50,0.013700
+"instances/50/U_50large_5.txt,Aleatorio,44,1,1,50,0.014556
+"instances/50/U_50large_5.txt,Menos opciones primero,42,1,1,50,0.029747
+"instances/50/U_50large_5.txt,Menos opciones primero,43,1,1,50,0.027371
+"instances/50/U_50large_5.txt,Menos opciones primero,44,1,1,50,0.022925
+"instances/50/U_50large_5.txt,Mayor dificultad primero,42,1,1,50,0.043690
+"instances/50/U_50large_5.txt,Mayor dificultad primero,43,1,1,50,0.030443
+"instances/50/U_50large_5.txt,Mayor dificultad primero,44,1,1,50,0.032990
+"instances/50/U_50large_6.txt,Aleatorio,42,0,100,49,1.778493
+"instances/50/U_50large_6.txt,Aleatorio,43,1,81,50,1.433960
+"instances/50/U_50large_6.txt,Aleatorio,44,0,100,49,1.792259
+"instances/50/U_50large_6.txt,Menos opciones primero,42,1,1,50,0.036253
+"instances/50/U_50large_6.txt,Menos opciones primero,43,1,2,50,0.056035
+"instances/50/U_50large_6.txt,Menos opciones primero,44,1,1,50,0.037067
+"instances/50/U_50large_6.txt,Mayor dificultad primero,42,1,1,50,0.045129
+"instances/50/U_50large_6.txt,Mayor dificultad primero,43,1,1,50,0.035097
+"instances/50/U_50large_6.txt,Mayor dificultad primero,44,1,1,50,0.030251
+"instances/50/U_50large_7.txt,Aleatorio,42,1,1,50,0.020626
+"instances/50/U_50large_7.txt,Aleatorio,43,1,1,50,0.016741
+"instances/50/U_50large_7.txt,Aleatorio,44,1,2,50,0.041264
+"instances/50/U_50large_7.txt,Menos opciones primero,42,1,1,50,0.031961
+"instances/50/U_50large_7.txt,Menos opciones primero,43,1,1,50,0.026985
+"instances/50/U_50large_7.txt,Menos opciones primero,44,1,1,50,0.025946
+"instances/50/U_50large_7.txt,Mayor dificultad primero,42,1,1,50,0.042301
+"instances/50/U_50large_7.txt,Mayor dificultad primero,43,1,1,50,0.035637
+"instances/50/U_50large_7.txt,Mayor dificultad primero,44,1,1,50,0.028309
+"instances/50/U_50large_8.txt,Aleatorio,42,1,8,50,0.133192
+"instances/50/U_50large_8.txt,Aleatorio,43,1,13,50,0.219758
+"instances/50/U_50large_8.txt,Aleatorio,44,1,30,50,0.505562
+"instances/50/U_50large_8.txt,Menos opciones primero,42,1,1,50,0.028954
+"instances/50/U_50large_8.txt,Menos opciones primero,43,1,1,50,0.020445
+"instances/50/U_50large_8.txt,Menos opciones primero,44,1,1,50,0.030536
+"instances/50/U_50large_8.txt,Mayor dificultad primero,42,1,1,50,0.031699
+"instances/50/U_50large_8.txt,Mayor dificultad primero,43,1,1,50,0.034167
+"instances/50/U_50large_8.txt,Mayor dificultad primero,44,1,1,50,0.031397
+"instances/50/U_50large_9.txt,Aleatorio,42,1,10,50,0.178640
+"instances/50/U_50large_9.txt,Aleatorio,43,1,1,50,0.018208
+"instances/50/U_50large_9.txt,Aleatorio,44,1,3,50,0.058134
+"instances/50/U_50large_9.txt,Menos opciones primero,42,1,1,50,0.032506
+"instances/50/U_50large_9.txt,Menos opciones primero,43,1,1,50,0.026839
+"instances/50/U_50large_9.txt,Menos opciones primero,44,1,1,50,0.030876
+"instances/50/U_50large_9.txt,Mayor dificultad primero,42,1,1,50,0.031961
+"instances/50/U_50large_9.txt,Mayor dificultad primero,43,1,2,50,0.073064
+"instances/50/U_50large_9.txt,Mayor dificultad primero,44,1,3,50,0.108116
+"instances/50/U_50medium_1.txt,Aleatorio,42,1,2,50,0.038455
+"instances/50/U_50medium_1.txt,Aleatorio,43,1,1,50,0.020342
+"instances/50/U_50medium_1.txt,Aleatorio,44,1,3,50,0.047641
+"instances/50/U_50medium_1.txt,Menos opciones primero,42,1,1,50,0.027517
+"instances/50/U_50medium_1.txt,Menos opciones primero,43,1,2,50,0.045794
+"instances/50/U_50medium_1.txt,Menos opciones primero,44,1,1,50,0.027391
+"instances/50/U_50medium_1.txt,Mayor dificultad primero,42,1,1,50,0.032699
+"instances/50/U_50medium_1.txt,Mayor dificultad primero,43,1,1,50,0.027401
+"instances/50/U_50medium_1.txt,Mayor dificultad primero,44,1,1,50,0.029881
+"instances/50/U_50medium_10.txt,Aleatorio,42,0,100,49,1.632498
+"instances/50/U_50medium_10.txt,Aleatorio,43,1,73,50,1.223634
+"instances/50/U_50medium_10.txt,Aleatorio,44,0,100,49,1.567807
+"instances/50/U_50medium_10.txt,Menos opciones primero,42,1,3,50,0.072258
+"instances/50/U_50medium_10.txt,Menos opciones primero,43,1,2,50,0.072960
+"instances/50/U_50medium_10.txt,Menos opciones primero,44,1,2,50,0.059871
+"instances/50/U_50medium_10.txt,Mayor dificultad primero,42,1,1,50,0.037020
+"instances/50/U_50medium_10.txt,Mayor dificultad primero,43,1,1,50,0.030487
+"instances/50/U_50medium_10.txt,Mayor dificultad primero,44,1,4,50,0.109710
+"instances/50/U_50medium_2.txt,Aleatorio,42,1,21,50,0.341025
+"instances/50/U_50medium_2.txt,Aleatorio,43,1,2,50,0.034490
+"instances/50/U_50medium_2.txt,Aleatorio,44,1,10,50,0.167396
+"instances/50/U_50medium_2.txt,Menos opciones primero,42,1,1,50,0.024745
+"instances/50/U_50medium_2.txt,Menos opciones primero,43,1,1,50,0.026049
+"instances/50/U_50medium_2.txt,Menos opciones primero,44,1,1,50,0.022729
+"instances/50/U_50medium_2.txt,Mayor dificultad primero,42,1,1,50,0.034072
+"instances/50/U_50medium_2.txt,Mayor dificultad primero,43,1,1,50,0.026455
+"instances/50/U_50medium_2.txt,Mayor dificultad primero,44,1,1,50,0.032778
+"instances/50/U_50medium_3.txt,Aleatorio,42,0,100,49,1.669474
+"instances/50/U_50medium_3.txt,Aleatorio,43,0,100,49,1.727036
+"instances/50/U_50medium_3.txt,Aleatorio,44,1,70,50,1.175818
+"instances/50/U_50medium_3.txt,Menos opciones primero,42,1,7,50,0.364762
+"instances/50/U_50medium_3.txt,Menos opciones primero,43,1,1,50,0.043500
+"instances/50/U_50medium_3.txt,Menos opciones primero,44,1,14,50,0.448916
+"instances/50/U_50medium_3.txt,Mayor dificultad primero,42,1,13,50,0.435149
+"instances/50/U_50medium_3.txt,Mayor dificultad primero,43,1,56,50,1.804020
+"instances/50/U_50medium_3.txt,Mayor dificultad primero,44,1,3,50,0.114087
+"instances/50/U_50medium_4.txt,Aleatorio,42,1,3,50,0.063148
+"instances/50/U_50medium_4.txt,Aleatorio,43,1,42,50,0.717978
+"instances/50/U_50medium_4.txt,Aleatorio,44,1,3,50,0.067371
+"instances/50/U_50medium_4.txt,Menos opciones primero,42,1,2,50,0.081063
+"instances/50/U_50medium_4.txt,Menos opciones primero,43,1,1,50,0.020970
+"instances/50/U_50medium_4.txt,Menos opciones primero,44,1,1,50,0.023475
+"instances/50/U_50medium_4.txt,Mayor dificultad primero,42,1,1,50,0.034062
+"instances/50/U_50medium_4.txt,Mayor dificultad primero,43,1,2,50,0.055738
+"instances/50/U_50medium_4.txt,Mayor dificultad primero,44,1,1,50,0.027116
+"instances/50/U_50medium_5.txt,Aleatorio,42,1,1,50,0.018475
+"instances/50/U_50medium_5.txt,Aleatorio,43,1,4,50,0.065484
+"instances/50/U_50medium_5.txt,Aleatorio,44,1,2,50,0.032865
+"instances/50/U_50medium_5.txt,Menos opciones primero,42,1,1,50,0.030529
+"instances/50/U_50medium_5.txt,Menos opciones primero,43,1,1,50,0.025189
+"instances/50/U_50medium_5.txt,Menos opciones primero,44,1,1,50,0.023911
+"instances/50/U_50medium_5.txt,Mayor dificultad primero,42,1,2,50,0.063137
+"instances/50/U_50medium_5.txt,Mayor dificultad primero,43,1,1,50,0.029453
+"instances/50/U_50medium_5.txt,Mayor dificultad primero,44,1,2,50,0.066308
+"instances/50/U_50medium_6.txt,Aleatorio,42,0,100,49,1.534740
+"instances/50/U_50medium_6.txt,Aleatorio,43,1,6,50,0.106101
+"instances/50/U_50medium_6.txt,Aleatorio,44,0,100,49,1.541613
+"instances/50/U_50medium_6.txt,Menos opciones primero,42,1,1,50,0.026725
+"instances/50/U_50medium_6.txt,Menos opciones primero,43,1,1,50,0.030216
+"instances/50/U_50medium_6.txt,Menos opciones primero,44,1,2,50,0.057448
+"instances/50/U_50medium_6.txt,Mayor dificultad primero,42,1,1,50,0.038378
+"instances/50/U_50medium_6.txt,Mayor dificultad primero,43,1,1,50,0.034230
+"instances/50/U_50medium_6.txt,Mayor dificultad primero,44,1,1,50,0.030752
+"instances/50/U_50medium_7.txt,Aleatorio,42,1,60,50,0.925274
+"instances/50/U_50medium_7.txt,Aleatorio,43,1,13,50,0.199902
+"instances/50/U_50medium_7.txt,Aleatorio,44,1,11,50,0.175016
+"instances/50/U_50medium_7.txt,Menos opciones primero,42,1,1,50,0.026796
+"instances/50/U_50medium_7.txt,Menos opciones primero,43,1,2,50,0.048125
+"instances/50/U_50medium_7.txt,Menos opciones primero,44,1,1,50,0.026423
+"instances/50/U_50medium_7.txt,Mayor dificultad primero,42,1,1,50,0.044652
+"instances/50/U_50medium_7.txt,Mayor dificultad primero,43,1,1,50,0.027737
+"instances/50/U_50medium_7.txt,Mayor dificultad primero,44,1,3,50,0.089680
+"instances/50/U_50medium_8.txt,Aleatorio,42,1,52,50,0.813513
+"instances/50/U_50medium_8.txt,Aleatorio,43,1,37,50,0.785564
+"instances/50/U_50medium_8.txt,Aleatorio,44,1,42,50,0.804939
+"instances/50/U_50medium_8.txt,Menos opciones primero,42,1,1,50,0.028754
+"instances/50/U_50medium_8.txt,Menos opciones primero,43,1,2,50,0.052373
+"instances/50/U_50medium_8.txt,Menos opciones primero,44,1,1,50,0.026549
+"instances/50/U_50medium_8.txt,Mayor dificultad primero,42,1,1,50,0.028255
+"instances/50/U_50medium_8.txt,Mayor dificultad primero,43,1,1,50,0.029797
+"instances/50/U_50medium_8.txt,Mayor dificultad primero,44,1,1,50,0.064246
+"instances/50/U_50medium_9.txt,Aleatorio,42,1,54,50,1.130786
+"instances/50/U_50medium_9.txt,Aleatorio,43,1,7,50,0.125326
+"instances/50/U_50medium_9.txt,Aleatorio,44,1,9,50,0.157544
+"instances/50/U_50medium_9.txt,Menos opciones primero,42,1,1,50,0.048527
+"instances/50/U_50medium_9.txt,Menos opciones primero,43,1,1,50,0.022194
+"instances/50/U_50medium_9.txt,Menos opciones primero,44,1,1,50,0.031127
+"instances/50/U_50medium_9.txt,Mayor dificultad primero,42,1,1,50,0.046203
+"instances/50/U_50medium_9.txt,Mayor dificultad primero,43,1,1,50,0.034632
+"instances/50/U_50medium_9.txt,Mayor dificultad primero,44,1,1,50,0.034696
+"instances/50/U_50small_1.txt,Aleatorio,42,1,1,50,0.012382
+"instances/50/U_50small_1.txt,Aleatorio,43,1,2,50,0.021833
+"instances/50/U_50small_1.txt,Aleatorio,44,1,1,50,0.016762
+"instances/50/U_50small_1.txt,Menos opciones primero,42,1,1,50,0.023581
+"instances/50/U_50small_1.txt,Menos opciones primero,43,1,1,50,0.022306
+"instances/50/U_50small_1.txt,Menos opciones primero,44,1,1,50,0.020657
+"instances/50/U_50small_1.txt,Mayor dificultad primero,42,1,1,50,0.040504
+"instances/50/U_50small_1.txt,Mayor dificultad primero,43,1,1,50,0.031075
+"instances/50/U_50small_1.txt,Mayor dificultad primero,44,1,1,50,0.023554
+"instances/50/U_50small_10.txt,Aleatorio,42,1,25,50,0.324652
+"instances/50/U_50small_10.txt,Aleatorio,43,1,3,50,0.035356
+"instances/50/U_50small_10.txt,Aleatorio,44,1,5,50,0.061331
+"instances/50/U_50small_10.txt,Menos opciones primero,42,1,1,50,0.031610
+"instances/50/U_50small_10.txt,Menos opciones primero,43,1,1,50,0.033683
+"instances/50/U_50small_10.txt,Menos opciones primero,44,1,1,50,0.022367
+"instances/50/U_50small_10.txt,Mayor dificultad primero,42,1,1,50,0.035330
+"instances/50/U_50small_10.txt,Mayor dificultad primero,43,1,1,50,0.042050
+"instances/50/U_50small_10.txt,Mayor dificultad primero,44,1,1,50,0.027384
+"instances/50/U_50small_2.txt,Aleatorio,42,1,33,50,0.487679
+"instances/50/U_50small_2.txt,Aleatorio,43,0,100,49,1.489691
+"instances/50/U_50small_2.txt,Aleatorio,44,1,39,50,0.564033
+"instances/50/U_50small_2.txt,Menos opciones primero,42,1,2,50,0.058918
+"instances/50/U_50small_2.txt,Menos opciones primero,43,1,1,50,0.024150
+"instances/50/U_50small_2.txt,Menos opciones primero,44,1,1,50,0.025028
+"instances/50/U_50small_2.txt,Mayor dificultad primero,42,1,16,50,0.422220
+"instances/50/U_50small_2.txt,Mayor dificultad primero,43,1,14,50,0.382819
+"instances/50/U_50small_2.txt,Mayor dificultad primero,44,1,1,50,0.022813
+"instances/50/U_50small_3.txt,Aleatorio,42,1,23,50,0.308982
+"instances/50/U_50small_3.txt,Aleatorio,43,1,4,50,0.062875
+"instances/50/U_50small_3.txt,Aleatorio,44,1,3,50,0.041806
+"instances/50/U_50small_3.txt,Menos opciones primero,42,1,1,50,0.021538
+"instances/50/U_50small_3.txt,Menos opciones primero,43,1,1,50,0.022700
+"instances/50/U_50small_3.txt,Menos opciones primero,44,1,1,50,0.020403
+"instances/50/U_50small_3.txt,Mayor dificultad primero,42,1,7,50,0.191730
+"instances/50/U_50small_3.txt,Mayor dificultad primero,43,1,3,50,0.078626
+"instances/50/U_50small_3.txt,Mayor dificultad primero,44,1,1,50,0.023430
+"instances/50/U_50small_4.txt,Aleatorio,42,1,5,50,0.071026
+"instances/50/U_50small_4.txt,Aleatorio,43,1,20,50,0.285653
+"instances/50/U_50small_4.txt,Aleatorio,44,1,40,50,0.581002
+"instances/50/U_50small_4.txt,Menos opciones primero,42,1,1,50,0.029602
+"instances/50/U_50small_4.txt,Menos opciones primero,43,1,1,50,0.024247
+"instances/50/U_50small_4.txt,Menos opciones primero,44,1,3,50,0.070696
+"instances/50/U_50small_4.txt,Mayor dificultad primero,42,1,2,50,0.051604
+"instances/50/U_50small_4.txt,Mayor dificultad primero,43,1,2,50,0.054422
+"instances/50/U_50small_4.txt,Mayor dificultad primero,44,1,1,50,0.024899
+"instances/50/U_50small_5.txt,Aleatorio,42,1,4,50,0.060046
+"instances/50/U_50small_5.txt,Aleatorio,43,1,17,50,0.249265
+"instances/50/U_50small_5.txt,Aleatorio,44,1,22,50,0.373524
+"instances/50/U_50small_5.txt,Menos opciones primero,42,1,2,50,0.055587
+"instances/50/U_50small_5.txt,Menos opciones primero,43,1,4,50,0.110084
+"instances/50/U_50small_5.txt,Menos opciones primero,44,1,1,50,0.025755
+"instances/50/U_50small_5.txt,Mayor dificultad primero,42,1,1,50,0.029160
+"instances/50/U_50small_5.txt,Mayor dificultad primero,43,1,1,50,0.026766
+"instances/50/U_50small_5.txt,Mayor dificultad primero,44,1,1,50,0.027359
+"instances/50/U_50small_6.txt,Aleatorio,42,1,3,50,0.044650
+"instances/50/U_50small_6.txt,Aleatorio,43,1,5,50,0.073556
+"instances/50/U_50small_6.txt,Aleatorio,44,1,7,50,0.114378
+"instances/50/U_50small_6.txt,Menos opciones primero,42,1,1,50,0.028172
+"instances/50/U_50small_6.txt,Menos opciones primero,43,1,1,50,0.022475
+"instances/50/U_50small_6.txt,Menos opciones primero,44,1,2,50,0.053275
+"instances/50/U_50small_6.txt,Mayor dificultad primero,42,1,1,50,0.040793
+"instances/50/U_50small_6.txt,Mayor dificultad primero,43,1,3,50,0.075987
+"instances/50/U_50small_6.txt,Mayor dificultad primero,44,1,1,50,0.023829
+"instances/50/U_50small_7.txt,Aleatorio,42,1,12,50,0.191776
+"instances/50/U_50small_7.txt,Aleatorio,43,1,5,50,0.078491
+"instances/50/U_50small_7.txt,Aleatorio,44,1,4,50,0.058466
+"instances/50/U_50small_7.txt,Menos opciones primero,42,1,1,50,0.020736
+"instances/50/U_50small_7.txt,Menos opciones primero,43,1,3,50,0.065085
+"instances/50/U_50small_7.txt,Menos opciones primero,44,1,3,50,0.095412
+"instances/50/U_50small_7.txt,Mayor dificultad primero,42,1,4,50,0.178149
+"instances/50/U_50small_7.txt,Mayor dificultad primero,43,1,1,50,0.029424
+"instances/50/U_50small_7.txt,Mayor dificultad primero,44,1,1,50,0.024457
+"instances/50/U_50small_8.txt,Aleatorio,42,1,3,50,0.038858
+"instances/50/U_50small_8.txt,Aleatorio,43,1,3,50,0.054226
+"instances/50/U_50small_8.txt,Aleatorio,44,1,1,50,0.014557
+"instances/50/U_50small_8.txt,Menos opciones primero,42,1,1,50,0.024170
+"instances/50/U_50small_8.txt,Menos opciones primero,43,1,1,50,0.020208
+"instances/50/U_50small_8.txt,Menos opciones primero,44,1,1,50,0.020909
+"instances/50/U_50small_8.txt,Mayor dificultad primero,42,1,1,50,0.030544
+"instances/50/U_50small_8.txt,Mayor dificultad primero,43,1,1,50,0.029650
+"instances/50/U_50small_8.txt,Mayor dificultad primero,44,1,1,50,0.023606
+"instances/50/U_50small_9.txt,Aleatorio,42,1,2,50,0.030458
+"instances/50/U_50small_9.txt,Aleatorio,43,1,24,50,0.360228
+"instances/50/U_50small_9.txt,Aleatorio,44,1,1,50,0.012679
+"instances/50/U_50small_9.txt,Menos opciones primero,42,1,1,50,0.021425
+"instances/50/U_50small_9.txt,Menos opciones primero,43,1,1,50,0.019673
+"instances/50/U_50small_9.txt,Menos opciones primero,44,1,6,50,0.128171
+"instances/50/U_50small_9.txt,Mayor dificultad primero,42,1,5,50,0.163597
+"instances/50/U_50small_9.txt,Mayor dificultad primero,43,1,3,50,0.092282
+"instances/50/U_50small_9.txt,Mayor dificultad primero,44,1,1,50,0.027005
+"instances/50/V_50large_1.txt,Aleatorio,42,1,3,50,0.037616
+"instances/50/V_50large_1.txt,Aleatorio,43,1,4,50,0.047846
+"instances/50/V_50large_1.txt,Aleatorio,44,1,9,50,0.112371
+"instances/50/V_50large_1.txt,Menos opciones primero,42,1,1,50,0.031190
+"instances/50/V_50large_1.txt,Menos opciones primero,43,1,1,50,0.023902
+"instances/50/V_50large_1.txt,Menos opciones primero,44,1,1,50,0.021399
+"instances/50/V_50large_1.txt,Mayor dificultad primero,42,1,1,50,0.028303
+"instances/50/V_50large_1.txt,Mayor dificultad primero,43,1,1,50,0.020562
+"instances/50/V_50large_1.txt,Mayor dificultad primero,44,1,1,50,0.019064
+"instances/50/V_50large_10.txt,Aleatorio,42,1,23,50,0.328631
+"instances/50/V_50large_10.txt,Aleatorio,43,1,34,50,0.459628
+"instances/50/V_50large_10.txt,Aleatorio,44,1,12,50,0.165731
+"instances/50/V_50large_10.txt,Menos opciones primero,42,1,1,50,0.020977
+"instances/50/V_50large_10.txt,Menos opciones primero,43,1,1,50,0.017518
+"instances/50/V_50large_10.txt,Menos opciones primero,44,1,1,50,0.017839
+"instances/50/V_50large_10.txt,Mayor dificultad primero,42,1,1,50,0.021966
+"instances/50/V_50large_10.txt,Mayor dificultad primero,43,1,1,50,0.020582
+"instances/50/V_50large_10.txt,Mayor dificultad primero,44,1,1,50,0.023549
+"instances/50/V_50large_2.txt,Aleatorio,42,1,5,50,0.063218
+"instances/50/V_50large_2.txt,Aleatorio,43,1,6,50,0.082873
+"instances/50/V_50large_2.txt,Aleatorio,44,1,9,50,0.125803
+"instances/50/V_50large_2.txt,Menos opciones primero,42,1,1,50,0.019278
+"instances/50/V_50large_2.txt,Menos opciones primero,43,1,1,50,0.016820
+"instances/50/V_50large_2.txt,Menos opciones primero,44,1,1,50,0.017585
+"instances/50/V_50large_2.txt,Mayor dificultad primero,42,1,1,50,0.022117
+"instances/50/V_50large_2.txt,Mayor dificultad primero,43,1,1,50,0.021504
+"instances/50/V_50large_2.txt,Mayor dificultad primero,44,1,1,50,0.022751
+"instances/50/V_50large_3.txt,Aleatorio,42,1,68,50,0.967089
+"instances/50/V_50large_3.txt,Aleatorio,43,1,5,50,0.063528
+"instances/50/V_50large_3.txt,Aleatorio,44,1,42,50,0.602320
+"instances/50/V_50large_3.txt,Menos opciones primero,42,1,1,50,0.021442
+"instances/50/V_50large_3.txt,Menos opciones primero,43,1,1,50,0.021103
+"instances/50/V_50large_3.txt,Menos opciones primero,44,1,1,50,0.021369
+"instances/50/V_50large_3.txt,Mayor dificultad primero,42,1,1,50,0.040258
+"instances/50/V_50large_3.txt,Mayor dificultad primero,43,1,1,50,0.024463
+"instances/50/V_50large_3.txt,Mayor dificultad primero,44,1,1,50,0.021706
+"instances/50/V_50large_4.txt,Aleatorio,42,1,1,50,0.014419
+"instances/50/V_50large_4.txt,Aleatorio,43,1,1,50,0.012479
+"instances/50/V_50large_4.txt,Aleatorio,44,1,1,50,0.014540
+"instances/50/V_50large_4.txt,Menos opciones primero,42,1,1,50,0.021276
+"instances/50/V_50large_4.txt,Menos opciones primero,43,1,1,50,0.016198
+"instances/50/V_50large_4.txt,Menos opciones primero,44,1,1,50,0.017826
+"instances/50/V_50large_4.txt,Mayor dificultad primero,42,1,1,50,0.022116
+"instances/50/V_50large_4.txt,Mayor dificultad primero,43,1,1,50,0.018374
+"instances/50/V_50large_4.txt,Mayor dificultad primero,44,1,1,50,0.022579
+"instances/50/V_50large_5.txt,Aleatorio,42,0,100,49,1.292154
+"instances/50/V_50large_5.txt,Aleatorio,43,0,100,49,1.288147
+"instances/50/V_50large_5.txt,Aleatorio,44,0,100,49,1.305841
+"instances/50/V_50large_5.txt,Menos opciones primero,42,1,1,50,0.021308
+"instances/50/V_50large_5.txt,Menos opciones primero,43,1,1,50,0.018141
+"instances/50/V_50large_5.txt,Menos opciones primero,44,1,1,50,0.017644
+"instances/50/V_50large_5.txt,Mayor dificultad primero,42,1,1,50,0.024429
+"instances/50/V_50large_5.txt,Mayor dificultad primero,43,1,1,50,0.024316
+"instances/50/V_50large_5.txt,Mayor dificultad primero,44,1,2,50,0.045982
+"instances/50/V_50large_6.txt,Aleatorio,42,1,1,50,0.014871
+"instances/50/V_50large_6.txt,Aleatorio,43,1,1,50,0.014889
+"instances/50/V_50large_6.txt,Aleatorio,44,1,3,50,0.042676
+"instances/50/V_50large_6.txt,Menos opciones primero,42,1,1,50,0.025897
+"instances/50/V_50large_6.txt,Menos opciones primero,43,1,1,50,0.022800
+"instances/50/V_50large_6.txt,Menos opciones primero,44,1,1,50,0.020791
+"instances/50/V_50large_6.txt,Mayor dificultad primero,42,1,1,50,0.034042
+"instances/50/V_50large_6.txt,Mayor dificultad primero,43,1,1,50,0.026419
+"instances/50/V_50large_6.txt,Mayor dificultad primero,44,1,1,50,0.031926
+"instances/50/V_50large_7.txt,Aleatorio,42,1,4,50,0.063641
+"instances/50/V_50large_7.txt,Aleatorio,43,1,8,50,0.111865
+"instances/50/V_50large_7.txt,Aleatorio,44,1,4,50,0.052997
+"instances/50/V_50large_7.txt,Menos opciones primero,42,1,1,50,0.021134
+"instances/50/V_50large_7.txt,Menos opciones primero,43,1,1,50,0.017728
+"instances/50/V_50large_7.txt,Menos opciones primero,44,1,1,50,0.018153
+"instances/50/V_50large_7.txt,Mayor dificultad primero,42,1,1,50,0.022008
+"instances/50/V_50large_7.txt,Mayor dificultad primero,43,1,1,50,0.022932
+"instances/50/V_50large_7.txt,Mayor dificultad primero,44,1,1,50,0.022690
+"instances/50/V_50large_8.txt,Aleatorio,42,1,1,50,0.013923
+"instances/50/V_50large_8.txt,Aleatorio,43,1,1,50,0.013608
+"instances/50/V_50large_8.txt,Aleatorio,44,1,1,50,0.017391
+"instances/50/V_50large_8.txt,Menos opciones primero,42,1,1,50,0.022655
+"instances/50/V_50large_8.txt,Menos opciones primero,43,1,1,50,0.017851
+"instances/50/V_50large_8.txt,Menos opciones primero,44,1,1,50,0.017256
+"instances/50/V_50large_8.txt,Mayor dificultad primero,42,1,1,50,0.029195
+"instances/50/V_50large_8.txt,Mayor dificultad primero,43,1,1,50,0.023684
+"instances/50/V_50large_8.txt,Mayor dificultad primero,44,1,1,50,0.024978
+"instances/50/V_50large_9.txt,Aleatorio,42,1,1,50,0.013853
+"instances/50/V_50large_9.txt,Aleatorio,43,1,1,50,0.012629
+"instances/50/V_50large_9.txt,Aleatorio,44,1,1,50,0.013422
+"instances/50/V_50large_9.txt,Menos opciones primero,42,1,1,50,0.023849
+"instances/50/V_50large_9.txt,Menos opciones primero,43,1,1,50,0.017626
+"instances/50/V_50large_9.txt,Menos opciones primero,44,1,1,50,0.016527
+"instances/50/V_50large_9.txt,Mayor dificultad primero,42,1,1,50,0.024684
+"instances/50/V_50large_9.txt,Mayor dificultad primero,43,1,1,50,0.021091
+"instances/50/V_50large_9.txt,Mayor dificultad primero,44,1,1,50,0.021206
+"instances/50/V_50medium_1.txt,Aleatorio,42,1,44,50,0.587049
+"instances/50/V_50medium_1.txt,Aleatorio,43,1,22,50,0.295538
+"instances/50/V_50medium_1.txt,Aleatorio,44,1,4,50,0.054320
+"instances/50/V_50medium_1.txt,Menos opciones primero,42,1,1,50,0.018650
+"instances/50/V_50medium_1.txt,Menos opciones primero,43,1,1,50,0.015021
+"instances/50/V_50medium_1.txt,Menos opciones primero,44,1,2,50,0.045139
+"instances/50/V_50medium_1.txt,Mayor dificultad primero,42,1,1,50,0.027263
+"instances/50/V_50medium_1.txt,Mayor dificultad primero,43,1,1,50,0.021011
+"instances/50/V_50medium_1.txt,Mayor dificultad primero,44,1,1,50,0.018198
+"instances/50/V_50medium_10.txt,Aleatorio,42,1,9,50,0.135001
+"instances/50/V_50medium_10.txt,Aleatorio,43,1,4,50,0.051848
+"instances/50/V_50medium_10.txt,Aleatorio,44,1,2,50,0.027791
+"instances/50/V_50medium_10.txt,Menos opciones primero,42,1,1,50,0.018676
+"instances/50/V_50medium_10.txt,Menos opciones primero,43,1,1,50,0.015924
+"instances/50/V_50medium_10.txt,Menos opciones primero,44,1,1,50,0.017953
+"instances/50/V_50medium_10.txt,Mayor dificultad primero,42,1,1,50,0.025162
+"instances/50/V_50medium_10.txt,Mayor dificultad primero,43,1,1,50,0.021013
+"instances/50/V_50medium_10.txt,Mayor dificultad primero,44,1,1,50,0.019796
+"instances/50/V_50medium_2.txt,Aleatorio,42,1,74,50,0.972205
+"instances/50/V_50medium_2.txt,Aleatorio,43,0,100,49,1.202376
+"instances/50/V_50medium_2.txt,Aleatorio,44,1,2,50,0.022952
+"instances/50/V_50medium_2.txt,Menos opciones primero,42,1,2,50,0.039257
+"instances/50/V_50medium_2.txt,Menos opciones primero,43,1,2,50,0.037994
+"instances/50/V_50medium_2.txt,Menos opciones primero,44,1,14,50,0.274242
+"instances/50/V_50medium_2.txt,Mayor dificultad primero,42,1,1,50,0.024908
+"instances/50/V_50medium_2.txt,Mayor dificultad primero,43,1,1,50,0.024269
+"instances/50/V_50medium_2.txt,Mayor dificultad primero,44,1,1,50,0.020593
+"instances/50/V_50medium_3.txt,Aleatorio,42,1,5,50,0.070402
+"instances/50/V_50medium_3.txt,Aleatorio,43,1,64,50,0.960733
+"instances/50/V_50medium_3.txt,Aleatorio,44,1,28,50,0.353364
+"instances/50/V_50medium_3.txt,Menos opciones primero,42,1,7,50,0.166553
+"instances/50/V_50medium_3.txt,Menos opciones primero,43,1,1,50,0.036521
+"instances/50/V_50medium_3.txt,Menos opciones primero,44,1,3,50,0.074855
+"instances/50/V_50medium_3.txt,Mayor dificultad primero,42,1,1,50,0.029263
+"instances/50/V_50medium_3.txt,Mayor dificultad primero,43,1,1,50,0.021453
+"instances/50/V_50medium_3.txt,Mayor dificultad primero,44,1,1,50,0.021023
+"instances/50/V_50medium_4.txt,Aleatorio,42,1,8,50,0.101384
+"instances/50/V_50medium_4.txt,Aleatorio,43,1,15,50,0.203500
+"instances/50/V_50medium_4.txt,Aleatorio,44,1,14,50,0.209120
+"instances/50/V_50medium_4.txt,Menos opciones primero,42,1,1,50,0.018968
+"instances/50/V_50medium_4.txt,Menos opciones primero,43,1,1,50,0.016936
+"instances/50/V_50medium_4.txt,Menos opciones primero,44,1,1,50,0.019961
+"instances/50/V_50medium_4.txt,Mayor dificultad primero,42,1,1,50,0.021258
+"instances/50/V_50medium_4.txt,Mayor dificultad primero,43,1,1,50,0.022189
+"instances/50/V_50medium_4.txt,Mayor dificultad primero,44,1,1,50,0.032284
+"instances/50/V_50medium_5.txt,Aleatorio,42,1,1,50,0.016901
+"instances/50/V_50medium_5.txt,Aleatorio,43,1,1,50,0.013238
+"instances/50/V_50medium_5.txt,Aleatorio,44,1,1,50,0.013086
+"instances/50/V_50medium_5.txt,Menos opciones primero,42,1,1,50,0.023880
+"instances/50/V_50medium_5.txt,Menos opciones primero,43,1,1,50,0.021700
+"instances/50/V_50medium_5.txt,Menos opciones primero,44,1,1,50,0.023667
+"instances/50/V_50medium_5.txt,Mayor dificultad primero,42,1,1,50,0.022959
+"instances/50/V_50medium_5.txt,Mayor dificultad primero,43,1,1,50,0.020344
+"instances/50/V_50medium_5.txt,Mayor dificultad primero,44,1,1,50,0.023265
+"instances/50/V_50medium_6.txt,Aleatorio,42,1,4,50,0.050493
+"instances/50/V_50medium_6.txt,Aleatorio,43,1,8,50,0.121105
+"instances/50/V_50medium_6.txt,Aleatorio,44,1,10,50,0.150425
+"instances/50/V_50medium_6.txt,Menos opciones primero,42,1,1,50,0.020062
+"instances/50/V_50medium_6.txt,Menos opciones primero,43,1,1,50,0.017256
+"instances/50/V_50medium_6.txt,Menos opciones primero,44,1,1,50,0.019710
+"instances/50/V_50medium_6.txt,Mayor dificultad primero,42,1,2,50,0.063871
+"instances/50/V_50medium_6.txt,Mayor dificultad primero,43,1,1,50,0.020789
+"instances/50/V_50medium_6.txt,Mayor dificultad primero,44,1,1,50,0.020272
+"instances/50/V_50medium_7.txt,Aleatorio,42,1,12,50,0.154693
+"instances/50/V_50medium_7.txt,Aleatorio,43,1,3,50,0.034470
+"instances/50/V_50medium_7.txt,Aleatorio,44,1,23,50,0.329131
+"instances/50/V_50medium_7.txt,Menos opciones primero,42,1,1,50,0.031591
+"instances/50/V_50medium_7.txt,Menos opciones primero,43,1,1,50,0.016915
+"instances/50/V_50medium_7.txt,Menos opciones primero,44,1,1,50,0.016374
+"instances/50/V_50medium_7.txt,Mayor dificultad primero,42,1,1,50,0.028510
+"instances/50/V_50medium_7.txt,Mayor dificultad primero,43,1,1,50,0.041028
+"instances/50/V_50medium_7.txt,Mayor dificultad primero,44,1,1,50,0.023444
+"instances/50/V_50medium_8.txt,Aleatorio,42,1,41,50,0.575860
+"instances/50/V_50medium_8.txt,Aleatorio,43,1,72,50,1.006826
+"instances/50/V_50medium_8.txt,Aleatorio,44,1,49,50,0.699024
+"instances/50/V_50medium_8.txt,Menos opciones primero,42,1,1,50,0.019798
+"instances/50/V_50medium_8.txt,Menos opciones primero,43,1,1,50,0.023662
+"instances/50/V_50medium_8.txt,Menos opciones primero,44,1,1,50,0.024071
+"instances/50/V_50medium_8.txt,Mayor dificultad primero,42,1,1,50,0.029826
+"instances/50/V_50medium_8.txt,Mayor dificultad primero,43,1,2,50,0.042699
+"instances/50/V_50medium_8.txt,Mayor dificultad primero,44,1,1,50,0.020915
+"instances/50/V_50medium_9.txt,Aleatorio,42,1,22,50,0.295003
+"instances/50/V_50medium_9.txt,Aleatorio,43,1,4,50,0.048948
+"instances/50/V_50medium_9.txt,Aleatorio,44,1,9,50,0.111512
+"instances/50/V_50medium_9.txt,Menos opciones primero,42,1,1,50,0.018519
+"instances/50/V_50medium_9.txt,Menos opciones primero,43,1,2,50,0.035432
+"instances/50/V_50medium_9.txt,Menos opciones primero,44,1,1,50,0.017875
+"instances/50/V_50medium_9.txt,Mayor dificultad primero,42,1,1,50,0.020652
+"instances/50/V_50medium_9.txt,Mayor dificultad primero,43,1,1,50,0.022785
+"instances/50/V_50medium_9.txt,Mayor dificultad primero,44,1,1,50,0.024522
+"instances/50/V_50small_1.txt,Aleatorio,42,1,1,50,0.013366
+"instances/50/V_50small_1.txt,Aleatorio,43,1,1,50,0.012884
+"instances/50/V_50small_1.txt,Aleatorio,44,1,1,50,0.012898
+"instances/50/V_50small_1.txt,Menos opciones primero,42,1,1,50,0.017784
+"instances/50/V_50small_1.txt,Menos opciones primero,43,1,1,50,0.015918
+"instances/50/V_50small_1.txt,Menos opciones primero,44,1,1,50,0.017431
+"instances/50/V_50small_1.txt,Mayor dificultad primero,42,1,1,50,0.018726
+"instances/50/V_50small_1.txt,Mayor dificultad primero,43,1,1,50,0.018927
+"instances/50/V_50small_1.txt,Mayor dificultad primero,44,1,1,50,0.018482
+"instances/50/V_50small_10.txt,Aleatorio,42,0,100,49,1.167499
+"instances/50/V_50small_10.txt,Aleatorio,43,1,12,50,0.156182
+"instances/50/V_50small_10.txt,Aleatorio,44,1,32,50,0.415458
+"instances/50/V_50small_10.txt,Menos opciones primero,42,1,1,50,0.016105
+"instances/50/V_50small_10.txt,Menos opciones primero,43,1,2,50,0.031113
+"instances/50/V_50small_10.txt,Menos opciones primero,44,1,1,50,0.014780
+"instances/50/V_50small_10.txt,Mayor dificultad primero,42,1,1,50,0.024386
+"instances/50/V_50small_10.txt,Mayor dificultad primero,43,1,1,50,0.019930
+"instances/50/V_50small_10.txt,Mayor dificultad primero,44,1,1,50,0.020074
+"instances/50/V_50small_2.txt,Aleatorio,42,1,57,50,0.681310
+"instances/50/V_50small_2.txt,Aleatorio,43,1,48,50,0.600798
+"instances/50/V_50small_2.txt,Aleatorio,44,0,100,49,1.256138
+"instances/50/V_50small_2.txt,Menos opciones primero,42,1,1,50,0.021430
+"instances/50/V_50small_2.txt,Menos opciones primero,43,1,1,50,0.015509
+"instances/50/V_50small_2.txt,Menos opciones primero,44,1,1,50,0.016104
+"instances/50/V_50small_2.txt,Mayor dificultad primero,42,1,1,50,0.019925
+"instances/50/V_50small_2.txt,Mayor dificultad primero,43,1,1,50,0.023333
+"instances/50/V_50small_2.txt,Mayor dificultad primero,44,1,1,50,0.016495
+"instances/50/V_50small_3.txt,Aleatorio,42,1,8,50,0.122823
+"instances/50/V_50small_3.txt,Aleatorio,43,1,1,50,0.013542
+"instances/50/V_50small_3.txt,Aleatorio,44,1,7,50,0.083098
+"instances/50/V_50small_3.txt,Menos opciones primero,42,1,1,50,0.017615
+"instances/50/V_50small_3.txt,Menos opciones primero,43,1,1,50,0.017690
+"instances/50/V_50small_3.txt,Menos opciones primero,44,1,1,50,0.019851
+"instances/50/V_50small_3.txt,Mayor dificultad primero,42,1,1,50,0.021815
+"instances/50/V_50small_3.txt,Mayor dificultad primero,43,1,1,50,0.017255
+"instances/50/V_50small_3.txt,Mayor dificultad primero,44,1,1,50,0.017824
+"instances/50/V_50small_4.txt,Aleatorio,42,1,8,50,0.097950
+"instances/50/V_50small_4.txt,Aleatorio,43,1,15,50,0.185873
+"instances/50/V_50small_4.txt,Aleatorio,44,1,2,50,0.023996
+"instances/50/V_50small_4.txt,Menos opciones primero,42,1,1,50,0.016622
+"instances/50/V_50small_4.txt,Menos opciones primero,43,1,1,50,0.014713
+"instances/50/V_50small_4.txt,Menos opciones primero,44,1,1,50,0.015541
+"instances/50/V_50small_4.txt,Mayor dificultad primero,42,1,1,50,0.022356
+"instances/50/V_50small_4.txt,Mayor dificultad primero,43,1,1,50,0.021403
+"instances/50/V_50small_4.txt,Mayor dificultad primero,44,1,1,50,0.017198
+"instances/50/V_50small_5.txt,Aleatorio,42,1,1,50,0.011717
+"instances/50/V_50small_5.txt,Aleatorio,43,1,1,50,0.014765
+"instances/50/V_50small_5.txt,Aleatorio,44,1,3,50,0.039346
+"instances/50/V_50small_5.txt,Menos opciones primero,42,1,1,50,0.017109
+"instances/50/V_50small_5.txt,Menos opciones primero,43,1,1,50,0.015721
+"instances/50/V_50small_5.txt,Menos opciones primero,44,1,1,50,0.016665
+"instances/50/V_50small_5.txt,Mayor dificultad primero,42,1,1,50,0.020742
+"instances/50/V_50small_5.txt,Mayor dificultad primero,43,1,1,50,0.021895
+"instances/50/V_50small_5.txt,Mayor dificultad primero,44,1,1,50,0.019024
+"instances/50/V_50small_6.txt,Aleatorio,42,1,3,50,0.034273
+"instances/50/V_50small_6.txt,Aleatorio,43,1,3,50,0.036571
+"instances/50/V_50small_6.txt,Aleatorio,44,1,1,50,0.014659
+"instances/50/V_50small_6.txt,Menos opciones primero,42,1,1,50,0.020831
+"instances/50/V_50small_6.txt,Menos opciones primero,43,1,1,50,0.014850
+"instances/50/V_50small_6.txt,Menos opciones primero,44,1,1,50,0.015156
+"instances/50/V_50small_6.txt,Mayor dificultad primero,42,1,1,50,0.020683
+"instances/50/V_50small_6.txt,Mayor dificultad primero,43,1,1,50,0.018089
+"instances/50/V_50small_6.txt,Mayor dificultad primero,44,1,1,50,0.016520
+"instances/50/V_50small_7.txt,Aleatorio,42,1,1,50,0.012980
+"instances/50/V_50small_7.txt,Aleatorio,43,1,4,50,0.057928
+"instances/50/V_50small_7.txt,Aleatorio,44,1,1,50,0.014796
+"instances/50/V_50small_7.txt,Menos opciones primero,42,1,1,50,0.017768
+"instances/50/V_50small_7.txt,Menos opciones primero,43,1,1,50,0.015550
+"instances/50/V_50small_7.txt,Menos opciones primero,44,1,1,50,0.015682
+"instances/50/V_50small_7.txt,Mayor dificultad primero,42,1,1,50,0.024157
+"instances/50/V_50small_7.txt,Mayor dificultad primero,43,1,1,50,0.020768
+"instances/50/V_50small_7.txt,Mayor dificultad primero,44,1,1,50,0.019113
+"instances/50/V_50small_8.txt,Aleatorio,42,1,1,50,0.011995
+"instances/50/V_50small_8.txt,Aleatorio,43,1,7,50,0.076690
+"instances/50/V_50small_8.txt,Aleatorio,44,1,6,50,0.067546
+"instances/50/V_50small_8.txt,Menos opciones primero,42,1,1,50,0.017595
+"instances/50/V_50small_8.txt,Menos opciones primero,43,1,1,50,0.015508
+"instances/50/V_50small_8.txt,Menos opciones primero,44,1,1,50,0.016633
+"instances/50/V_50small_8.txt,Mayor dificultad primero,42,1,1,50,0.034977
+"instances/50/V_50small_8.txt,Mayor dificultad primero,43,1,1,50,0.021764
+"instances/50/V_50small_8.txt,Mayor dificultad primero,44,1,1,50,0.019390
+"instances/50/V_50small_9.txt,Aleatorio,42,1,11,50,0.135982
+"instances/50/V_50small_9.txt,Aleatorio,43,1,64,50,0.784779
+"instances/50/V_50small_9.txt,Aleatorio,44,1,7,50,0.129220
+"instances/50/V_50small_9.txt,Menos opciones primero,42,1,1,50,0.043947
+"instances/50/V_50small_9.txt,Menos opciones primero,43,1,1,50,0.061032
+"instances/50/V_50small_9.txt,Menos opciones primero,44,1,1,50,0.034978
+"instances/50/V_50small_9.txt,Mayor dificultad primero,42,1,1,50,0.034589
+"instances/50/V_50small_9.txt,Mayor dificultad primero,43,1,2,50,0.056616
+"instances/50/V_50small_9.txt,Mayor dificultad primero,44,1,2,50,0.038889
