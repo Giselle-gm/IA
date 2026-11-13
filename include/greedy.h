@@ -8,7 +8,6 @@
 #include <vector>
 
 enum class GreedyStrategy {
-    RANDOM_ORDER,
     FEWEST_OPTIONS_FIRST,
     MOST_CONSTRAINED_FIRST
 };
