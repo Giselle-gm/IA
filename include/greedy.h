@@ -17,7 +17,7 @@ struct GreedyConfig {
     int maxRestarts = 100;
     int restrictedCandidateListSize = 5;
     unsigned int randomSeed = 42;
-    GreedyStrategy strategy = GreedyStrategy::RANDOM_ORDER;
+    GreedyStrategy strategy = GreedyStrategy::FEWEST_OPTIONS_FIRST;
 };
 
 struct RestartStats {
