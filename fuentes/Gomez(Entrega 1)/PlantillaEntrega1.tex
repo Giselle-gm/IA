@@ -1,0 +1,242 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+
+
+\begin{document}
+\title{Inteligencia Artificial \\ \begin{Large}Estado del Arte: Problema [Nombre Problema]\end{Large}}
+\author{Giselle Andrea Gómez Miranda}
+\date{\today}
+\maketitle
+
+
+%--------------------No borrar esta secci\'on--------------------------------%
+\section*{Evaluaci\'on}
+
+\begin{tabular}{ll}
+Resumen (5\%): & \underline{\hspace{2cm}} \\
+Introducci\'on (5\%):  & \underline{\hspace{2cm}} \\
+Definici\'on del Problema (10\%):  & \underline{\hspace{2cm}} \\
+Estado del Arte (40\%):  & \underline{\hspace{2cm}} \\
+Modelo Matem\'atico (20\%): &  \underline{\hspace{2cm}}\\
+Conclusiones (15\%): &  \underline{\hspace{2cm}}\\
+Bibliograf\'ia (5\%): & \underline{\hspace{2cm}}\\
+ &  \\
+\textbf{Nota Final (100\%)}:   & \underline{\hspace{2cm}}
+\end{tabular}
+%---------------------------------------------------------------------------%
+\vspace{2cm}
+
+
+\begin{abstract}
+
+El \emph{Vehicle Routing Problem with Delivery Options} (VRPDO) extiende los problemas de ruteo con ventanas de tiempo al permitir que cada solicitud disponga de varias alternativas de entrega, con ubicaciones, horarios y preferencias diferentes. El objetivo consiste en minimizar el costo total de las rutas sin incumplir la capacidad de los vehículos, la capacidad de puntos compartidos ni los niveles mínimos de servicio. Este informe caracteriza el problema y revisa tres enfoques representativos: \emph{branch-price-and-cut}, búsqueda de grandes vecindarios y una matheurística basada en vecindarios y generación de columnas. Finalmente, se presenta una formulación matemática basada en opciones que integra la selección de entregas, capacidades compartidas y satisfacción de preferencias. \end{abstract}
+
+\section{Introducci\'on}
+
+En los últimos años, el crecimiento exponencial del comercio electrónico ha generado un incremento en el volumen de paquetes que deben ser enviados directamente a consumidores finales. Esto, a su vez, ha provocado que la distribución de última milla, o sea, el tramo final del transporte desde el centro de distribución hasta el receptor, sea una de las etapas más críticas y operacionalmente complejas de la cadena logística de suministro.
+
+\vspace{2mm}
+
+Tradicionalmente, los modelos de ruteo asumen que cada entrega debe realizarse en un punto geográfico fijo e inamovible. No obstante, este enfoque rígido genera \emph{entregas fallidas}, causadas por la ausencia del cliente en su domicilio durante el horario de visita del vehículo~\cite{Gomez26VRPDO}. Cada entrega no concretada obliga a las empresas transportistas a programar intentos de envío adicionales, almacenar temporalmente los productos e incluso devolverlos al centro de distribución, lo que incrementa notablemente los costos operativos e impacta negativamente la huella de carbono y el nivel de servicio percibido.
+
+\vspace{2mm}
+
+Para abordar esta problemática, la investigación en optimización combinatoria ha evolucionado progresivamente; así surge el \emph{Vehicle Routing Problem with Delivery Options} (VRPDO), una variante avanzada que concede flexibilidad a la distribución, permitiendo que una misma solicitud cuente con múltiples alternativas de entrega (por ejemplo, domicilio, lugar de trabajo o puntos de retiro compartidos como \emph{parcel lockers}), cada una con su propia ubicación, ventana temporal y nivel de preferencia, buscando equilibrar el costo de transporte con el nivel de satisfacción del cliente~\cite{Tilk21LastMile}.
+
+\vspace{2mm}
+
+A partir de este marco conceptual, este informe articula su estudio en torno a las siguientes preguntas ¿De qué manera ha evolucionado el VRPDO a partir de los modelos de ruteo tradicionales (VRP/VRPTW) y qué componentes definen su estructura operacional? ¿Cómo han ido evolucionando sus métodos de solución? y ¿Cómo podemos representar y formular matemáticamente el VRPDO sobre un grafo basado en opciones?
+
+\vspace{2mm}
+
+El presente documento se organiza de la siguiente manera: Primero, se describe conceptualmente el VRPDO, sus variables, tipos de ubicaciones, restricciones generales y variantes relacionadas. Segundo, se presenta una síntesis cronológica de los principales algoritmos de solución desarrollados hasta la fecha. Luego se detalla formalmente la formulación mátematica del modelo sobre un grafo basado en opciones, especificando variables, función objetivo y restricciones. Finalmente, se resumen los hallazgos más relevantes, las limitaciones de las técnicas actuales y las líneas de investigación futura.
+
+
+\section{Definici\'on del Problema}
+
+El \emph{Vehicle Routing Problem with Delivery Options} (VRPDO) es un problema de optimización combinatoria en el ámbito de la logística urbana de última milla. Consiste en diseñar un conjunto de rutas de costo mínimo para un grupo homogéneo de vehículos que parten desde un depósito central, satisfacen las solicitudes de un conjunto de clientes y retornan al mismo depósito. A diferencia de los modelos tradicionales de ruteo de vehículos, en el VRPDO cada solicitud no está vinculada rígidamente a un único destino, sino que cuenta con un conjunto de opciones de entrega alternativas ofrecidas previamente por el cliente~\cite{ Dumez21Large, Tilk21LastMile}. 
+Cada opción de entrega se define como una tupla que asocia la solicitud con una ubicación geográfica determinada, una ventana de tiempo válida para la recepción del paquete y un nivel de prioridad o preferencia asignado por el usuario ~\cite{Tilk21LastMile, Yang25Neighborhood}. 
+El problema aborda simultáneamente dos decisiones interdependientes: la selección de exactamente una opción de entrega para cada solicitud y la secuenciación óptima de las rutas vehiculares. \subsection{Componentes y Decisiones Operativas} Desde la perspectiva del operador logístico, los elementos y variables de decisión del VRPDO se expresan en palabras a través de los siguientes componentes principales: 
+\begin{itemize} 
+    \item \textbf{Tipos de Ubicaciones:} Se distinguen dos categorías de instalaciones: 
+    \begin{enumerate} 
+        \item \emph{Ubicaciones Individuales (IDL -- Individual Delivery Locations):} Puntos de entrega privados vinculados a una única solicitud, tales como el domicilio personal o el lugar de trabajo del cliente. 
+        \item \emph{Ubicaciones Compartidas (SDL -- Shared Delivery Locations):} Infraestructuras comunitarias como \emph{parcel lockers} o puntos de retiro comerciales que pueden concentrar entregas dirigidas a múltiples clientes de manera simultánea. Estas instalaciones disponen de una capacidad física limitada que restringe el número total de paquetes que pueden albergar ~\cite{Dumez21Large, Yang25Neighborhood}. \end{enumerate} 
+    \item \textbf{Decisiones y Variables del Problema:} Las decisiones que debe determinar el modelo comprenden la activación de una única opción por cada cliente (asignación solicitud--opción), la asignación de las opciones seleccionadas a los vehículos de la flota, el orden secuencial de visita de los puntos activos en cada ruta, y los horarios de llegada, espera e inicio del servicio en cada ubicación ~\cite{ Dumez21Large, Tilk21LastMile}. 
+    \item \textbf{Objetivo del Problema:} El objetivo general consiste en minimizar el costo total de operación del sistema, el cual abarca tanto el costo fijo derivado de la activación e incorporación de cada vehículo de la flota como los costos de viaje variables asociados a la distancia y tiempo total de recorrido~\cite{Tilk21LastMile, Yang25Neighborhood}.
+\end{itemize} 
+
+\subsection{Restricciones Generales} El VRPDO debe satisfacer un conjunto de restricciones operativas que garantizan la factibilidad técnica y la calidad del servicio: 
+\begin{itemize} 
+    \item \textbf{Selección Única de Opción:} Cada solicitud debe ser satisfecha exactamente una vez mediante la selección de una sola de sus opciones de entrega disponibles ~\cite{Dumez21Large, Tilk21LastMile}. 
+    \item \textbf{Capacidad Vehicular:} La suma de la demanda de los paquetes transportados por un vehículo en su ruta no puede superar su capacidad máxima de carga. 
+    \item \textbf{Conservación de Flujo y Depósito:} Todas las rutas utilizadas deben iniciar y concluir en el depósito central. Todo vehículo que atiende una opción en una ubicación debe abandonarla hacia el siguiente destino de la secuencia, garantizando la continuidad de la ruta. 
+    \item \textbf{Ventanas de Tiempo:} La entrega en cada ubicación debe iniciarse obligatoriamente dentro del intervalo horario permitido. Si un vehículo arriba antes de la apertura de la ventana de tiempo, debe esperar hasta el horario de inicio habilitado~\cite{ Dumez21Large, Solomon87Algorithms}. 
+    \item \textbf{Capacidad de Ubicaciones Compartidas (SDL):} La cantidad total de entregas asignadas a una ubicación compartida durante la jornada no puede exceder su capacidad máxima disponible. Esta restricción requiere la sincronización inter-ruta de los recursos compartidos entre distintos vehículos~\cite{Dumez21Large, Yang25Neighborhood}. 
+    \item \textbf{Nivel Mínimo de Servicio:} Para evitar que el sistema seleccione únicamente alternativas de baja preferencia del cliente con el fin de abaratar costos, se imponen umbrales mínimos requeridos ($\beta\_p$). Estos exigen que un porcentaje mínimo de las solicitudes sea atendido utilizando sus opciones más preferidas (de nivel de prioridad $p$ o superior)~\cite{Dumez21Large, Tilk21LastMile, Yang25Neighborhood}. 
+\end{itemize} 
+\subsection{Problemas Relacionados y Variantes} El VRPDO se posiciona dentro de una jerarquía de problemas de ruteo de vehículos en la literatura de investigación operativa, vinculándose estrechamente con las siguientes variantes: 
+\begin{itemize} 
+    \item \textbf{Vehicle Routing Problem with Time Windows (VRPTW):} Es el problema de ruteo clásico con restricciones temporales~\cite{Solomon87Algorithms}. El VRPDO equivale a un VRPTW cuando cada cliente dispone de una sola opción de entrega fija en su domicilio. 
+    \item \textbf{Generalized Vehicle Routing Problem with Time Windows (GVRPTW):} Variante en la que los clientes se agrupan en conjuntos o \emph{clusters} de ubicaciones alternativas y el vehículo debe visitar exactamente un nodo de cada conjunto ~\cite{Moccia12Incremental}. El VRPDO generaliza al GVRPTW al incluir ubicaciones compartidas (donde múltiples conjuntos de opciones coinciden en el mismo nodo físico) y restricciones de nivel de servicio ~\cite{ Dumez21Large, Tilk21LastMile}. 
+    \item \textbf{Vehicle Routing Problem with Roaming Delivery Locations (VRPRDL):} Problema en el que las entregas se realizan en el maletero del vehículo del cliente mientras este se desplaza entre distintas ubicaciones conocidas durante el día ~\cite{Ozbaygin17Branch, Reyes17Vehicle}. 
+    \item \textbf{Vehicle Routing Problem with Home and Roaming Delivery Locations (VRPHRDL):} Variante que combina la opción tradicional de entrega en el domicilio con las opciones móviles en el maletero del vehículo ~\cite{Ozbaygin17Branch}. 
+    \item \textbf{Vehicle Routing Problem with Multiple Time Windows (VRPMTW):} Problema en el cual la ubicación de entrega es única, pero el cliente ofrece múltiples ventanas de tiempo disjuntas para su recepción.
+\end{itemize}
+ 
+
+
+\section{Estado del Arte} 
+El estudio del VRPDO se sitúa en la intersección de la optimización de la última milla, la gestión de recursos compartidos con capacidad limitada y la incorporación de preferencias del consumidor. 
+\subsection{Antecedentes Teóricos} 
+Las bases del problema se derivan del VRPTW introducido por Solomon~\cite{Solomon87Algorithms}, y Moccia et al.~\cite{Moccia12Incremental} estudiaron el GVRPTW introduciendo conjuntos de nodos disjuntos. El VRPDO generaliza estas formulaciones incorporando ubicaciones compartidas (SDL) con capacidad finita y restricciones de nivel de servicio jerárquico ($\beta_p$)~\cite{Tilk21LastMile, Dumez21Large}. 
+
+\subsection{Métodos de Solución Exactos} 
+El primer abordaje exacto para el VRPDO fue desarrollado por Tilk et al.~\cite{Tilk21LastMile}, quienes propusieron un algoritmo de \emph{Branch-Price-and-Cut} (BPC). Los autores evaluaron dos representaciones de red: 
+\begin{itemize} 
+    \item \textbf{Red Basada en Opciones ($G^{\text{opt}}$):} Cada opción de entrega se representa mediante un vértice individual en el grafo. 
+    \item \textbf{Red Basada en Ubicaciones ($G^{\text{loc}}$):} Agrupa las opciones según su ubicación física e introduce nodos de entrada y salida para instalaciones compartidas. 
+\end{itemize} 
+El algoritmo BPC resolvió de manera óptima instancias sintéticas de hasta 50 solicitudes (100 opciones de entrega) bajo ventanas de tiempo estrechas, demostrando además que $G^{\text{opt}}$ presenta menor esfuerzo computacional en el etiquetado~\cite{Tilk21LastMile}. 
+\subsection{Metaheurísticas para Grandes Instancias} 
+Dado que el VRPDO es NP-hard, Dumez et al.~\cite{Dumez21Large} desarrollaron la primera metaheurística para el problema, denominada \emph{Large Neighborhood Search} combinada con \emph{Set Partitioning} (LNS-SPP). El algoritmo utiliza 20 operadores de ruina y 15 de recreación calibrados mediante \emph{IRACE}, resolviendo periódicamente un modelo de \emph{Set Partitioning} sobre el \emph{pool} de rutas acumuladas. Evaluado en instancias de hasta 400 clientes, demostró reducciones de costo entre un 15\% y un 50\% frente al VRPTW~\cite{Dumez21Large}. 
+
+\subsection{Matheurísticas de Vanguardia} 
+
+Yang et al.~\cite{Yang25Neighborhood} propusieron una matheurística basada en vecindarios (\emph{Neighborhood-based Matheuristic} -- NMH) que combina aspectos primales y duales: \begin{enumerate} \item \textbf{Heurística de Inserción Relax-and-Fix (RFIH):} Resuelve la relajación continua de un modelo \emph{Arc-flow} de 2 índices para fijar opciones prometedoras antes de construir las rutas iniciales. \item \textbf{Búsqueda Primal por VND:} Aplica \emph{Variable Neighborhood Descent} sobre el grafo de opciones con cuatro estructuras de vecindario, mecanismos de perturbación y reinicios. \item \textbf{Búsqueda Dual mediante Generación de Columnas:} Incorpora un generador de columnas basado en Búsqueda Tabú para diversificar el \emph{pool} de rutas. \end{enumerate} NMH obtuvo 114 de 120 mejores soluciones conocidas (BKS) en instancias pequeñas y 85 de 120 BKS en instancias de hasta 400 clientes, superando a los algoritmos previos~\cite{Yang25Neighborhood}. \subsection{Síntesis Comparativa} En el Cuadro~\ref{tab:sintesis_estado_arte} se presenta una comparación de los enfoques principales en la literatura. 
+\begin{table}[htbp] \centering \small 
+    \caption{Síntesis comparativa de las metodologías principales para el VRPDO.} 
+    \label{tab:sintesis_estado_arte} 
+        \begin{tabular}{|p{2.8cm}|p{2.6cm}|p{2.6cm}|p{2.5cm}|p{3.5cm}|} \hline
+        \textbf{Autor y Año} &amp; \textbf{Enfoque Metodológico} &amp; \textbf{Representación del Grafo} &amp; \textbf{Escala de Instancias} &amp; \textbf{Aportes y Ventajas Principales} \\ \hline 
+        Tilk et al. (2021)~\cite{Tilk21LastMile} &amp; Exacto: \emph{Branch-Price-and-Cut} (BPC) &amp; Grafo de Opciones ($G^{\text{opt}}$) y Grafo de Ubicaciones ($G^{\text{loc}}$) &amp; Pequeña ($\le 50$ clientes) &amp; Optimalidad matemática garantizada; comparación formal de redes de precios. \\ \hline 
+        Dumez et al. (2021)~\cite{Dumez21Large} &amp; Metaheurística: LNS con Set Partitioning (LNS-SPP) &amp; Grafo basado en Opciones ($G^{\text{opt}}$) &amp; Gran escala (hasta 400 clientes) &amp; Primera metaheurística escalable; calibración estadística de operadores de ruina/recreación. \\ \hline 
+        Yang et al. (2025)~\cite{Yang25Neighborhood} &amp; Matheurística: \emph{Neighborhood Matheuristic} (NMH + RFIH) &amp; Grafo de Opciones (Modelo Arc-flow 2 índices) &amp; Gran escala (hasta 400 clientes) y Caso Real 3PL &amp; Generación rápida de soluciones iniciales con RFIH; combinación de VND primal y Generación de Columnas dual. \\ \hline 
+        \end{tabular} 
+\end{table} 
+\section{Modelo Matemático} 
+Se presenta una formulación matemática entera mixta (MILP) para el VRPDO basada en un grafo dirigido de opciones $G=(V, A)$~\cite{Dumez21Large, Tilk21LastMile, Yang25Neighborhood}. \subsection{Conjuntos} 
+\begin{itemize} 
+    \item $N = \{1, 2, \dots, |N|\}$: Conjunto de solicitudes de los clientes. \item $L = L_{\text{idl}} \cup L_{\text{sdl}}$: Conjunto de ubicaciones individuales ($L_{\text{idl}}$) y compartidas ($L_{\text{sdl}}$). 
+    \item $P = \{0, 1, \dots, p_{\max}\}$: Conjunto ordenado de niveles de prioridad. 
+    \item $O \subseteq N \times L \times P$: Conjunto de opciones de entrega $o = (n_o, \ell_o, p_o)$. 
+    \item $O_n \subset O, O_\ell \subset O, O_{\le p} \subset O$: Subconjuntos por cliente, ubicación y nivel de prioridad. 
+    \item $K = \{1, 2, \dots, |K|\}$: Conjunto de vehículos homogéneos. 
+    \item $V = O \cup \{0, 0'\}$: Conjunto de vértices (opciones más depósitos inicial $0$ y final $0'$). 
+    \item $A = \{(i, j) : i \in V \setminus \{0'\}, j \in V \setminus \{0\}, i \neq j\}$: Conjunto de arcos.
+\end{itemize} 
+
+\subsection{Parámetros} 
+\begin{itemize} 
+    \item $Q$: Capacidad máxima del vehículo. 
+    \item $q_n$: Demanda de la solicitud $n \in N$ ($q_o = q_n$ para $o \in O_n$). 
+    \item $C_\ell$: Capacidad máxima de la ubicación compartida $\ell \in L_{\text{sdl}}$. 
+    \item $[a_i, b_i]$: Ventana de tiempo válida en el vértice $i \in V$. 
+    \item $t_{ij}, c_{ij}$: Tiempo y costo de viaje entre los vértices $i$ y $j$. 
+    \item $s_i$: Tiempo de servicio en el vértice $i \in V$.
+    \item $\beta_p$: Nivel mínimo de servicio para la prioridad $p \in P$. 
+    \item $c_f$: Costo fijo de activación por vehículo. 
+    \item $M$: Constante positiva grande (\emph{Big-M}). 
+\end{itemize} 
+\subsection{Variables de Decisión} 
+\begin{itemize} 
+    \item $x_{ij}^k \in \{0, 1\}$: $1$ si el vehículo $k$ transita directamente del vértice $i$ al $j$. 
+    \item $y_o \in \{0, 1\}$: $1$ si la opción $o \in O$ es seleccionada para atender al cliente. 
+    \item $h_i^k \ge 0$: Tiempo de inicio de servicio del vehículo $k$ en el vértice $i$. 
+\end{itemize} 
+\subsection{Función Objetivo} 
+Minimiza la suma de costos fijos de activación de vehículos ($c_f$) y costos de transporte ($c_{ij}$). 
+\begin{equation} 
+    \min z = \sum_{k \in K} \sum_{j \in V \setminus \{0, 0'\}} c_f \cdot x_{0j}^k + \sum_{k \in K} \sum_{(i,j) \in A} c_{ij} \cdot x_{ij}^k \label{eq:objetivo} 
+\end{equation} 
+\subsection{Restricciones}
+
+\begin{itemize} 
+    \item \textbf{Selección Única:} Activa exactamente una opción $o \in O_n$ por cliente.
+    \begin{equation} 
+        \sum_{o \in O_n} y_o = 1 \quad \forall n \in N \label{eq:seleccion_unica} 
+    \end{equation} 
+    \item \textbf{Visita de Opción:} Asigna un vehículo a la opción activa ($y_o=1$). 
+    \begin{equation} 
+        \sum_{k \in K} \sum_{(i, o) \in A} x_{io}^k = y_o \quad \forall o \in O \label{eq:asociacion_opcion_ruta} 
+    \end{equation} 
+    \item \textbf{Uso del Depósito y Flujo:} Garantizan que las rutas inicien en el depósito $0$, concluyan en $0'$ y mantengan la continuidad. 
+    \begin{equation} 
+        \sum_{j \in V \setminus \{0\}} x_{0j}^k = \sum_{i \in V \setminus \{0'\}} x_{i0'}^k \le 1 \quad \forall k \in K \label{eq:deposito} 
+    \end{equation} 
+    \begin{equation} 
+        \sum_{(i, j) \in A} x_{ij}^k - \sum_{(j, i) \in A} x_{ji}^k = 0 \quad \forall k \in K, \forall j \in O \label{eq:conservacion_flujo} 
+    \end{equation} 
+    
+    \item \textbf{Capacidad Vehicular y SDL:} Limitan la carga en los vehículos ($Q$) y la ocupación máxima en casilleros ($C_\ell$). 
+    \begin{equation} 
+        \sum_{o \in O} \sum_{(i, o) \in A} q_o \cdot x_{io}^k \le Q \quad \forall k \in K \label{eq:capacidad_vehiculo} 
+    \end{equation}
+    \begin{equation} 
+        \sum_{o \in O_\ell} y_o \le C_\ell \quad \forall \ell \in L_{\text{sdl}} \label{eq:capacidad_sdl} 
+    \end{equation} 
+    
+    \item \textbf{Nivel de Servicio :} Garantiza atender al menos el porcentaje requerido $\beta_p$ con prioridades altas. 
+    \begin{equation} 
+        \sum_{o \in O_{\le p}} y_o \ge \lceil \beta_p \cdot |N| \rceil \quad \forall p \in P \setminus \{p_{\max}\} \label{eq:nivel_servicio} 
+    \end{equation}
+    \item \textbf{Sincronización Temporal y Ventanas:} Aseguran la coherencia de tiempos y el cumplimiento de ventanas $[a_i, b_i]$. 
+    \begin{equation} 
+        h_i^k + s_i + t_{ij} - M(1 - x_{ij}^k) \le h_j^k \quad \forall k \in K, \forall (i, j) \in A \label{eq:sincronizacion_tiempo} 
+    \end{equation} 
+    \begin{equation} 
+    a_i \le h_i^k \le b_i \quad \forall k \in K, \forall i \in V \label{eq:ventanas_tiempo} 
+    \end{equation} 
+\end{itemize}
+ \begin{equation} x_{ij}^k \in \{0, 1\} \quad \forall k \in K, \forall (i, j) \in A, \quad y_o \in \{0, 1\} \quad \forall o \in O, \quad h_i^k \ge 0 \quad \forall k \in K, \forall i \in V \label{eq:dominios} 
+    \end{equation} 
+\subsection{Análisis del Espacio de Búsqueda} 
+Para $m = |O_n|$ opciones por cliente, existen $m^{|N|}$ combinaciones posibles para seleccionar opciones. Al combinar la asignación con el ordenamiento de rutas, el espacio de búsqueda total escala como: 
+\begin{equation} 
+    |\Omega_{\text{total}}| = O\left(m^{|N|} \cdot |N|! \cdot 2^{|N|}\right) 
+\end{equation} 
+Esta complejidad justifica el uso de métodos de descomposición y matheurísticas avanzadas. 
+
+\section{Conclusiones} 
+El VRPDO representa un avance crucial sobre los modelos rígidos tradicionales, logrando reducciones del costo de transporte de entre el 15\% y el 50\%. La evolución metodológica muestra que las matheurísticas híbridas (como NMH) sobre grafos de opciones ($G^{\text{opt}}$) ofrecen la mayor escalabilidad y calidad de solución para instancias de tamaño real. 
+\vspace{2mm}
+Los modelos actuales asumen capacidades de casilleros ($C_\ell$) deterministas y estáticas, ignorando la incertidumbre en los tiempos de retiro por parte de los clientes. Asimismo, no consideran dinámicas en tiempo real ni flujos multimodales. 
+
+Se identifican tres líneas clave: 1\. Algoritmos adaptativos con aprendizaje por refuerzo para guiar la búsqueda local en LNS. 2\. Formulación de modelos de optimización robusta ante capacidad estocástica en casilleros. 3\. Integración de esquemas de tarificación dinámica e incentivos para los consumidores. 
+
+\section{Uso de LLMs}
+
+\begin{enumerate}
+\item Herramienta: Gemini / LLM Gratuito.
+\begin{itemize}
+\item Prop\'osito de uso:  Asistencia en el formateo de código LATEX, traducción técnica de artículos en
+inglés (para corroborar que si entendí las ideas y no ocurrieran errores por traducción) y para comprensión de algunos conceptos.
+\item Prompt principal: 
+    Traduce el texto adjunto a español, cual es su idea principal y que conceptos abarca.
+\item Intervención: El texto obtenido fueron editados y complementados en lo posible con material de clases e información de estos mismos papers; su uso fue más bien material referencial a la hora de completar el estado del arte.
+\item Validación: Se contrastó con los ppt e informes en español brindados por el ayudante y los papers en inglés.
+
+\end{itemize}
+\end{enumerate}
+
+
+%Herramienta: ChatGPT (GPT-5.x)
+%Uso: Generación de ideas y revisión de redacción
+%Prompt principal: “Explica el algoritmo SMS-EMOA con pseudocódigo formal”
+%Intervención: El texto fue adaptado, reorganizado y complementado con material de clase
+%Validación: Se contrastó con [fuente X]
+
+
+%------Esta sección puede ser removida ----------%
+\section{Bibliograf\'ia}
+Indicando toda la informaci\'on necesaria de acuerdo al tipo de documento revisado. Todas las referencias deben ser citadas en el documento.
+%------Remover hasta acá ----------%
+\bibliographystyle{plain}
+\bibliography{Referencias}
+
+\end{document} 
