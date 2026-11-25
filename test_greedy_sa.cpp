@@ -74,9 +74,11 @@ int main() {
     const string runFile = "greedy_sa_runs.csv";
     const string instanceFile = "greedy_sa_by_instance.csv";
     const string restartFile = "greedy_sa_restarts.csv";
+    const string convergenceFile = "greedy_sa_convergence.csv";
 
-    ofstream runs(runFile), byInstance(instanceFile), restarts(restartFile);
-    if (!runs || !byInstance || !restarts) {
+    ofstream runs(runFile), byInstance(instanceFile), restarts(restartFile),
+        convergence(convergenceFile);
+    if (!runs || !byInstance || !restarts || !convergence) {
         cerr << "No se pudieron crear los CSV de resultados.\n";
         return 2;
     }
@@ -99,6 +101,7 @@ int main() {
 
     restarts << "instancia,estrategia,repeticion,semilla_greedy,intento,"
                 "clientes_asignados,factible,tiempo_segundos,motivo_fallo\n";
+    convergence << "instancia,estrategia,repeticion,semilla,iteracion,tiempo_segundos,mejor_objetivo\n";
 
     map<pair<string, GreedyStrategy>, InstanceStrategyStats> perInstance;
     map<GreedyStrategy, StrategyTotals> totals;
@@ -180,6 +183,15 @@ int main() {
                 const SAResult sa = simulatedAnnealing(instance, greedy.solucion, saConfig);
                 const double saSeconds = chrono::duration<double>(
                     Clock::now() - saStart).count();
+
+                for (const SAProgress& point : sa.progress) {
+                    convergence << csv(instanceName) << ','
+                                << csv(greedyStrategyName(strategy)) << ','
+                                << repetition + 1 << ',' << seed << ','
+                                << point.iteration << ',' << fixed << setprecision(6)
+                                << point.elapsedSeconds << ',' << fixed << setprecision(2)
+                                << point.bestObjective << '\n';
+                }
 
                 stats.saSeconds += saSeconds;
                 total.saSeconds += saSeconds;
