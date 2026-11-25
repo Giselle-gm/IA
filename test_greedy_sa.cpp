@@ -64,7 +64,7 @@ int main() {
         GreedyStrategy::FEWEST_OPTIONS_FIRST,
         GreedyStrategy::MOST_CONSTRAINED_FIRST
     };
-    const vector<unsigned int> seeds = {42, 43, 44};
+    const vector<unsigned int> seeds = {42, 43, 44, 45, 46};
 
     GreedyConfig greedyConfig;
     greedyConfig.maxRestarts = 100;
