@@ -29,7 +29,7 @@ struct SAResult {
     int iterationsExecuted = 0;
     int acceptedMoves = 0;
     std::vector<SAProgress> progress;
-}
+};
 
 // Mejora una solución inicial factible mediante Simulated Annealing.
 SAResult simulatedAnnealing(
