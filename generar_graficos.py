@@ -1,24 +1,3 @@
-#!/usr/bin/env python3
-"""
-Genera gráficos para el análisis experimental de Greedy + Simulated Annealing.
-
-Ubicación esperada de los CSV (directorio raíz del repositorio):
-  - greedy_sa_runs.csv
-  - greedy_sa_by_instance.csv
-  - greedy_sa_convergence.csv
-  - greedy_sa_restarts.csv (opcional; se reserva para análisis posteriores)
-
-Uso:
-  python3 generar_graficos.py
-
-Dependencias:
-  python3 -m pip install pandas matplotlib
-
-Los gráficos se guardan en ./graficos_generados como PDF y PNG.
-El tiempo de convergencia corresponde exclusivamente a la ejecución de SA,
-no al tiempo total de Greedy + SA.
-"""
-
 from pathlib import Path
 
 import matplotlib
