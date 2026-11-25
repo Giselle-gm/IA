@@ -1,6 +1,7 @@
 #include "simulated_annealing.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <numeric>
 #include <random>
@@ -196,6 +197,9 @@ SAResult simulatedAnnealing(
     result.bestSolucion = currentSolucion;
     result.bestEvaluacion = result.initialEvaluacion;
 
+    const auto startTime = chrono::steady_clock::now();
+    result.progress.push_back({0, 0.0, result.bestEvaluacion.objectiveValue});
+
     mt19937 generator(config.randomSeed);
     uniform_real_distribution<double> probability(0.0, 1.0);
 
@@ -206,6 +210,16 @@ SAResult simulatedAnnealing(
          ++iteration) {
 
         result.iterationsExecuted++;
+
+        if (result.iterationsExecuted % 50 == 0) {
+            const double elapsed = chrono::duration<double>(
+                chrono::steady_clock::now() - startTime).count();
+            result.progress.push_back({
+                result.iterationsExecuted,
+                elapsed,
+                result.bestEvaluacion.objectiveValue
+            });
+        }
 
         Solucion candidate = currentSolucion;
 
@@ -242,6 +256,17 @@ SAResult simulatedAnnealing(
         }
 
         temperature *= config.coolingRate;
+    }
+
+    const double finalElapsed = chrono::duration<double>(
+        chrono::steady_clock::now() - startTime).count();
+    if (result.progress.empty() ||
+        result.progress.back().iteration != result.iterationsExecuted) {
+        result.progress.push_back({
+            result.iterationsExecuted,
+            finalElapsed,
+            result.bestEvaluacion.objectiveValue
+        });
     }
 
     result.success = result.bestEvaluacion.factible;
